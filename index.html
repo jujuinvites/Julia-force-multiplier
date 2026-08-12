@@ -3,927 +3,566 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Julia's Era — Force Multiplier — @juliajudico</title>
+<title>Julia's Era — Force Multiplier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --pink:#64856B;   /* Eucalyptus - Athena accent green */
-    --pink2:#DCBA79;  /* Golden Tan - Athena CTA/highlight accent */
-    --accent:#B3CBB9; /* Light Sage - Athena neutral accent */
+    --pink:#64856B;
+    --pink2:#DCBA79;
+    --accent:#B3CBB9;
     --dark:#0a1f13;
     --deepforest:#062812;
     --moss:#264330;
+    --ink:#eef4ef;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html,body{
-    height:100%;
-    background:#050505;
-    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-    color:#fff;
-  }
-  .app{
-    max-width:430px;
-    margin:0 auto;
-    height:100vh;
-    overflow-y:scroll;
-    scroll-snap-type:y mandatory;
+  html,body{ height:100%; background:#04100a; color:var(--ink); font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; }
+  h1,h2,h3{ font-family:"Playfair Display", Georgia, serif; font-weight:700; }
+
+  .deck{ position:fixed; inset:0; background:#04100a; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .stage{
     position:relative;
-    background:#000;
-    box-shadow:0 0 60px rgba(100,133,107,0.20);
+    width:min(100vw, 177.78vh);
+    aspect-ratio:16/9;
+    max-height:100vh;
+    background:radial-gradient(circle at 30% 20%, var(--moss), var(--deepforest) 70%);
+    box-shadow:0 0 100px rgba(0,0,0,0.7);
+    overflow:hidden;
+    cursor:pointer;
   }
-  .app::-webkit-scrollbar{ display:none; }
-  .topbar{
-    position:fixed;
-    top:0; left:50%; transform:translateX(-50%);
-    max-width:430px; width:100%;
-    display:flex; justify-content:center; gap:22px;
-    padding:14px 0 8px;
-    font-size:15px; font-weight:600;
-    z-index:20;
-    background:linear-gradient(to bottom, rgba(0,0,0,0.55), transparent);
-    pointer-events:none;
-  }
-  .topbar span{opacity:0.55;}
-  .topbar span.active{opacity:1; border-bottom:2px solid #fff; padding-bottom:6px;}
+  .stage:fullscreen{ width:100vw; height:100vh; }
 
   .slide{
-    height:100vh;
-    width:100%;
-    scroll-snap-align:start;
+    position:absolute; inset:0;
+    opacity:0; pointer-events:none;
+    transition:opacity .45s ease;
+    display:flex; flex-direction:column;
+    padding:5.5% 6.5% clamp(64px,11%,110px) 6.5%;
+  }
+  .slide.active{ opacity:1; pointer-events:auto; }
+  @media (prefers-reduced-motion: reduce){ .slide{ transition:none; } }
+
+  .eyebrow{
+    font-family:"Roboto Mono", monospace; text-transform:uppercase; letter-spacing:1.5px;
+    font-size:clamp(10px,1.1vw,13px); color:var(--pink2); font-weight:700; margin-bottom:clamp(6px,1vw,14px);
+  }
+  .slide-title{ font-size:clamp(22px,3.4vw,38px); line-height:1.15; text-wrap:balance; margin-bottom:clamp(14px,2.2vw,28px); }
+  .slide-title .accent{ color:var(--pink2); }
+
+  /* ---------- HERO / NARRATIVE (phone mockup) SLIDES ---------- */
+  .hero-slide{ flex-direction:row; align-items:center; justify-content:space-between; gap:4%; }
+  .hero-copy{ max-width:46%; }
+  .hero-copy h1{ font-size:clamp(38px,6.4vw,74px); line-height:1.05; text-wrap:balance; }
+  .hero-copy .hero-sub{ font-size:clamp(15px,1.9vw,22px); opacity:0.88; margin-top:clamp(10px,1.6vw,20px); line-height:1.45; max-width:34ch; }
+  .hero-copy .hero-tag{ font-family:"Roboto Mono",monospace; font-size:clamp(10px,1.1vw,12px); letter-spacing:1.2px; text-transform:uppercase; color:var(--pink2); margin-top:clamp(14px,2vw,26px); opacity:0.9; }
+
+  .phone{
+    flex-shrink:0;
+    width:clamp(190px,20vw,272px);
+    aspect-ratio:9/19.3;
+    border-radius:9%;
+    background:#000;
+    padding:3.2%;
+    box-shadow:0 24px 60px rgba(0,0,0,0.55), inset 0 0 0 1.5px rgba(255,255,255,0.06);
     position:relative;
-    display:flex;
-    align-items:flex-end;
+  }
+  .phone::before{
+    content:''; position:absolute; top:5.5%; left:50%; transform:translateX(-50%);
+    width:26%; height:2.2%; border-radius:6px; background:#000; z-index:5;
+  }
+  .phone .screen{
+    position:relative; width:100%; height:100%; border-radius:7.5%; overflow:hidden;
+    background:radial-gradient(circle at 35% 18%, var(--moss), var(--deepforest) 75%);
+    display:flex; flex-direction:column;
+  }
+  .phone .ptop{ display:flex; justify-content:center; gap:10px; padding:9% 0 3%; font-size:8px; font-weight:700; }
+  .phone .ptop span{ opacity:0.5; }
+  .phone .ptop span.on{ opacity:1; border-bottom:1.5px solid #fff; padding-bottom:3px; }
+  .phone .phook{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 9%; }
+  .phook h3{ font-size:clamp(11px,1.35vw,16px); line-height:1.25; text-wrap:balance; }
+  .phook .psub{ font-size:clamp(6.5px,0.85vw,9.5px); opacity:0.85; margin-top:6%; line-height:1.4; }
+  .phone .prail{ position:absolute; right:6%; bottom:26%; display:flex; flex-direction:column; align-items:center; gap:9%; }
+  .phone .prail .av{ width:16%; aspect-ratio:1; border-radius:50%; background:linear-gradient(135deg,var(--pink),var(--pink2)); border:1px solid #fff; }
+  .phone .prail .ic{ font-size:clamp(9px,1.1vw,13px); }
+  .phone .pcaption{ padding:0 9% 12%; }
+  .pcaption .h{ font-weight:800; font-size:clamp(6.5px,0.8vw,9px); margin-bottom:3%; }
+  .pcaption .c{ font-size:clamp(6px,0.75vw,8.5px); opacity:0.92; line-height:1.35; }
+  .pcaption .tag{ font-family:"Roboto Mono",monospace; font-size:clamp(5.5px,0.65vw,7.5px); color:var(--accent); text-transform:uppercase; margin-top:4%; opacity:0.85; }
+  .phone .phome{ position:absolute; bottom:2.2%; left:50%; transform:translateX(-50%); width:24%; height:1.4%; border-radius:4px; background:rgba(255,255,255,0.35); }
+
+  /* ---------- DATA CARD SLIDES ---------- */
+  .card-slide{ justify-content:flex-start; }
+  .card-grid{ display:grid; gap:clamp(8px,1.4vw,16px); flex:1; align-content:center; }
+  .card-grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+  .card-grid.cols-2{ grid-template-columns:repeat(2,1fr); }
+  .info-tile{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:14px;
+    padding:clamp(10px,1.6vw,18px); font-size:clamp(11px,1.3vw,15px); font-weight:600; line-height:1.35;
+  }
+  .info-tile .tn{ display:block; font-family:"Roboto Mono",monospace; font-size:clamp(9px,1vw,11px); opacity:0.55; margin-bottom:6px; }
+  .info-tile.wide{ grid-column:1/-1; }
+
+  .list-rows{ display:flex; flex-direction:column; gap:clamp(9px,1.5vw,16px); flex:1; justify-content:center; max-width:78%; }
+  .list-row{ display:flex; gap:14px; align-items:flex-start; font-size:clamp(13px,1.7vw,19px); font-weight:600; line-height:1.4; }
+  .list-row .mark{ flex-shrink:0; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; margin-top:2px; }
+  .list-row .mark.ok{ background:rgba(179,203,185,0.22); color:var(--accent); }
+  .list-row .mark.no{ background:rgba(224,163,163,0.18); color:#e0a3a3; }
+  .list-row.emph{ color:var(--pink2); font-weight:800; margin-top:6px; }
+
+  .info-card{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:18px;
+    padding:clamp(16px,2.4vw,30px); display:flex; flex-direction:column; gap:clamp(8px,1.3vw,14px);
+    font-size:clamp(13px,1.5vw,17px); line-height:1.5; max-width:70%; align-self:center;
+  }
+  .info-card b{ color:var(--pink2); }
+
+  /* ---------- EVIDENCE GALLERY SLIDES ---------- */
+  .gallery-row{ display:flex; gap:clamp(14px,2.2vw,30px); flex:1; align-items:stretch; }
+  .evidence{ flex:1; display:flex; flex-direction:column; gap:clamp(8px,1.2vw,14px); }
+  .evidence .ph{
+    flex:1; border-radius:14px; border:2px dashed rgba(255,255,255,0.3); background:rgba(255,255,255,0.05);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; padding:6%;
     overflow:hidden;
   }
-  .bg{
-    position:absolute; inset:0;
+  .evidence .ph img{ width:100%; height:100%; object-fit:cover; border-radius:12px; }
+  .evidence .ph .cam{ font-size:clamp(22px,3vw,32px); }
+  .evidence .ph .lbl{ font-size:clamp(10px,1.1vw,13px); font-weight:700; opacity:0.85; }
+  .evidence figcaption{ font-size:clamp(11px,1.25vw,15px); line-height:1.4; }
+  .evidence figcaption b{ color:var(--pink2); }
+
+  /* ---------- CHART SLIDES ---------- */
+  .chart-slide{ flex-direction:row; gap:4%; align-items:center; }
+  .chart-slide .chart-side{ flex:1.3; display:flex; flex-direction:column; }
+  .chart-slide .stat-side{ flex:1; display:flex; flex-direction:column; gap:clamp(10px,1.6vw,18px); align-self:center; }
+  .hero-stat{ background:rgba(255,255,255,0.07); border:1px solid rgba(220,186,121,0.35); border-radius:16px; padding:clamp(14px,2vw,22px); text-align:center; }
+  .hero-stat .v{ font-family:"Roboto Mono",monospace; font-size:clamp(22px,3.2vw,36px); font-weight:700; color:var(--pink2); }
+  .hero-stat .l{ font-size:clamp(11px,1.2vw,14px); opacity:0.85; margin-top:6px; }
+  .bar-chart{ width:100%; height:clamp(180px,32vh,320px); }
+  .bar-label{ font-family:"Roboto Mono",monospace; font-size:11px; fill:var(--ink); opacity:0.85; }
+  .bar-value{ font-family:"Roboto Mono",monospace; font-size:13px; font-weight:700; fill:var(--pink2); }
+
+  .timeline-wrap{ flex:1; display:flex; align-items:center; }
+  .timeline-chart{ width:100%; height:clamp(220px,36vh,360px); }
+  .tl-line{ stroke:rgba(255,255,255,0.25); stroke-width:2; }
+  .tl-dot{ fill:var(--pink2); }
+  .tl-date{ font-family:"Roboto Mono",monospace; font-size:11px; fill:var(--pink2); font-weight:700; }
+  .tl-desc{ font-size:12.5px; fill:var(--ink); font-weight:600; }
+
+  /* ---------- CHROME: nav / counter / fullscreen ---------- */
+  .chrome{ position:fixed; left:0; right:0; bottom:0; display:flex; justify-content:center; z-index:50; pointer-events:none; }
+  .chrome-inner{
+    pointer-events:auto;
+    display:flex; align-items:center; gap:14px;
+    background:rgba(0,0,0,0.55); backdrop-filter:blur(6px);
+    border-radius:999px; padding:8px 16px; margin-bottom:18px;
+    font-family:"Roboto Mono",monospace; font-size:12px; color:var(--ink);
+  }
+  .chrome button{
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff;
+    width:30px; height:30px; border-radius:50%; cursor:pointer; font-size:14px;
     display:flex; align-items:center; justify-content:center;
-    text-align:center;
   }
-  .bg .emoji{ font-size:76px; filter:drop-shadow(0 6px 18px rgba(0,0,0,0.35)); }
-
-  .overlay-text{
-    position:absolute;
-    top:38%;
-    left:6%; right:16%;
-    font-family:"Playfair Display", Georgia, serif;
-    font-size:26px;
-    font-weight:700;
-    line-height:1.28;
-    text-shadow:0 2px 10px rgba(0,0,0,0.45);
-  }
-  .overlay-sub{
-    position:absolute;
-    left:6%; right:16%;
-    font-size:14.5px;
-    font-weight:500;
-    opacity:0.9;
-    line-height:1.5;
-  }
-
-  .content{
-    position:relative;
-    z-index:5;
-    width:100%;
-    padding:0 14px 90px 16px;
-  }
-  .rail{
-    position:absolute;
-    right:10px;
-    bottom:100px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:20px;
-    z-index:10;
-  }
-  .rail .avatar{
-    width:46px; height:46px; border-radius:50%;
-    background:linear-gradient(135deg, var(--pink), var(--pink2));
-    display:flex; align-items:center; justify-content:center;
-    font-weight:800; font-size:16px; color:#fff;
-    border:2px solid #fff;
-    margin-bottom:4px;
-  }
-  .rail .item{ display:flex; flex-direction:column; align-items:center; gap:3px; }
-  .rail .icon{ font-size:29px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.4)); }
-  .rail .count{ font-family:"Roboto Mono", monospace; font-size:11.5px; font-weight:700; color:var(--pink2); }
-
-  .caption-block{ max-width:78%; }
-  .handle{ font-weight:800; font-size:15.5px; margin-bottom:4px; }
-  .caption{ font-size:14px; line-height:1.4; opacity:0.95; margin-bottom:4px; }
-  .hashtags{ font-family:"Roboto Mono", monospace; text-transform:uppercase; letter-spacing:0.4px; font-size:11.5px; font-weight:700; color:var(--accent); opacity:0.9; }
-
-  .stat-grid{
-    position:absolute;
-    top:32%;
-    left:6%; right:8%;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-  .stat-card{
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(6px);
-    border:1px solid rgba(255,255,255,0.18);
-    border-radius:14px;
-    padding:12px 10px;
-    text-align:center;
-  }
-  .stat-card.wide{ grid-column:1 / -1; }
-  .stat-card .v{ font-size:19px; font-weight:800; color:var(--pink2); }
-  .stat-card.wide .v{ font-size:26px; }
-  .stat-card .l{ font-size:10.5px; opacity:0.85; margin-top:3px; line-height:1.25; }
-
-  .comments-wrap{
-    position:absolute;
-    top:28%;
-    left:6%; right:8%;
-    display:flex; flex-direction:column; gap:11px;
-  }
-  .comment{
-    background:rgba(255,255,255,0.07);
-    border:1px solid rgba(255,255,255,0.14);
-    border-radius:14px;
-    padding:10px 12px;
-    display:flex; gap:9px;
-  }
-  .comment .cavatar{
-    flex:none;
-    width:30px; height:30px; border-radius:50%;
-    background:linear-gradient(135deg, var(--accent), var(--pink));
-    display:flex; align-items:center; justify-content:center;
-    font-size:12px; font-weight:800;
-  }
-  .comment .body{ font-size:12px; line-height:1.4; }
-  .comment .cname{ font-weight:700; font-size:12px; margin-bottom:2px; display:block; }
-  .comment .heart{ margin-left:auto; font-size:12px; opacity:0.6; align-self:center; }
-
-  .whylist{
-    position:absolute;
-    top:32%;
-    left:6%; right:16%;
-    display:flex; flex-direction:column; gap:10px;
-  }
-  .whylist .row{ font-size:14px; font-weight:600; display:flex; gap:8px; align-items:flex-start; line-height:1.35; }
-  .whylist .row .check{ color:var(--accent); font-weight:900; flex:none; }
-  .whylist .row .x{ color:#e0a3a3; font-weight:900; flex:none; }
-
-  .slidecount{
-    position:absolute; top:16px; left:16px; z-index:15;
-    font-family:"Roboto Mono", monospace; text-transform:uppercase; letter-spacing:0.5px;
-    font-size:11px; font-weight:700; opacity:0.75;
-    background:rgba(255,255,255,0.1); padding:4px 9px; border-radius:20px;
-  }
-
-  /* ---- info card (Meet the Client) ---- */
-  .info-card{
-    position:absolute; top:26%; left:6%; right:10%;
-    background:rgba(255,255,255,0.07);
-    border:1px solid rgba(255,255,255,0.16);
-    border-radius:18px; padding:18px;
-    display:flex; flex-direction:column; gap:10px;
-    font-size:13.5px; line-height:1.45;
-  }
-  .info-card .row b{ color:var(--pink2); }
-
-  /* ---- role grid (9 roles) ---- */
-  .role-grid{
-    position:absolute; top:24%; left:6%; right:8%;
-    display:grid; grid-template-columns:1fr 1fr; gap:8px;
-  }
-  .role-chip{
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.16);
-    border-radius:12px; padding:10px 9px;
-    font-size:11px; font-weight:700; line-height:1.3;
-  }
-  .role-chip .n{ font-family:"Roboto Mono",monospace; font-size:9.5px; opacity:0.6; display:block; margin-bottom:3px; }
-
-  /* ---- timeline ---- */
-  .timeline{
-    position:absolute; top:24%; left:9%; right:8%;
-    display:flex; flex-direction:column; gap:15px;
-    border-left:2px solid rgba(255,255,255,0.25);
-    padding-left:16px;
-  }
-  .t-item{ position:relative; }
-  .t-item .dot2{
-    position:absolute; left:-20px; top:3px;
-    width:9px; height:9px; border-radius:50%;
-    background:var(--pink2);
-  }
-  .t-date{ font-family:"Roboto Mono",monospace; font-size:10px; color:var(--pink2); font-weight:700; }
-  .t-desc{ font-size:12.5px; font-weight:600; margin-top:2px; line-height:1.3; }
-
-  /* ---- carousel (photo sections) ---- */
-  .carousel-wrap{ position:absolute; top:0; left:0; right:0; bottom:0; }
-  .carousel-label{
-    position:absolute; top:11%; left:6%; right:14%;
-    font-family:"Playfair Display", Georgia, serif;
-    font-weight:700; font-size:21px; line-height:1.25;
-    text-shadow:0 2px 10px rgba(0,0,0,0.45);
-  }
-  .carousel-track{
-    position:absolute; top:24%; bottom:20%; left:0; right:0;
-    display:flex; align-items:center; gap:12px;
-    overflow-x:auto; scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch; touch-action:pan-x;
-    padding:0 11%;
-    scrollbar-width:none;
-    cursor:grab; user-select:none;
-  }
-  .carousel-track:active{ cursor:grabbing; }
-  .carousel-track::-webkit-scrollbar{ display:none; }
-  .carousel-slide{
-    flex:0 0 78%; height:88%;
-    scroll-snap-align:center;
-  }
-  .ph{
-    height:100%; width:100%;
-    aspect-ratio:4/5;
-    border-radius:18px;
-    border:2px dashed rgba(255,255,255,0.35);
-    background:rgba(255,255,255,0.07);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:16px; gap:8px;
-  }
-  .ph .cam{ font-size:32px; }
-  .ph .lbl{ font-size:12.5px; font-weight:800; line-height:1.4; }
-  .ph .sub{ font-size:10.5px; opacity:0.65; line-height:1.4; }
-  .qcard{
-    height:100%; width:100%;
-    display:flex; flex-direction:column; gap:0;
-    border-radius:18px; overflow:hidden;
-    background:rgba(255,255,255,0.07);
-    border:1px solid rgba(255,255,255,0.16);
-  }
-  .qcard .qph{
-    flex:1 1 auto; min-height:0;
-    border:2px dashed rgba(255,255,255,0.3);
-    border-radius:14px; margin:10px 10px 0 10px;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:6px; text-align:center; padding:10px;
-  }
-  .qcard .qph .cam{ font-size:26px; }
-  .qcard .qph .sub{ font-size:10px; opacity:0.6; }
-  .qcard .qtext{ font-size:12.5px; line-height:1.4; padding:10px 12px 4px; }
-  .qcard .qname{ font-weight:800; font-size:11.5px; color:var(--pink2); padding:0 12px 12px; }
-  .dots{ position:absolute; bottom:9%; left:0; right:0; display:flex; justify-content:center; gap:6px; z-index:6; }
-  .dot{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.3); transition:all .2s; }
-  .dot.active{ background:var(--pink2); width:16px; border-radius:4px; }
-  .arrow{
-    position:absolute; top:50%; transform:translateY(-50%); z-index:8;
-    background:rgba(0,0,0,0.4); border:none; color:#fff;
-    width:30px; height:30px; border-radius:50%; font-size:15px; cursor:pointer;
-  }
-  .arrow.prev{ left:3%; } .arrow.next{ right:3%; }
-
-  .ph-full{
-    position:absolute; inset:0;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
-    text-align:center; padding:0 15%;
-  }
-  .ph-full .cam{ font-size:42px; }
-  .ph-full .lbl{ font-size:14px; font-weight:800; line-height:1.4; }
+  .chrome button:disabled{ opacity:0.3; cursor:default; }
+  .fsbtn{ position:fixed; top:18px; right:18px; z-index:50; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); color:#fff; width:34px; height:34px; border-radius:8px; cursor:pointer; font-size:14px; }
+  .progress{ position:fixed; top:0; left:0; height:3px; background:var(--pink2); z-index:50; transition:width .3s ease; }
 </style>
 </head>
 <body>
-<div class="topbar"><span>Following</span><span class="active">For You</span></div>
 
-<div class="app" id="app">
+<div class="progress" id="progress"></div>
+<button class="fsbtn" id="fsbtn" title="Toggle fullscreen">⛶</button>
 
-  <!-- SLIDE 1 : COVER -->
-  <section class="slide" style="background:radial-gradient(circle at 30% 20%, #264330, #062812 70%);">
-    <div class="slidecount">1/17</div>
-    <div class="bg"><div class="emoji">📱✨</div></div>
-    <div class="overlay-text">POV: you find your dream job on TikTok&nbsp;at&nbsp;11pm</div>
-    <div class="overlay-sub" style="top:56%;">13 months later, building the case for Force Multiplier</div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">1%</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">3 tries</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">13 mo</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">saved</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">Julia's Era — Force Multiplier case for review. Executive Partner, Athena, supporting Kendal Schoettlin @ Americord Blood.</div>
-        <div class="hashtags">#JuliasEra #ForceMultiplier #AthenaXP #NoPressureNoDiamonds</div>
-      </div>
-    </div>
-  </section>
+<div class="deck">
+  <div class="stage" id="stage">
 
-  <!-- SLIDE 2 : ABOUT ME (carousel) -->
-  <section class="slide" style="background:radial-gradient(circle at 60% 25%, #345942, #062812 78%);">
-    <div class="slidecount">2/17</div>
-    <div class="carousel-wrap">
-      <div class="carousel-label">the origin story before this era</div>
-      <button class="arrow prev">‹</button>
-      <div class="carousel-track">
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="lbl">Photo slot</div><div class="sub">Belmont Hotel Manila era — Investor Relations / Guest Relations</div></div>
-          <div class="qtext">6+ years across hospitality, corporate, and executive support before Athena.</div>
-          <div class="qname">Before Athena</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">🎓</div><div class="lbl">Photo slot</div><div class="sub">Bulacan State University — Tourism Management</div></div>
-          <div class="qtext">A deliberate career break for full-time family caregiving, then back stronger.</div>
-          <div class="qname">Education & the gap year</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">🏓</div><div class="lbl">Photo slot</div><div class="sub">Pickleball, content creation, travel, music</div></div>
-          <div class="qtext">Curious and energetic outside of work — it keeps me sharp on the clock too.</div>
-          <div class="qname">Outside work</div>
-        </div></div>
+    <!-- 1: COVER -->
+    <section class="slide hero-slide active">
+      <div class="hero-copy">
+        <h1>Julia's Era</h1>
+        <p class="hero-sub">It was an end of a chapter, but a start of a better one.</p>
+        <div class="hero-tag">Force Multiplier Case for Review · Julia Judico</div>
       </div>
-      <button class="arrow next">›</button>
-      <div class="dots"></div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">6 yrs</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">reset</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">swipe →</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">who I was before this era 🌱</div>
-        <div class="hashtags">#AboutMe #OriginStory</div>
+      <div class="phone">
+        <div class="screen">
+          <div class="ptop"><span>Following</span><span class="on">For You</span></div>
+          <div class="phook">
+            <h3>POV: you find your dream job on TikTok at 11pm</h3>
+            <div class="psub">13 months later, building the case for Force Multiplier</div>
+          </div>
+          <div class="prail">
+            <div class="av"></div>
+            <div class="ic">❤️</div>
+            <div class="ic">💬</div>
+            <div class="ic">🔁</div>
+            <div class="ic">🔖</div>
+          </div>
+          <div class="pcaption">
+            <div class="h">@juliajudico</div>
+            <div class="c">Executive Partner, Athena, supporting Kendal Schoettlin @ Americord Blood.</div>
+            <div class="tag">#JuliasEra #ForceMultiplier</div>
+          </div>
+          <div class="phome"></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 3 : ERA 1 -->
-  <section class="slide" style="background:radial-gradient(circle at 70% 30%, #3c5645, #062812 75%);">
-    <div class="slidecount">3/17</div>
-    <div class="bg"><div class="emoji">🚗💨</div></div>
-    <div class="overlay-text">4-5 hours a day, round trip. A nanny who couldn't keep up.</div>
-    <div class="overlay-sub" style="top:56%;">that was my sign, not just a scheduling problem</div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">4-5 hrs</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">gone</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">for good</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">Era 1: the breaking point, before Athena 💔➡️✨</div>
-        <div class="hashtags">#WorkingMom #BurnoutRecovery</div>
+    <!-- 2: ABOUT ME -->
+    <section class="slide card-slide">
+      <div class="eyebrow">Before This Era</div>
+      <h2 class="slide-title">Who I was <span class="accent">before Athena</span></h2>
+      <div class="card-grid cols-2">
+        <div class="info-tile"><span class="tn">BACKGROUND</span>6+ years across hospitality, corporate, and executive support — Investor Relations &amp; Guest Relations, Belmont Hotel Manila.</div>
+        <div class="info-tile"><span class="tn">EDUCATION</span>Tourism Management, Bulacan State University.</div>
+        <div class="info-tile"><span class="tn">THE GAP</span>A deliberate career break for full-time family caregiving — then came back stronger.</div>
+        <div class="info-tile"><span class="tn">OUTSIDE WORK</span>Pickleball, content creation, travel, music — curious and energetic on and off the clock.</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 4 : ERA 2a -->
-  <section class="slide" style="background:radial-gradient(circle at 25% 65%, #345942, #062812 75%);">
-    <div class="slidecount">4/17</div>
-    <div class="bg"><div class="emoji">🚫🚫✅</div></div>
-    <div class="overlay-text">Applied. Rejected. Applied again. Rejected again.</div>
-    <div class="overlay-sub" style="top:56%;">applied a third time — because this was the only VA agency I wanted to be part of, period</div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">2 misses</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">1 yes</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">worth it</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">Era 2: didn't pass. didn't pass again. tried anyway 🎯</div>
-        <div class="hashtags">#ThirdTimesTheCharm #Persistence</div>
+    <!-- 3: ERA 1 -->
+    <section class="slide hero-slide">
+      <div class="hero-copy">
+        <h1>The Commute<br>That Broke Me</h1>
+        <p class="hero-sub">4–5 hours a day, round trip. A nanny who couldn't keep up. That was my sign — not just a scheduling problem.</p>
+        <div class="hero-tag">Era 1 · Before Athena</div>
       </div>
-    </div>
-  </section>
+      <div class="phone">
+        <div class="screen">
+          <div class="ptop"><span>Following</span><span class="on">For You</span></div>
+          <div class="phook">
+            <h3>4–5 hours a day, round trip. A nanny who couldn't keep up.</h3>
+            <div class="psub">that was my sign, not just a scheduling problem</div>
+          </div>
+          <div class="prail">
+            <div class="av"></div>
+            <div class="ic">❤️</div>
+            <div class="ic">💬</div>
+            <div class="ic">🔁</div>
+            <div class="ic">🔖</div>
+          </div>
+          <div class="pcaption">
+            <div class="h">@juliajudico</div>
+            <div class="c">the breaking point, before Athena 💔➡️✨</div>
+            <div class="tag">#WorkingMom #BurnoutRecovery</div>
+          </div>
+          <div class="phome"></div>
+        </div>
+      </div>
+    </section>
 
-  <!-- SLIDE 5 : ERA 2b -->
-  <section class="slide" style="background:radial-gradient(circle at 50% 30%, #64856B, #062812 75%);">
-    <div class="slidecount">5/17</div>
-    <div class="bg"><div class="emoji">🧭</div></div>
-    <div class="overlay-text">Offer in hand. Gave notice. Started 6/13/25.</div>
-    <div class="overlay-sub" style="top:56%;">not a leap without a landing spot — three tries proving it was worth landing</div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">day 1</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">9 roles</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">13 mo+</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">day one of being an Executive Partner, Athena 🧭</div>
-        <div class="hashtags">#NewBeginnings #ExecutivePartner</div>
+    <!-- 4: ERA 2 -->
+    <section class="slide hero-slide">
+      <div class="hero-copy">
+        <h1>Applied. Rejected.<br>Tried Again.</h1>
+        <p class="hero-sub">Applied a third time — because this was the only agency I wanted to be part of, period. Started as Executive Partner on 6/13/25.</p>
+        <div class="hero-tag">Era 2 · Getting In</div>
       </div>
-    </div>
-  </section>
+      <div class="phone">
+        <div class="screen">
+          <div class="ptop"><span>Following</span><span class="on">For You</span></div>
+          <div class="phook">
+            <h3>Offer in hand. Gave notice. Started 6/13/25.</h3>
+            <div class="psub">three tries proving it was worth landing</div>
+          </div>
+          <div class="prail">
+            <div class="av"></div>
+            <div class="ic">❤️</div>
+            <div class="ic">💬</div>
+            <div class="ic">🔁</div>
+            <div class="ic">🔖</div>
+          </div>
+          <div class="pcaption">
+            <div class="h">@juliajudico</div>
+            <div class="c">day one of being an Executive Partner, Athena 🧭</div>
+            <div class="tag">#NewBeginnings #ExecutivePartner</div>
+          </div>
+          <div class="phome"></div>
+        </div>
+      </div>
+    </section>
 
-  <!-- SLIDE 6 : JOURNEY TIMELINE -->
-  <section class="slide" style="background:radial-gradient(circle at 40% 20%, #3c5645, #062812 78%);">
-    <div class="slidecount">6/17</div>
-    <div class="overlay-text" style="top:11%; font-size:21px;">13 months, mapped out</div>
-    <div class="timeline">
-      <div class="t-item"><div class="dot2"></div><div class="t-date">JUN 13, 2025</div><div class="t-desc">Started as Executive Partner, supporting Kendal at Americord</div></div>
-      <div class="t-item"><div class="dot2"></div><div class="t-date">WEEK 1</div><div class="t-desc">Delivered a full slide deck within days of starting</div></div>
-      <div class="t-item"><div class="dot2"></div><div class="t-date">MONTH 1 · JUL 2025</div><div class="t-desc">Overhauled onboarding, inbox, and calendar systems</div></div>
-      <div class="t-item"><div class="dot2"></div><div class="t-date">MONTH 2 · AUG 2025</div><div class="t-desc">Caught a vendor contract breach — public team shout-out</div></div>
-      <div class="t-item"><div class="dot2"></div><div class="t-date">MONTH 7 · JAN 2026</div><div class="t-desc">Major public recognition from Kendal for closing out the year</div></div>
-      <div class="t-item"><div class="dot2"></div><div class="t-date">MONTH 10 · APR 2026</div><div class="t-desc">Ran payroll solo, full EA coverage during Kendal's wedding leave</div></div>
-      <div class="t-item"><div class="dot2"></div><div class="t-date">YEAR 1 · JUL 2026</div><div class="t-desc">Earned a formal written Client Recognition</div></div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">7 beats</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">1 yr+</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">still going</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">the timeline so far ⏳</div>
-        <div class="hashtags">#Timeline #YearOne</div>
+    <!-- 5: TIMELINE -->
+    <section class="slide card-slide">
+      <div class="eyebrow">13 Months, Mapped Out</div>
+      <h2 class="slide-title">The <span class="accent">timeline</span> so far</h2>
+      <div class="timeline-wrap">
+        <svg class="timeline-chart" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet">
+          <line class="tl-line" x1="40" y1="150" x2="960" y2="150"/>
+          <g>
+            <circle class="tl-dot" cx="60" cy="150" r="7"/>
+            <text class="tl-date" x="60" y="120" text-anchor="middle">JUN 13, 2025</text>
+            <text class="tl-desc" x="60" y="185" text-anchor="middle">Started as EP</text>
+          </g>
+          <g>
+            <circle class="tl-dot" cx="190" cy="150" r="7"/>
+            <text class="tl-date" x="190" y="120" text-anchor="middle">WEEK 1</text>
+            <text class="tl-desc" x="190" y="185" text-anchor="middle">Full deck delivered</text>
+          </g>
+          <g>
+            <circle class="tl-dot" cx="330" cy="150" r="7"/>
+            <text class="tl-date" x="330" y="185" text-anchor="middle">MONTH 1</text>
+            <text class="tl-desc" x="330" y="120" text-anchor="middle">Systems overhauled</text>
+          </g>
+          <g>
+            <circle class="tl-dot" cx="470" cy="150" r="7"/>
+            <text class="tl-date" x="470" y="120" text-anchor="middle">MONTH 2</text>
+            <text class="tl-desc" x="470" y="185" text-anchor="middle">Caught vendor breach</text>
+          </g>
+          <g>
+            <circle class="tl-dot" cx="640" cy="150" r="7"/>
+            <text class="tl-date" x="640" y="185" text-anchor="middle">MONTH 7</text>
+            <text class="tl-desc" x="640" y="120" text-anchor="middle">Major recognition</text>
+          </g>
+          <g>
+            <circle class="tl-dot" cx="790" cy="150" r="7"/>
+            <text class="tl-date" x="790" y="120" text-anchor="middle">MONTH 10</text>
+            <text class="tl-desc" x="790" y="185" text-anchor="middle">Solo payroll + EA coverage</text>
+          </g>
+          <g>
+            <circle class="tl-dot" cx="940" cy="150" r="9"/>
+            <text class="tl-date" x="925" y="185" text-anchor="middle">YEAR 1</text>
+            <text class="tl-desc" x="925" y="120" text-anchor="middle">Formal Client Recognition</text>
+          </g>
+        </svg>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 7 : MEET THE CLIENT -->
-  <section class="slide" style="background:radial-gradient(circle at 60% 30%, #4a6b52, #062812 78%);">
-    <div class="slidecount">7/17</div>
-    <div class="overlay-text" style="top:11%; font-size:21px;">who I create content&nbsp;for</div>
-    <div class="info-card">
-      <div class="row"><b>Client:</b> Kendal Schoettlin, Director of HR, Finance &amp; Operations</div>
-      <div class="row"><b>Company:</b> Americord Registry LLC — cord blood &amp; cord tissue banking</div>
-      <div class="row"><b>Founder/CEO:</b> Martin Smithmyer</div>
-      <div class="row"><b>Why an EP:</b> a true right hand across finance, HR, operations, vendor management, and company-wide initiatives — someone trusted to run things independently</div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">1 client</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">full trust</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">13 mo+</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">meet the client 🤝</div>
-        <div class="hashtags">#Americord #ClientPartnership</div>
+    <!-- 6: MEET THE CLIENT -->
+    <section class="slide card-slide" style="justify-content:center;">
+      <div class="eyebrow">Who I Create Content For</div>
+      <h2 class="slide-title" style="align-self:center;">Meet the client</h2>
+      <div class="info-card">
+        <div><b>Client:</b> Kendal Schoettlin, Director of HR, Finance &amp; Operations</div>
+        <div><b>Company:</b> Americord Registry LLC — cord blood &amp; cord tissue banking</div>
+        <div><b>Founder/CEO:</b> Martin Smithmyer</div>
+        <div><b>Why an EP:</b> a true right hand across finance, HR, operations, vendor management, and company-wide initiatives — someone trusted to run things independently.</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 8 : CORE RESPONSIBILITIES -->
-  <section class="slide" style="background:radial-gradient(circle at 30% 25%, #3d5a44, #062812 78%);">
-    <div class="slidecount">8/17</div>
-    <div class="overlay-text" style="top:10%; font-size:20px;">one title, nine jobs</div>
-    <div class="role-grid">
-      <div class="role-chip"><span class="n">01</span>Executive &amp; Operational Support</div>
-      <div class="role-chip"><span class="n">02</span>Finance &amp; Bookkeeping</div>
-      <div class="role-chip"><span class="n">03</span>Vendor &amp; AP Management</div>
-      <div class="role-chip"><span class="n">04</span>HR &amp; Onboarding Support</div>
-      <div class="role-chip"><span class="n">05</span>Process, SOPs &amp; Succession Planning</div>
-      <div class="role-chip"><span class="n">06</span>AI Adoption &amp; Special Projects</div>
-      <div class="role-chip"><span class="n">07</span>Legal &amp; Contract Support</div>
-      <div class="role-chip"><span class="n">08</span>Lyos Financial Support &amp; M&amp;A</div>
-      <div class="role-chip" style="grid-column:1/-1;"><span class="n">09</span>Event Planning &amp; Culture Support</div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">9 roles</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">1 seat</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">daily</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">a day in my era 🗂️</div>
-        <div class="hashtags">#NineRoles #ExecutivePartner</div>
+    <!-- 7: CORE RESPONSIBILITIES -->
+    <section class="slide card-slide">
+      <div class="eyebrow">One Title, Nine Jobs</div>
+      <h2 class="slide-title">A day in <span class="accent">my era</span></h2>
+      <div class="card-grid cols-3">
+        <div class="info-tile"><span class="tn">01</span>Executive &amp; Operational Support</div>
+        <div class="info-tile"><span class="tn">02</span>Finance &amp; Bookkeeping</div>
+        <div class="info-tile"><span class="tn">03</span>Vendor &amp; AP Management</div>
+        <div class="info-tile"><span class="tn">04</span>HR &amp; Onboarding Support</div>
+        <div class="info-tile"><span class="tn">05</span>Process, SOPs &amp; Succession Planning</div>
+        <div class="info-tile"><span class="tn">06</span>AI Adoption &amp; Special Projects</div>
+        <div class="info-tile"><span class="tn">07</span>Legal &amp; Contract Support</div>
+        <div class="info-tile"><span class="tn">08</span>Lyos Financial Support &amp; M&amp;A</div>
+        <div class="info-tile"><span class="tn">09</span>Event Planning &amp; Culture Support</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 9 : CHALLENGES -->
-  <section class="slide" style="background:radial-gradient(circle at 50% 40%, #16321f, #062812 80%);">
-    <div class="slidecount">9/17</div>
-    <div class="overlay-text" style="top:10%; font-size:20px;">the hard parts of this era</div>
-    <div class="whylist">
-      <div class="row"><span class="x">✕</span> nine role categories, one Executive Partner seat</div>
-      <div class="row"><span class="x">✕</span> a hard external Arizona AG regulatory deadline</div>
-      <div class="row"><span class="x">✕</span> first solo payroll run + full EA coverage during leadership leave</div>
-      <div class="row"><span class="x">✕</span> financial modeling &amp; M&amp;A documentation — outside core EA training</div>
-      <div class="row"><span class="x">✕</span> a 9-department initiative with no existing playbook</div>
-      <div class="row"><span class="check">✓</span> came out with more confidence, ownership, and trust earned</div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">5 fires</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">0 excuses</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">growth</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">not gonna pretend it was easy 😅</div>
-        <div class="hashtags">#Challenges #GrowthMode</div>
+    <!-- 8: CHALLENGES -->
+    <section class="slide card-slide" style="justify-content:center;">
+      <div class="eyebrow">Not Gonna Pretend It Was Easy</div>
+      <h2 class="slide-title" style="align-self:center;">The hard parts of this era</h2>
+      <div class="list-rows" style="align-self:center;">
+        <div class="list-row"><span class="mark no">✕</span>Nine role categories, one Executive Partner seat</div>
+        <div class="list-row"><span class="mark no">✕</span>A hard external Arizona AG regulatory deadline</div>
+        <div class="list-row"><span class="mark no">✕</span>First solo payroll run + full EA coverage during leadership leave</div>
+        <div class="list-row"><span class="mark no">✕</span>Financial modeling &amp; M&amp;A documentation — outside core EA training</div>
+        <div class="list-row"><span class="mark no">✕</span>A 9-department initiative with no existing playbook</div>
+        <div class="list-row emph"><span class="mark ok">✓</span>Came out with more confidence, ownership, and trust earned</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 10 : CLIENT FEEDBACK (carousel) -->
-  <section class="slide" style="background:radial-gradient(circle at 40% 25%, #345942, #062812 78%);">
-    <div class="slidecount">10/17</div>
-    <div class="carousel-wrap">
-      <div class="carousel-label">in their own words</div>
-      <button class="arrow prev">‹</button>
-      <div class="carousel-track">
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo/screenshot slot</div></div>
-          <div class="qtext">"I could not have survived and enjoyed my wedding &amp; honeymoon without you, and there are no words to tell you how much I appreciate you &amp; everything you do for me."</div>
-          <div class="qname">Kendal Schoettlin</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo/screenshot slot</div></div>
-          <div class="qtext">"Julia deserves a huge shout-out today for all the help you've been giving me lately!! Seriously couldn't do it without you. Thank you, Julia!!"</div>
-          <div class="qname">Kendal Schoettlin</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo/screenshot slot</div></div>
-          <div class="qtext">"She seems to be everywhere at once. Very inspiring!"</div>
-          <div class="qname">Jason Seibert</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo/screenshot slot</div></div>
-          <div class="qtext">"This is so cute — thank you guys so much for planning and setting this activity up. There's really no better way to share it with my team."</div>
-          <div class="qname">Sasha Pierre-Paul</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo/screenshot slot</div></div>
-          <div class="qtext">"Julia has become an indispensable partner through her exceptional ownership, reliability, and proactive support."</div>
-          <div class="qname">Reanne Letada — Formal Client Recognition, Jul 2026</div>
-        </div></div>
+    <!-- 9: CLIENT FEEDBACK (evidence gallery) -->
+    <section class="slide card-slide">
+      <div class="eyebrow">In Their Own Words</div>
+      <h2 class="slide-title">Client Feedback <span class="accent">(The Comments Section)</span></h2>
+      <div class="gallery-row">
+        <figure class="evidence">
+          <div class="ph"><div class="cam">📸</div><div class="lbl">Real screenshot — swap in here</div></div>
+          <figcaption><b>Quote 1</b> — Kendal expressed deep appreciation for my support.</figcaption>
+        </figure>
+        <figure class="evidence">
+          <div class="ph"><div class="cam">📸</div><div class="lbl">Real screenshot — swap in here</div></div>
+          <figcaption><b>Quote 2</b> — Received recognition for outstanding contributions.</figcaption>
+        </figure>
       </div>
-      <button class="arrow next">›</button>
-      <div class="dots"></div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">5 quotes</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">read all</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">swipe →</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">receipts, but the sentimental kind 🥹</div>
-        <div class="hashtags">#Recognition #ClientLove</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 11 : MAJOR WINS / ACHIEVEMENTS (carousel) -->
-  <section class="slide" style="background:radial-gradient(circle at 55% 25%, #4a6b52, #062812 78%);">
-    <div class="slidecount">11/17</div>
-    <div class="carousel-wrap">
-      <div class="carousel-label">major wins this era</div>
-      <button class="arrow prev">‹</button>
-      <div class="carousel-track">
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Hit a hard external Arizona AG regulatory deadline exactly, coordinating document collection across multiple departments.</div>
-          <div class="qname">AZ AG Regulatory Response</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Ran the company's payroll independently for the first time during leadership leave.</div>
-          <div class="qname">Solo Payroll Run</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Completed a full legal redline of a Stock Repurchase Agreement amendment — extended a termination window by 150%, added a Payment Default clause and Solvency Representation section.</div>
-          <div class="qname">Legal Redline</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Resolved a ~$420,000–$440,000 outstanding receivable.</div>
-          <div class="qname">Receivable Resolved</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Founded and co-led a company-wide succession-planning initiative spanning 9 departments.</div>
-          <div class="qname">Succession Planning Founder</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">📸</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Delivered the company-wide finance/HR/succession-planning update at the All-Hands meeting, in her manager's place.</div>
-          <div class="qname">All-Hands Presenter</div>
-        </div></div>
+    <!-- 10: MAJOR WINS -->
+    <section class="slide card-slide">
+      <div class="eyebrow">Highlight Reel</div>
+      <h2 class="slide-title">Major <span class="accent">wins</span> this era</h2>
+      <div class="card-grid cols-3">
+        <div class="info-tile">Hit a hard external Arizona AG regulatory deadline exactly, across multiple departments</div>
+        <div class="info-tile">Ran the company's payroll independently for the first time during leadership leave</div>
+        <div class="info-tile">Full legal redline of a Stock Repurchase Agreement — extended termination window 150%</div>
+        <div class="info-tile">Resolved a ~$420K–$440K outstanding receivable</div>
+        <div class="info-tile">Founded &amp; co-led a company-wide succession-planning initiative — 9 departments</div>
+        <div class="info-tile">Delivered the All-Hands finance/HR/succession update in her manager's place</div>
       </div>
-      <button class="arrow next">›</button>
-      <div class="dots"></div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">6 wins</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">0 misses</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">swipe →</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">highlight reel 🏆</div>
-        <div class="hashtags">#MajorWins #Achievements</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 12 : COST SAVINGS -->
-  <section class="slide" style="background:radial-gradient(circle at 40% 25%, #3d5a44, #062812 78%);">
-    <div class="slidecount">12/17</div>
-    <div class="overlay-text" style="top:10%; font-size:20px;">the receipts (actual math, no rounding up)</div>
-    <div class="stat-grid">
-      <div class="stat-card wide"><div class="v">$846,050.93</div><div class="l">total savings: 2026 initiatives + 2025 rollover</div></div>
-      <div class="stat-card"><div class="v">~$102K/yr</div><div class="l">lab-vendor renegotiation (~19% savings)</div></div>
-      <div class="stat-card"><div class="v">~$18.6K/yr</div><div class="l">caught via a contract-breach pricing review</div></div>
-      <div class="stat-card"><div class="v">$60K/yr</div><div class="l">bookkeeping in-house (Kirk Consult replaced)</div></div>
-      <div class="stat-card"><div class="v">$45K/yr</div><div class="l">recruiting handled personally (Chamberlain replaced)</div></div>
-      <div class="stat-card wide"><div class="v">94 → 28</div><div class="l">Ramp transaction backlog, cleared in one week</div></div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">846K</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">180K</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">135K</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">the numbers behind the nine roles 🧾</div>
-        <div class="hashtags">#TheReceipts #EBITDA</div>
+    <!-- 11: COST SAVINGS (chart) -->
+    <section class="slide chart-slide">
+      <div class="chart-side">
+        <div class="eyebrow">The Numbers Don't Lie</div>
+        <h2 class="slide-title">The receipts</h2>
+        <svg class="bar-chart" viewBox="0 0 560 260" preserveAspectRatio="xMinYMid meet">
+          <!-- bars: values in $K, max ~102 -->
+          <g>
+            <rect x="40" y="200" width="90" height="40" rx="6" fill="#DCBA79"/>
+            <text class="bar-value" x="85" y="192" text-anchor="middle">$102K</text>
+            <text class="bar-label" x="85" y="250" text-anchor="middle">Vendor reneg.</text>
+          </g>
+          <g>
+            <rect x="180" y="228" width="90" height="12" rx="6" fill="#B3CBB9"/>
+            <text class="bar-value" x="225" y="220" text-anchor="middle">$18.6K</text>
+            <text class="bar-label" x="225" y="250" text-anchor="middle">Breach catch</text>
+          </g>
+          <g>
+            <rect x="320" y="200" width="90" height="53" rx="6" fill="#64856B"/>
+            <text class="bar-value" x="365" y="192" text-anchor="middle">$60K</text>
+            <text class="bar-label" x="365" y="250" text-anchor="middle">Bookkeeping</text>
+          </g>
+          <g>
+            <rect x="460" y="207" width="90" height="46" rx="6" fill="#64856B"/>
+            <text class="bar-value" x="505" y="199" text-anchor="middle">$45K</text>
+            <text class="bar-label" x="505" y="250" text-anchor="middle">Recruiting</text>
+          </g>
+        </svg>
       </div>
-    </div>
-  </section>
+      <div class="stat-side">
+        <div class="hero-stat"><div class="v">$846,050.93</div><div class="l">total savings: 2026 initiatives + 2025 rollover</div></div>
+        <div class="hero-stat"><div class="v">94 → 28</div><div class="l">Ramp transaction backlog, cleared in one week</div></div>
+      </div>
+    </section>
 
-  <!-- SLIDE 13 : STRATEGIC EFFORTS -->
-  <section class="slide" style="background:radial-gradient(circle at 60% 30%, #4a6b52, #062812 78%);">
-    <div class="slidecount">13/17</div>
-    <div class="overlay-text" style="top:10%; font-size:20px;">beyond the job description</div>
-    <div class="whylist">
-      <div class="row"><span class="check">✓</span> founded &amp; owned succession planning — 9 departments, concept to execution</div>
-      <div class="row"><span class="check">✓</span> drove SOP collection company-wide, hit the Phase 2 deadline</div>
-      <div class="row"><span class="check">✓</span> built Lyos's break-even analysis &amp; full cost breakdown</div>
-      <div class="row"><span class="check">✓</span> supported M&amp;A due diligence (the "Crux Document Checklist")</div>
-      <div class="row"><span class="check">✓</span> delivered legal &amp; regulatory work without escalating to outside counsel</div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">strategic</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">0 escalations</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">company-wide</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">strategic efforts &amp; executive support 📈</div>
-        <div class="hashtags">#StrategicImpact #Ownership</div>
+    <!-- 12: STRATEGIC EFFORTS -->
+    <section class="slide card-slide" style="justify-content:center;">
+      <div class="eyebrow">Beyond the Job Description</div>
+      <h2 class="slide-title" style="align-self:center;">Strategic efforts &amp; executive support</h2>
+      <div class="list-rows" style="align-self:center;">
+        <div class="list-row"><span class="mark ok">✓</span>Founded &amp; owned succession planning — 9 departments, concept to execution</div>
+        <div class="list-row"><span class="mark ok">✓</span>Drove SOP collection company-wide, hit the Phase 2 deadline</div>
+        <div class="list-row"><span class="mark ok">✓</span>Built Lyos's break-even analysis &amp; full cost breakdown</div>
+        <div class="list-row"><span class="mark ok">✓</span>Supported M&amp;A due diligence (the "Crux Document Checklist")</div>
+        <div class="list-row"><span class="mark ok">✓</span>Delivered legal &amp; regulatory work without escalating to outside counsel</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 14 : ATHENA INVOLVEMENT -->
-  <section class="slide" style="background:radial-gradient(circle at 30% 20%, #264330, #062812 78%);">
-    <div class="slidecount">14/17</div>
-    <div class="overlay-text" style="top:10%; font-size:20px;">my own Athena content series</div>
-    <div class="whylist">
-      <div class="row"><span class="check">✓</span> built &amp; shared the "SOP Builder" IXP video — a reusable Claude Skill</div>
-      <div class="row"><span class="check">✓</span> built &amp; shared "Set It &amp; Forget It" — automated payroll reminders with Claude + Slack</div>
-      <div class="row"><span class="check">✓</span> 6 total IXP/BPA video submissions this review period</div>
-      <div class="row"><span class="check">✓</span> led 1 inter-team tutorial on using Claude</div>
-      <div class="row"><span class="check">✓</span> took succession planning from concept through full company-wide execution</div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">6 videos</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">1 tutorial</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">shared</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">showing up for the Athena community too 🎬</div>
-        <div class="hashtags">#IXP #AthenaCommunity</div>
+    <!-- 13: ATHENA INVOLVEMENT -->
+    <section class="slide card-slide" style="justify-content:center;">
+      <div class="eyebrow">My Own Athena Content Series</div>
+      <h2 class="slide-title" style="align-self:center;">Athena involvement</h2>
+      <div class="list-rows" style="align-self:center;">
+        <div class="list-row"><span class="mark ok">✓</span>Built &amp; shared "SOP Builder" — a reusable Claude Skill IXP video</div>
+        <div class="list-row"><span class="mark ok">✓</span>Built &amp; shared "Set It &amp; Forget It" — automated payroll reminders with Claude + Slack</div>
+        <div class="list-row"><span class="mark ok">✓</span>6 total IXP/BPA video submissions this review period</div>
+        <div class="list-row"><span class="mark ok">✓</span>Led 1 inter-team tutorial on using Claude</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 15 : WHAT THIS ERA GAVE BACK (carousel) -->
-  <section class="slide" style="background:radial-gradient(circle at 50% 40%, #16321f, #062812 80%);">
-    <div class="slidecount">15/17</div>
-    <div class="carousel-wrap">
-      <div class="carousel-label">what 13 months actually bought me</div>
-      <button class="arrow prev">‹</button>
-      <div class="carousel-track">
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">👨‍👩‍👦</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Present for my son's actual days now, not just his weekends.</div>
-          <div class="qname">Family time</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">🏓</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">The 4-5 hour commute became pickleball, badminton, and regular walks.</div>
-          <div class="qname">A body that moves again</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">💌</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Room on the side for Juju Invites, the digital-invitations business I'm slowly building.</div>
-          <div class="qname">Juju Invites</div>
-        </div></div>
-        <div class="carousel-slide"><div class="qcard">
-          <div class="qph"><div class="cam">🎲</div><div class="sub">Photo slot</div></div>
-          <div class="qtext">Game nights and hobbies back on the calendar instead of just things I used to do.</div>
-          <div class="qname">Game nights</div>
-        </div></div>
+    <!-- 14: WHAT THIS ERA GAVE BACK (evidence gallery) -->
+    <section class="slide card-slide">
+      <div class="eyebrow">What 13 Months Actually Bought Me</div>
+      <h2 class="slide-title">Career and family, <span class="accent">both</span></h2>
+      <div class="gallery-row">
+        <figure class="evidence"><div class="ph"><div class="cam">👨‍👩‍👦</div><div class="lbl">Photo — swap in here</div></div><figcaption>Present for my son's actual days, not just his weekends.</figcaption></figure>
+        <figure class="evidence"><div class="ph"><div class="cam">🏓</div><div class="lbl">Photo — swap in here</div></div><figcaption>The 4–5 hour commute became pickleball, badminton, and walks.</figcaption></figure>
+        <figure class="evidence"><div class="ph"><div class="cam">💌</div><div class="lbl">Photo — swap in here</div></div><figcaption>Room on the side for Juju Invites.</figcaption></figure>
       </div>
-      <button class="arrow next">›</button>
-      <div class="dots"></div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">worth it</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">every try</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">swipe →</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">career and family, both. no trade required.</div>
-        <div class="hashtags">#NoPressureNoDiamonds</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 16 : THE ASK -->
-  <section class="slide" style="background:radial-gradient(circle at 50% 30%, #64856B, #062812 78%);">
-    <div class="slidecount">16/17</div>
-    <div class="overlay-text" style="top:9%; font-size:20px;">why this era deserves the next one</div>
-    <div class="whylist">
-      <div class="row"><span class="check">✓</span> $846,050.93 in measurable, documented contribution</div>
-      <div class="row"><span class="check">✓</span> ownership of a company-wide initiative, concept to execution</div>
-      <div class="row"><span class="check">✓</span> independently ran payroll, executive coverage, and cross-functional crises</div>
-      <div class="row"><span class="check">✓</span> a formal Client Recognition, plus repeated leadership shout-outs</div>
-      <div class="row" style="margin-top:6px; font-weight:800; color:var(--pink2);">requesting Force Multiplier review for a performance-based salary increase reflecting this scope &amp; impact</div>
-    </div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">❤️</div><div class="count">the ask</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">846K</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">next era</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">the ask 🙏</div>
-        <div class="hashtags">#ForceMultiplier #NextEra</div>
+    <!-- 15: THE ASK -->
+    <section class="slide card-slide" style="justify-content:center;">
+      <div class="eyebrow">Why This Era Deserves the Next One</div>
+      <h2 class="slide-title" style="align-self:center;">The ask</h2>
+      <div class="list-rows" style="align-self:center;">
+        <div class="list-row"><span class="mark ok">✓</span>$846,050.93 in measurable, documented contribution</div>
+        <div class="list-row"><span class="mark ok">✓</span>Ownership of a company-wide initiative, concept to execution</div>
+        <div class="list-row"><span class="mark ok">✓</span>Independently ran payroll, executive coverage, and cross-functional crises</div>
+        <div class="list-row"><span class="mark ok">✓</span>A formal Client Recognition, plus repeated leadership shout-outs</div>
+        <div class="list-row emph">Requesting Force Multiplier review for a performance-based salary increase reflecting this scope &amp; impact.</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SLIDE 17 : CLOSING / FULL CIRCLE -->
-  <section class="slide" style="background:#000;">
-    <div class="slidecount">17/17</div>
-    <div class="ph-full">
-      <div class="cam">📸</div>
-      <div class="lbl">Photo slot — closing shot (your choice)</div>
-    </div>
-    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, rgba(6,40,18,0.05) 45%, rgba(6,40,18,0.9) 100%);"></div>
-    <div class="overlay-sub" style="top:8%; font-size:13px; font-weight:800; letter-spacing:0.5px; opacity:0.85;">FULL CIRCLE</div>
-    <div class="rail">
-      <div class="avatar">JJ</div>
-      <div class="item"><div class="icon">▶️</div><div class="count">thank you</div></div>
-      <div class="item"><div class="icon">💬</div><div class="count">questions?</div></div>
-      <div class="item"><div class="icon">🔁</div><div class="count">pay it fwd</div></div>
-      <div class="item"><div class="icon">🔖</div><div class="count">-</div></div>
-    </div>
-    <div class="content">
-      <div class="caption-block">
-        <div class="handle">@juliajudico</div>
-        <div class="caption">a TikTok helped me find Athena. now one of mine helps other people find it too 🔁 — thank you for reading this era.</div>
-        <div class="hashtags">#Athena #FullCircle #NoPressureNoDiamonds</div>
+    <!-- 16: CLOSING -->
+    <section class="slide hero-slide">
+      <div class="hero-copy">
+        <h1>Full Circle</h1>
+        <p class="hero-sub">A TikTok helped me find Athena. Now one of mine helps other people find it too. Thank you for reading this era.</p>
+        <div class="hero-tag">Questions?</div>
       </div>
-    </div>
-  </section>
+      <div class="phone">
+        <div class="screen">
+          <div class="ptop"><span>Following</span><span class="on">For You</span></div>
+          <div class="phook">
+            <h3>Full circle.</h3>
+            <div class="psub">a TikTok helped me find Athena — now one of mine helps others find it too 🔁</div>
+          </div>
+          <div class="prail">
+            <div class="av"></div>
+            <div class="ic">▶️</div>
+            <div class="ic">💬</div>
+            <div class="ic">🔁</div>
+            <div class="ic">🔖</div>
+          </div>
+          <div class="pcaption">
+            <div class="h">@juliajudico</div>
+            <div class="c">thank you for reading this era 🙏</div>
+            <div class="tag">#FullCircle #NoPressureNoDiamonds</div>
+          </div>
+          <div class="phome"></div>
+        </div>
+      </div>
+    </section>
 
+  </div>
+</div>
+
+<div class="chrome">
+  <div class="chrome-inner">
+    <button id="prevbtn" title="Previous (Left arrow)">‹</button>
+    <span id="counter">1 / 16</span>
+    <button id="nextbtn" title="Next (Right arrow / Space / click)">›</button>
+  </div>
 </div>
 
 <script>
-  function initCarousel(root){
-    var track = root.querySelector('.carousel-track');
-    var dotsWrap = root.querySelector('.dots');
-    var slides = Array.prototype.slice.call(track.children);
-    var current = 0;
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var idx = 0;
+  var stage = document.getElementById('stage');
+  var counter = document.getElementById('counter');
+  var progress = document.getElementById('progress');
+  var prevBtn = document.getElementById('prevbtn');
+  var nextBtn = document.getElementById('nextbtn');
 
-    function step(){ return slides[0].getBoundingClientRect().width + 12; }
-    function updateDots(){
-      var dots = dotsWrap.children;
-      for (var j = 0; j < dots.length; j++){ dots[j].classList.toggle('active', j === current); }
-    }
-    function goTo(i){
-      current = Math.max(0, Math.min(slides.length - 1, i));
-      track.scrollTo({ left: current * step(), behavior: 'auto' });
-      updateDots();
-    }
-
-    dotsWrap.innerHTML = '';
-    slides.forEach(function(_, i){
-      var d = document.createElement('div');
-      d.className = 'dot' + (i === 0 ? ' active' : '');
-      d.addEventListener('click', function(){ goTo(i); });
-      dotsWrap.appendChild(d);
-    });
-
-    var prevBtn = root.querySelector('.arrow.prev');
-    var nextBtn = root.querySelector('.arrow.next');
-    if (prevBtn) prevBtn.addEventListener('click', function(e){ e.stopPropagation(); goTo(current - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function(e){ e.stopPropagation(); goTo(current + 1); });
-
-    /* mouse click-and-drag support (touch devices use native swipe) */
-    var dragging = false, startX = 0, startScroll = 0;
-    track.addEventListener('pointerdown', function(e){
-      if (e.pointerType !== 'mouse') return;
-      dragging = true;
-      startX = e.clientX;
-      startScroll = track.scrollLeft;
-      if (track.setPointerCapture) track.setPointerCapture(e.pointerId);
-    });
-    track.addEventListener('pointermove', function(e){
-      if (!dragging) return;
-      track.scrollLeft = startScroll - (e.clientX - startX);
-    });
-    function endDrag(){
-      if (!dragging) return;
-      dragging = false;
-      goTo(Math.round(track.scrollLeft / step()));
-    }
-    track.addEventListener('pointerup', endDrag);
-    track.addEventListener('pointercancel', endDrag);
-    track.addEventListener('pointerleave', function(){ if (dragging) endDrag(); });
-
-    /* keep dots + snap in sync after native touch/trackpad scrolling settles */
-    var settleTimer = null;
-    track.addEventListener('scroll', function(){
-      if (dragging) return;
-      clearTimeout(settleTimer);
-      settleTimer = setTimeout(function(){
-        var idx = Math.round(track.scrollLeft / step());
-        if (idx !== current) { current = idx; updateDots(); }
-      }, 120);
-    });
+  function render(){
+    slides.forEach(function(s,i){ s.classList.toggle('active', i === idx); });
+    counter.textContent = (idx+1) + ' / ' + slides.length;
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === slides.length - 1;
+    progress.style.width = (((idx+1) / slides.length) * 100) + '%';
   }
-  document.querySelectorAll('.carousel-wrap').forEach(initCarousel);
+  function go(n){ idx = Math.max(0, Math.min(slides.length - 1, n)); render(); }
 
-  /* keep top-anchored "hook" content from colliding with the bottom caption
-     block on short viewports (small browser windows, split-screen, etc.) */
-  function fixOverlaps(){
-    document.querySelectorAll('.slide').forEach(function(slide){
-      var content = slide.querySelector('.content');
-      if (!content) return;
-      var slideTop = slide.getBoundingClientRect().top;
-      var safeBottom = (content.getBoundingClientRect().top - slideTop) - 10;
-      var hooks = slide.querySelectorAll('.overlay-text, .overlay-sub, .stat-grid, .comments-wrap, .whylist, .info-card, .role-grid, .timeline, .carousel-label');
-      hooks.forEach(function(el){
-        if (el.dataset.cssTop === undefined) { el.dataset.cssTop = el.style.top || ''; }
-        el.style.top = el.dataset.cssTop; /* restore the intended CSS/inline top before re-measuring */
-        var rect = el.getBoundingClientRect();
-        var elBottomRel = rect.bottom - slideTop;
-        if (elBottomRel > safeBottom) {
-          var elTopRel = rect.top - slideTop;
-          var newTop = Math.max(8, elTopRel - (elBottomRel - safeBottom));
-          el.style.top = newTop + 'px';
-        }
-      });
-    });
-  }
-  var fixTimer = null;
-  function scheduleFixOverlaps(){ clearTimeout(fixTimer); fixTimer = setTimeout(fixOverlaps, 80); }
-  window.addEventListener('load', fixOverlaps);
-  window.addEventListener('resize', scheduleFixOverlaps);
-  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fixOverlaps); }
-  fixOverlaps();
+  prevBtn.addEventListener('click', function(e){ e.stopPropagation(); go(idx - 1); });
+  nextBtn.addEventListener('click', function(e){ e.stopPropagation(); go(idx + 1); });
+
+  /* click anywhere on the stage advances forward — safe for recording, no accidental rewind */
+  stage.addEventListener('click', function(){ go(idx + 1); });
+
+  document.addEventListener('keydown', function(e){
+    if (['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key) !== -1){ e.preventDefault(); go(idx + 1); }
+    else if (['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key) !== -1){ e.preventDefault(); go(idx - 1); }
+    else if (e.key === 'Home'){ go(0); }
+    else if (e.key === 'End'){ go(slides.length - 1); }
+  });
+
+  document.getElementById('fsbtn').addEventListener('click', function(){
+    if (document.fullscreenElement){ document.exitFullscreen(); }
+    else { stage.requestFullscreen ? stage.requestFullscreen().catch(function(){}) : null; }
+  });
+
+  render();
 </script>
 </body>
 </html>
