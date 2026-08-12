@@ -30,6 +30,8 @@
     box-shadow:0 0 100px rgba(0,0,0,0.7);
     overflow:hidden;
     cursor:pointer;
+    container-type:size;
+    container-name:stage;
   }
   .stage:fullscreen{ width:100vw; height:100vh; }
 
@@ -59,37 +61,39 @@
 
   .phone{
     flex-shrink:0;
-    width:clamp(190px,20vw,272px);
+    width:clamp(150px,24cqi,272px);
     aspect-ratio:9/19.3;
-    border-radius:9%;
-    background:#000;
-    padding:3.2%;
-    box-shadow:0 24px 60px rgba(0,0,0,0.55), inset 0 0 0 1.5px rgba(255,255,255,0.06);
+    border-radius:clamp(16px,9%,30px);
+    background:#050505;
+    padding:clamp(9px,3.2%,15px);
+    box-shadow:0 24px 60px rgba(0,0,0,0.55), inset 0 0 0 1.5px rgba(255,255,255,0.08);
     position:relative;
+    container-type:inline-size;
+    container-name:phone;
   }
   .phone::before{
-    content:''; position:absolute; top:5.5%; left:50%; transform:translateX(-50%);
-    width:26%; height:2.2%; border-radius:6px; background:#000; z-index:5;
+    content:''; position:absolute; top:clamp(6px,5.5%,12px); left:50%; transform:translateX(-50%);
+    width:clamp(28px,26%,48px); height:clamp(4px,2.2%,7px); border-radius:6px; background:#000; z-index:5;
   }
   .phone .screen{
     position:relative; width:100%; height:100%; border-radius:7.5%; overflow:hidden;
     background:radial-gradient(circle at 35% 18%, var(--moss), var(--deepforest) 75%);
     display:flex; flex-direction:column;
   }
-  .phone .ptop{ display:flex; justify-content:center; gap:10px; padding:9% 0 3%; font-size:8px; font-weight:700; }
+  .phone .ptop{ display:flex; justify-content:center; gap:8%; padding:9% 0 3%; font-size:clamp(6px,7.5cqi,8px); font-weight:700; }
   .phone .ptop span{ opacity:0.5; }
   .phone .ptop span.on{ opacity:1; border-bottom:1.5px solid #fff; padding-bottom:3px; }
-  .phone .phook{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 9%; }
-  .phook h3{ font-size:clamp(11px,1.35vw,16px); line-height:1.25; text-wrap:balance; }
-  .phook .psub{ font-size:clamp(6.5px,0.85vw,9.5px); opacity:0.85; margin-top:6%; line-height:1.4; }
+  .phone .phook{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 9%; min-height:0; }
+  .phook h3{ font-size:clamp(9px,10.5cqi,16px); line-height:1.25; text-wrap:balance; }
+  .phook .psub{ font-size:clamp(6px,6.5cqi,9.5px); opacity:0.85; margin-top:6%; line-height:1.4; }
   .phone .prail{ position:absolute; right:6%; bottom:26%; display:flex; flex-direction:column; align-items:center; gap:9%; }
   .phone .prail .av{ width:16%; aspect-ratio:1; border-radius:50%; background:linear-gradient(135deg,var(--pink),var(--pink2)); border:1px solid #fff; }
-  .phone .prail .ic{ font-size:clamp(9px,1.1vw,13px); }
+  .phone .prail .ic{ font-size:clamp(8px,8.5cqi,13px); }
   .phone .pcaption{ padding:0 9% 12%; }
-  .pcaption .h{ font-weight:800; font-size:clamp(6.5px,0.8vw,9px); margin-bottom:3%; }
-  .pcaption .c{ font-size:clamp(6px,0.75vw,8.5px); opacity:0.92; line-height:1.35; }
-  .pcaption .tag{ font-family:"Roboto Mono",monospace; font-size:clamp(5.5px,0.65vw,7.5px); color:var(--accent); text-transform:uppercase; margin-top:4%; opacity:0.85; }
-  .phone .phome{ position:absolute; bottom:2.2%; left:50%; transform:translateX(-50%); width:24%; height:1.4%; border-radius:4px; background:rgba(255,255,255,0.35); }
+  .pcaption .h{ font-weight:800; font-size:clamp(6px,6.2cqi,9px); margin-bottom:3%; }
+  .pcaption .c{ font-size:clamp(5.5px,5.8cqi,8.5px); opacity:0.92; line-height:1.35; }
+  .pcaption .tag{ font-family:"Roboto Mono",monospace; font-size:clamp(5px,5cqi,7.5px); color:var(--accent); text-transform:uppercase; margin-top:4%; opacity:0.85; }
+  .phone .phome{ position:absolute; bottom:2.2%; left:50%; transform:translateX(-50%); width:clamp(34px,24%,60px); height:clamp(3px,1.4%,5px); border-radius:4px; background:rgba(255,255,255,0.35); }
 
   /* ---------- DATA CARD SLIDES ---------- */
   .card-slide{ justify-content:flex-start; }
@@ -166,6 +170,47 @@
   .chrome button:disabled{ opacity:0.3; cursor:default; }
   .fsbtn{ position:fixed; top:18px; right:18px; z-index:50; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.2); color:#fff; width:34px; height:34px; border-radius:8px; cursor:pointer; font-size:14px; }
   .progress{ position:fixed; top:0; left:0; height:3px; background:var(--pink2); z-index:50; transition:width .3s ease; }
+
+  /* ---------- short-stage fallback (very narrow/short browser windows or portrait phones) ---------- */
+  @container stage (max-height: 440px){
+    .hero-slide{ flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:2%; }
+    .hero-copy{ max-width:94%; }
+    .hero-copy h1{ font-size:clamp(18px,8cqh,32px); }
+    .hero-copy .hero-sub{ font-size:clamp(10px,3.4cqh,15px); margin-top:1.5cqh; }
+    .hero-copy .hero-tag{ display:none; }
+    .phone{ display:none; }
+    .slide-title{ font-size:clamp(14px,6cqh,24px); }
+    .eyebrow{ font-size:clamp(8px,2cqh,11px); }
+    .info-tile{ font-size:clamp(9px,3cqh,12px); padding:6px 8px; }
+    .list-row{ font-size:clamp(10px,3.2cqh,14px); }
+    .list-row .mark{ width:18px; height:18px; font-size:10px; }
+    .card-grid{ gap:5px; }
+    .gallery-row{ gap:8px; }
+    .evidence figcaption{ font-size:9.5px; }
+    .info-card{ font-size:11px; padding:12px; }
+    .hero-stat .v{ font-size:16px; }
+    .hero-stat .l{ font-size:9.5px; }
+  }
+
+  /* ---------- reveal-on-active animations ---------- */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; transition-delay:var(--d,0s); }
+  .slide.active .reveal{ opacity:1; transform:translateY(0); }
+
+  .bar-rect{ transform-box:fill-box; transform-origin:bottom center; transform:scaleY(0); transition:transform .8s cubic-bezier(.22,.9,.32,1); transition-delay:var(--d,0s); }
+  .slide.active .bar-rect{ transform:scaleY(1); }
+  .bar-fade{ opacity:0; transition:opacity .5s ease; transition-delay:var(--d,0s); }
+  .slide.active .bar-fade{ opacity:1; }
+
+  .tl-line-draw{ stroke-dasharray:1000; stroke-dashoffset:1000; transition:stroke-dashoffset 1.2s ease; }
+  .slide.active .tl-line-draw{ stroke-dashoffset:0; }
+  .tl-pop{ opacity:0; transform:scale(0.6); transform-box:fill-box; transform-origin:center; transition:opacity .4s ease, transform .4s ease; transition-delay:var(--d,0s); }
+  .slide.active .tl-pop{ opacity:1; transform:scale(1); }
+  .tl-fade{ opacity:0; transition:opacity .45s ease; transition-delay:var(--d,0s); }
+  .slide.active .tl-fade{ opacity:1; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .bar-rect, .bar-fade, .tl-line-draw, .tl-pop, .tl-fade{ transition:none !important; opacity:1 !important; transform:none !important; }
+  }
 </style>
 </head>
 <body>
@@ -287,41 +332,41 @@
       <h2 class="slide-title">The <span class="accent">timeline</span> so far</h2>
       <div class="timeline-wrap">
         <svg class="timeline-chart" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet">
-          <line class="tl-line" x1="40" y1="150" x2="960" y2="150"/>
+          <line class="tl-line tl-line-draw" x1="40" y1="150" x2="960" y2="150"/>
           <g>
-            <circle class="tl-dot" cx="60" cy="150" r="7"/>
-            <text class="tl-date" x="60" y="120" text-anchor="middle">JUN 13, 2025</text>
-            <text class="tl-desc" x="60" y="185" text-anchor="middle">Started as EP</text>
+            <circle class="tl-dot tl-pop" style="--d:.15s" cx="60" cy="150" r="7"/>
+            <text class="tl-date tl-fade" style="--d:.3s" x="60" y="120" text-anchor="middle">JUN 13, 2025</text>
+            <text class="tl-desc tl-fade" style="--d:.3s" x="60" y="185" text-anchor="middle">Started as EP</text>
           </g>
           <g>
-            <circle class="tl-dot" cx="190" cy="150" r="7"/>
-            <text class="tl-date" x="190" y="120" text-anchor="middle">WEEK 1</text>
-            <text class="tl-desc" x="190" y="185" text-anchor="middle">Full deck delivered</text>
+            <circle class="tl-dot tl-pop" style="--d:.3s" cx="190" cy="150" r="7"/>
+            <text class="tl-date tl-fade" style="--d:.45s" x="190" y="120" text-anchor="middle">WEEK 1</text>
+            <text class="tl-desc tl-fade" style="--d:.45s" x="190" y="185" text-anchor="middle">Full deck delivered</text>
           </g>
           <g>
-            <circle class="tl-dot" cx="330" cy="150" r="7"/>
-            <text class="tl-date" x="330" y="185" text-anchor="middle">MONTH 1</text>
-            <text class="tl-desc" x="330" y="120" text-anchor="middle">Systems overhauled</text>
+            <circle class="tl-dot tl-pop" style="--d:.45s" cx="330" cy="150" r="7"/>
+            <text class="tl-date tl-fade" style="--d:.6s" x="330" y="185" text-anchor="middle">MONTH 1</text>
+            <text class="tl-desc tl-fade" style="--d:.6s" x="330" y="120" text-anchor="middle">Systems overhauled</text>
           </g>
           <g>
-            <circle class="tl-dot" cx="470" cy="150" r="7"/>
-            <text class="tl-date" x="470" y="120" text-anchor="middle">MONTH 2</text>
-            <text class="tl-desc" x="470" y="185" text-anchor="middle">Caught vendor breach</text>
+            <circle class="tl-dot tl-pop" style="--d:.6s" cx="470" cy="150" r="7"/>
+            <text class="tl-date tl-fade" style="--d:.75s" x="470" y="120" text-anchor="middle">MONTH 2</text>
+            <text class="tl-desc tl-fade" style="--d:.75s" x="470" y="185" text-anchor="middle">Caught vendor breach</text>
           </g>
           <g>
-            <circle class="tl-dot" cx="640" cy="150" r="7"/>
-            <text class="tl-date" x="640" y="185" text-anchor="middle">MONTH 7</text>
-            <text class="tl-desc" x="640" y="120" text-anchor="middle">Major recognition</text>
+            <circle class="tl-dot tl-pop" style="--d:.75s" cx="640" cy="150" r="7"/>
+            <text class="tl-date tl-fade" style="--d:.9s" x="640" y="185" text-anchor="middle">MONTH 7</text>
+            <text class="tl-desc tl-fade" style="--d:.9s" x="640" y="120" text-anchor="middle">Major recognition</text>
           </g>
           <g>
-            <circle class="tl-dot" cx="790" cy="150" r="7"/>
-            <text class="tl-date" x="790" y="120" text-anchor="middle">MONTH 10</text>
-            <text class="tl-desc" x="790" y="185" text-anchor="middle">Solo payroll + EA coverage</text>
+            <circle class="tl-dot tl-pop" style="--d:.9s" cx="790" cy="150" r="7"/>
+            <text class="tl-date tl-fade" style="--d:1.05s" x="790" y="120" text-anchor="middle">MONTH 10</text>
+            <text class="tl-desc tl-fade" style="--d:1.05s" x="790" y="185" text-anchor="middle">Solo payroll + EA coverage</text>
           </g>
           <g>
-            <circle class="tl-dot" cx="940" cy="150" r="9"/>
-            <text class="tl-date" x="925" y="185" text-anchor="middle">YEAR 1</text>
-            <text class="tl-desc" x="925" y="120" text-anchor="middle">Formal Client Recognition</text>
+            <circle class="tl-dot tl-pop" style="--d:1.05s" cx="940" cy="150" r="9"/>
+            <text class="tl-date tl-fade" style="--d:1.2s" x="925" y="185" text-anchor="middle">YEAR 1</text>
+            <text class="tl-desc tl-fade" style="--d:1.2s" x="925" y="120" text-anchor="middle">Formal Client Recognition</text>
           </g>
         </svg>
       </div>
@@ -408,30 +453,30 @@
         <svg class="bar-chart" viewBox="0 0 560 260" preserveAspectRatio="xMinYMid meet">
           <!-- bars: values in $K, max ~102 -->
           <g>
-            <rect x="40" y="200" width="90" height="40" rx="6" fill="#DCBA79"/>
-            <text class="bar-value" x="85" y="192" text-anchor="middle">$102K</text>
-            <text class="bar-label" x="85" y="250" text-anchor="middle">Vendor reneg.</text>
+            <rect class="bar-rect" style="--d:.05s" x="40" y="200" width="90" height="40" rx="6" fill="#DCBA79"/>
+            <text class="bar-value bar-fade" style="--d:.55s" x="85" y="192" text-anchor="middle">$102K</text>
+            <text class="bar-label bar-fade" style="--d:.55s" x="85" y="250" text-anchor="middle">Vendor reneg.</text>
           </g>
           <g>
-            <rect x="180" y="228" width="90" height="12" rx="6" fill="#B3CBB9"/>
-            <text class="bar-value" x="225" y="220" text-anchor="middle">$18.6K</text>
-            <text class="bar-label" x="225" y="250" text-anchor="middle">Breach catch</text>
+            <rect class="bar-rect" style="--d:.2s" x="180" y="228" width="90" height="12" rx="6" fill="#B3CBB9"/>
+            <text class="bar-value bar-fade" style="--d:.7s" x="225" y="220" text-anchor="middle">$18.6K</text>
+            <text class="bar-label bar-fade" style="--d:.7s" x="225" y="250" text-anchor="middle">Breach catch</text>
           </g>
           <g>
-            <rect x="320" y="200" width="90" height="53" rx="6" fill="#64856B"/>
-            <text class="bar-value" x="365" y="192" text-anchor="middle">$60K</text>
-            <text class="bar-label" x="365" y="250" text-anchor="middle">Bookkeeping</text>
+            <rect class="bar-rect" style="--d:.35s" x="320" y="200" width="90" height="53" rx="6" fill="#64856B"/>
+            <text class="bar-value bar-fade" style="--d:.85s" x="365" y="192" text-anchor="middle">$60K</text>
+            <text class="bar-label bar-fade" style="--d:.85s" x="365" y="250" text-anchor="middle">Bookkeeping</text>
           </g>
           <g>
-            <rect x="460" y="207" width="90" height="46" rx="6" fill="#64856B"/>
-            <text class="bar-value" x="505" y="199" text-anchor="middle">$45K</text>
-            <text class="bar-label" x="505" y="250" text-anchor="middle">Recruiting</text>
+            <rect class="bar-rect" style="--d:.5s" x="460" y="207" width="90" height="46" rx="6" fill="#64856B"/>
+            <text class="bar-value bar-fade" style="--d:1s" x="505" y="199" text-anchor="middle">$45K</text>
+            <text class="bar-label bar-fade" style="--d:1s" x="505" y="250" text-anchor="middle">Recruiting</text>
           </g>
         </svg>
       </div>
       <div class="stat-side">
-        <div class="hero-stat"><div class="v">$846,050.93</div><div class="l">total savings: 2026 initiatives + 2025 rollover</div></div>
-        <div class="hero-stat"><div class="v">94 → 28</div><div class="l">Ramp transaction backlog, cleared in one week</div></div>
+        <div class="hero-stat reveal" style="--d:.1s"><div class="v">$846,050.93</div><div class="l">total savings: 2026 initiatives + 2025 rollover</div></div>
+        <div class="hero-stat reveal" style="--d:.25s"><div class="v">94 → 28</div><div class="l">Ramp transaction backlog, cleared in one week</div></div>
       </div>
     </section>
 
