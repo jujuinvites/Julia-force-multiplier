@@ -895,6 +895,35 @@
     });
   }
   document.querySelectorAll('.carousel-wrap').forEach(initCarousel);
+
+  /* keep top-anchored "hook" content from colliding with the bottom caption
+     block on short viewports (small browser windows, split-screen, etc.) */
+  function fixOverlaps(){
+    document.querySelectorAll('.slide').forEach(function(slide){
+      var content = slide.querySelector('.content');
+      if (!content) return;
+      var slideTop = slide.getBoundingClientRect().top;
+      var safeBottom = (content.getBoundingClientRect().top - slideTop) - 10;
+      var hooks = slide.querySelectorAll('.overlay-text, .overlay-sub, .stat-grid, .comments-wrap, .whylist, .info-card, .role-grid, .timeline, .carousel-label');
+      hooks.forEach(function(el){
+        if (el.dataset.cssTop === undefined) { el.dataset.cssTop = el.style.top || ''; }
+        el.style.top = el.dataset.cssTop; /* restore the intended CSS/inline top before re-measuring */
+        var rect = el.getBoundingClientRect();
+        var elBottomRel = rect.bottom - slideTop;
+        if (elBottomRel > safeBottom) {
+          var elTopRel = rect.top - slideTop;
+          var newTop = Math.max(8, elTopRel - (elBottomRel - safeBottom));
+          el.style.top = newTop + 'px';
+        }
+      });
+    });
+  }
+  var fixTimer = null;
+  function scheduleFixOverlaps(){ clearTimeout(fixTimer); fixTimer = setTimeout(fixOverlaps, 80); }
+  window.addEventListener('load', fixOverlaps);
+  window.addEventListener('resize', scheduleFixOverlaps);
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fixOverlaps); }
+  fixOverlaps();
 </script>
 </body>
 </html>
