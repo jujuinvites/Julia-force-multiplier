@@ -97,8 +97,29 @@
 
   /* ---------- phone slideshow (real photos, auto-advancing) ---------- */
   .slideshow-imgs{ position:absolute; inset:0; }
-  .slideshow-imgs img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s ease; }
-  .slideshow-imgs img.on{ opacity:1; }
+  .slideshow-imgs > *{ position:absolute; inset:0; opacity:0; transition:opacity 1s ease; }
+  .slideshow-imgs > *.on{ opacity:1; }
+  .slideshow-imgs img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .slideshow-quote-slide{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8% 10%; background:radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%); }
+  .slideshow-quote-slide .qtext{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:clamp(13px,2.1cqi,22px); line-height:1.45; }
+  .slideshow-quote-slide .qattr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,1.1cqi,12px); color:var(--pink2); font-weight:700; margin-top:12px; letter-spacing:0.5px; }
+
+  /* ---------- monitor / laptop screen mockup (wide slideshow for screenshots & certs) ---------- */
+  .monitor-wrap{ flex:1; display:flex; align-items:center; justify-content:center; min-height:0; }
+  .monitor{
+    width:min(82%, 760px); background:#1b1b1d; border-radius:14px;
+    padding:clamp(10px,1.6vw,18px) clamp(10px,1.6vw,18px) clamp(28px,3.4vw,40px);
+    box-shadow:0 30px 70px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.06);
+    position:relative;
+  }
+  .monitor::after{ content:''; position:absolute; bottom:clamp(10px,1.4vw,16px); left:50%; transform:translateX(-50%); width:22%; height:6px; border-radius:3px; background:#333; }
+  .monitor .mscreen{
+    position:relative; width:100%; aspect-ratio:16/10; border-radius:6px; overflow:hidden; background:#0d1a12;
+    container-type:inline-size; container-name:phone;
+  }
+  .monitor .slideshow-imgs img{ object-fit:contain; background:#0d1a12; }
+  .monitor .slideshow-caption{ font-size:clamp(9px,1.6cqi,13px); padding:0 4% 4%; }
+  .monitor .slideshow-dots{ top:clamp(10px,2%,16px); }
   .slideshow-scrim{ position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.75) 100%); }
   .slideshow-caption{ position:absolute; left:0; right:0; bottom:0; padding:0 9% 10%; font-size:clamp(6.5px,6.4cqi,9.5px); font-weight:700; color:#fff; line-height:1.35; z-index:3; }
   .slideshow-dots{ position:absolute; top:clamp(16px,13%,30px); left:0; right:0; display:flex; justify-content:center; gap:4px; z-index:6; }
@@ -443,21 +464,24 @@
       </div>
     </section>
 
-    <!-- 9: CLIENT FEEDBACK (evidence gallery) -->
+    <!-- 9: CLIENT FEEDBACK (monitor slideshow) -->
     <section class="slide card-slide">
       <div class="eyebrow">In Their Own Words</div>
       <h2 class="slide-title">Client Feedback <span class="accent">(The Comments Section)</span></h2>
-      <div class="gallery-row">
-        <figure class="evidence">
-          <div class="ph" style="background:#0d1a12;"><img src="assets/feedback-kendal-wedding.jpg" alt="Kendal's Slack message thanking Julia for covering during her wedding and honeymoon" style="object-fit:contain;"></div>
-          <figcaption><b>Quote 1</b> — Kendal expressed deep appreciation for my support.</figcaption>
-        </figure>
-        <figure class="evidence">
-          <div class="ph" style="background:transparent; border-style:solid; border-color:rgba(220,186,121,0.3);">
-            <div class="qtext" style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:clamp(12px,1.6vw,16px); line-height:1.4; padding:0 6%;">"This is so cute — thank you guys so much for planning and setting this activity up. There's really no better way to share it with my team."</div>
+      <div class="monitor-wrap">
+        <div class="monitor">
+          <div class="mscreen">
+            <div class="slideshow-imgs">
+              <img class="on" src="assets/feedback-kendal-wedding.jpg" alt="Kendal's Slack message thanking Julia for covering during her wedding and honeymoon" data-cap="Kendal — deep appreciation for covering her wedding & honeymoon">
+              <div class="slideshow-quote-slide" data-cap="Sasha Pierre-Paul — thanking the team for a culture event Julia helped run">
+                <div class="qtext">"This is so cute — thank you guys so much for planning and setting this activity up. There's really no better way to share it with my team."</div>
+                <div class="qattr">Sasha Pierre-Paul · Slack</div>
+              </div>
+            </div>
+            <div class="slideshow-dots"></div>
+            <div class="slideshow-caption">Kendal — deep appreciation for covering her wedding &amp; honeymoon</div>
           </div>
-          <figcaption><b>Sasha Pierre-Paul</b> — thanking the team for a culture event Julia helped run.</figcaption>
-        </figure>
+        </div>
       </div>
     </section>
 
@@ -585,37 +609,44 @@
       </div>
     </section>
 
-    <!-- 13b: CERTIFICATIONS (evidence gallery) -->
+    <!-- 13b: CERTIFICATIONS (monitor slideshow) -->
     <section class="slide card-slide">
       <div class="eyebrow">Certifications &amp; Continued Learning</div>
       <h2 class="slide-title">Investing in <span class="accent">my own growth</span></h2>
-      <div class="gallery-row">
-        <figure class="evidence">
-          <div class="ph"><img src="assets/cert-tesda-bookkeeping.jpg" alt="TESDA Certificate of Completion — Introduction to Bookkeeping"></div>
-          <figcaption><b>TESDA</b> — Introduction to Bookkeeping, completed Feb 26, 2026.</figcaption>
-        </figure>
-        <figure class="evidence">
-          <div class="ph"><img src="assets/cert-athena-eacon.jpg" alt="Athena EA Con Certificate of Participation — Vision to Visual"></div>
-          <figcaption><b>Athena EA Con</b> — Vision to Visual, Certificate of Participation, May 8, 2026.</figcaption>
-        </figure>
-        <figure class="evidence">
-          <div class="ph" style="background:#0d1a12;"><img src="assets/tesda-study.jpg" alt="Julia working through the TESDA online bookkeeping course" style="object-fit:contain;"></div>
-          <figcaption><b>Actually doing it</b> — working through the TESDA bookkeeping modules.</figcaption>
-        </figure>
+      <div class="monitor-wrap">
+        <div class="monitor">
+          <div class="mscreen">
+            <div class="slideshow-imgs">
+              <img class="on" src="assets/cert-tesda-bookkeeping.jpg" alt="TESDA Certificate of Completion — Introduction to Bookkeeping" data-cap="TESDA — Introduction to Bookkeeping, completed Feb 26, 2026">
+              <img src="assets/cert-athena-eacon.jpg" alt="Athena EA Con Certificate of Participation — Vision to Visual" data-cap="Athena EA Con — Vision to Visual, Certificate of Participation, May 8, 2026">
+              <img src="assets/tesda-study.jpg" alt="Julia working through the TESDA online bookkeeping course" data-cap="Actually doing it — working through the TESDA bookkeeping modules">
+            </div>
+            <div class="slideshow-dots"></div>
+            <div class="slideshow-caption">TESDA — Introduction to Bookkeeping, completed Feb 26, 2026</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 13c: CERTIFICATIONS (Coursera batch, pre-Athena) -->
+    <!-- 13c: CERTIFICATIONS (Coursera batch, pre-Athena — monitor slideshow) -->
     <section class="slide card-slide">
       <div class="eyebrow">Preparing for This Role, Before I Knew It</div>
       <h2 class="slide-title">Skills I built <span class="accent">before Athena needed them</span></h2>
-      <div class="gallery-grid">
-        <figure class="evidence"><div class="ph"><img src="certs/marketing.jpg" alt="Introduction to Social Media Marketing certificate"></div><figcaption><b>Meta, 2024</b> — Intro to Social Media Marketing</figcaption></figure>
-        <figure class="evidence"><div class="ph"><img src="certs/powerbi.jpg" alt="Prepare, Clean, Transform and Load Data using Power BI certificate"></div><figcaption><b>Coursera, 2024</b> — Prepare, Clean, Transform &amp; Load Data (Power BI)</figcaption></figure>
-        <figure class="evidence"><div class="ph"><img src="certs/management.jpg" alt="Social Media Management certificate"></div><figcaption><b>Meta, 2024</b> — Social Media Management</figcaption></figure>
-        <figure class="evidence"><div class="ph"><img src="certs/hootsuite.jpg" alt="How to Schedule Posts to Multiple Platforms using Hootsuite certificate"></div><figcaption><b>Coursera, 2024</b> — Scheduling Posts with Hootsuite</figcaption></figure>
-        <figure class="evidence"><div class="ph"><img src="certs/hubspot.jpg" alt="Introduction to CRM with HubSpot certificate"></div><figcaption><b>Coursera, 2024</b> — Intro to CRM with HubSpot</figcaption></figure>
-        <figure class="evidence"><div class="ph"><img src="certs/advertising.jpg" alt="Fundamentals of Social Media Advertising certificate"></div><figcaption><b>Meta, 2024</b> — Fundamentals of Social Media Advertising</figcaption></figure>
+      <div class="monitor-wrap">
+        <div class="monitor">
+          <div class="mscreen">
+            <div class="slideshow-imgs">
+              <img class="on" src="certs/marketing.jpg" alt="Introduction to Social Media Marketing certificate" data-cap="Meta, 2024 — Intro to Social Media Marketing">
+              <img src="certs/powerbi.jpg" alt="Prepare, Clean, Transform and Load Data using Power BI certificate" data-cap="Coursera, 2024 — Prepare, Clean, Transform & Load Data (Power BI)">
+              <img src="certs/management.jpg" alt="Social Media Management certificate" data-cap="Meta, 2024 — Social Media Management">
+              <img src="certs/hootsuite.jpg" alt="How to Schedule Posts to Multiple Platforms using Hootsuite certificate" data-cap="Coursera, 2024 — Scheduling Posts with Hootsuite">
+              <img src="certs/hubspot.jpg" alt="Introduction to CRM with HubSpot certificate" data-cap="Coursera, 2024 — Intro to CRM with HubSpot">
+              <img src="certs/advertising.jpg" alt="Fundamentals of Social Media Advertising certificate" data-cap="Meta, 2024 — Fundamentals of Social Media Advertising">
+            </div>
+            <div class="slideshow-dots"></div>
+            <div class="slideshow-caption">Meta, 2024 — Intro to Social Media Marketing</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -723,10 +754,10 @@
   var prevBtn = document.getElementById('prevbtn');
   var nextBtn = document.getElementById('nextbtn');
 
-  /* phone slideshows: auto-advance real photos while their slide is active */
+  /* phone/monitor slideshows: auto-advance real photos (or quote slides) while their slide is active */
   var slideshowTimers = new WeakMap();
   function initSlideshow(root){
-    var imgs = Array.prototype.slice.call(root.querySelectorAll('.slideshow-imgs img'));
+    var imgs = Array.prototype.slice.call(root.querySelectorAll('.slideshow-imgs > *'));
     var dotsWrap = root.querySelector('.slideshow-dots');
     var captionEl = root.querySelector('.slideshow-caption');
     if (!imgs.length) return;
@@ -758,13 +789,13 @@
       if (t) clearInterval(t);
     };
   }
-  document.querySelectorAll('.phone.slideshow').forEach(initSlideshow);
+  document.querySelectorAll('.phone.slideshow, .monitor').forEach(initSlideshow);
 
   function render(){
     slides.forEach(function(s,i){
       var isActive = i === idx;
       s.classList.toggle('active', isActive);
-      var phone = s.querySelector('.phone.slideshow');
+      var phone = s.querySelector('.phone.slideshow, .monitor');
       if (phone) { isActive ? phone._slideshowStart && phone._slideshowStart() : phone._slideshowStop && phone._slideshowStop(); }
     });
     counter.textContent = (idx+1) + ' / ' + slides.length;
