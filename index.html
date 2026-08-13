@@ -121,6 +121,14 @@
   }
   .info-card b{ color:var(--pink2); }
 
+  /* ---------- CERTIFICATE GALLERY SLIDES ---------- */
+  .cert-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(8px,1.2vw,16px); flex:1; align-content:center; min-height:0; }
+  .cert-card{ display:flex; flex-direction:column; gap:clamp(3px,0.5vw,6px); }
+  .cert-card .cert-img{ height:clamp(52px,14cqh,120px); border-radius:9px; overflow:hidden; border:1px solid rgba(255,255,255,0.18); background:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.35); }
+  .cert-card .cert-img img{ width:100%; height:100%; object-fit:contain; display:block; }
+  .cert-card .cert-cap{ font-size:clamp(9px,0.95vw,12px); font-weight:600; line-height:1.28; }
+  .cert-card .cert-cap .tn{ display:block; font-family:"Roboto Mono",monospace; font-size:clamp(7.5px,0.75vw,9.5px); font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:var(--pink2); opacity:0.9; margin-bottom:2px; }
+
   /* ---------- EVIDENCE GALLERY SLIDES ---------- */
   .gallery-row{ display:flex; gap:clamp(14px,2.2vw,30px); flex:1; align-items:stretch; }
   .evidence{ flex:1; display:flex; flex-direction:column; gap:clamp(8px,1.2vw,14px); }
@@ -518,6 +526,20 @@
           <div class="ph"><img src="assets/cert-athena-eacon.jpg" alt="Athena EA Con Certificate of Participation — Vision to Visual"></div>
           <figcaption><b>Athena EA Con</b> — Vision to Visual, Certificate of Participation, May 8, 2026.</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- 13c: CERTIFICATIONS (Coursera batch) -->
+    <section class="slide card-slide">
+      <div class="eyebrow">Investing In Myself, Too</div>
+      <h2 class="slide-title">Certifications earned <span class="accent">this era</span></h2>
+      <div class="cert-grid">
+        <div class="cert-card"><div class="cert-img"><img src="certs/marketing.jpg" alt="Introduction to Social Media Marketing certificate"></div><div class="cert-cap"><span class="tn">Meta · Apr 2024</span>Introduction to Social Media Marketing</div></div>
+        <div class="cert-card"><div class="cert-img"><img src="certs/powerbi.jpg" alt="Prepare, Clean, Transform and Load Data using Power BI certificate"></div><div class="cert-cap"><span class="tn">Coursera · May 2024</span>Prepare, Clean, Transform &amp; Load Data using Power BI</div></div>
+        <div class="cert-card"><div class="cert-img"><img src="certs/management.jpg" alt="Social Media Management certificate"></div><div class="cert-cap"><span class="tn">Meta · May 2024</span>Social Media Management</div></div>
+        <div class="cert-card"><div class="cert-img"><img src="certs/hootsuite.jpg" alt="How to Schedule Posts to Multiple Platforms using Hootsuite certificate"></div><div class="cert-cap"><span class="tn">Coursera · May 2024</span>How to Schedule Posts to Multiple Platforms using Hootsuite</div></div>
+        <div class="cert-card"><div class="cert-img"><img src="certs/hubspot.jpg" alt="Introduction to CRM with HubSpot certificate"></div><div class="cert-cap"><span class="tn">Coursera · May 2024</span>Introduction to CRM with HubSpot</div></div>
+        <div class="cert-card"><div class="cert-img"><img src="certs/advertising.jpg" alt="Fundamentals of Social Media Advertising certificate"></div><div class="cert-cap"><span class="tn">Meta · May 2024</span>Fundamentals of Social Media Advertising</div></div>
       </div>
     </section>
 
