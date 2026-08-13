@@ -44,6 +44,17 @@
   }
   .slide:last-of-type{ border-bottom:none; }
 
+  /* ---------- section tones (content-driven, not decorative) ---------- */
+  /* tone-story: the narrative chapters — cover, eras, timeline, closing */
+  .slide.tone-story{ background:radial-gradient(circle at 30% 15%, var(--moss), var(--deepforest) 130%); }
+  /* tone-work: the role/data slides — responsibilities, strategy, certifications */
+  .slide.tone-work{ background:radial-gradient(circle at 70% 85%, #223b2b, #0a1a10 140%); }
+  /* tone-proof: evidence & testimonials — feedback, wins, cost savings */
+  .slide.tone-proof{ background:radial-gradient(circle at 50% 10%, #0f1f14, #030807 150%); }
+  /* tone-culture: celebration & culture — wedding, get-togethers, games */
+  .slide.tone-culture{ background:radial-gradient(circle at 25% 20%, #3a3420, #1a1608 150%); }
+  .slide.tone-culture .accent, .slide.tone-culture .eyebrow{ color:#e8c87a; }
+
   .eyebrow{
     font-family:"Roboto Mono", monospace; text-transform:uppercase; letter-spacing:1.5px;
     font-size:clamp(11px,1.3vw,13px); color:var(--pink2); font-weight:700; margin-bottom:clamp(8px,1.2vw,14px);
@@ -268,7 +279,7 @@
 <div class="page">
 
     <!-- 1: COVER -->
-    <section class="slide hero-slide active">
+    <section class="slide tone-story hero-slide active">
       <div class="hero-copy">
         <h1>Julia's Era</h1>
         <p class="hero-sub">It was an end of a chapter, but a start of a better one.</p>
@@ -299,7 +310,7 @@
     </section>
 
     <!-- 2: ABOUT ME -->
-    <section class="slide card-slide">
+    <section class="slide tone-work card-slide">
       <div class="eyebrow">Before This Era</div>
       <h2 class="slide-title">Who I was <span class="accent">before Athena</span></h2>
       <div class="card-grid cols-2">
@@ -311,7 +322,7 @@
     </section>
 
     <!-- 3: ERA 1 -->
-    <section class="slide hero-slide">
+    <section class="slide tone-story hero-slide">
       <div class="hero-copy">
         <h1>The Commute<br>That Broke Me</h1>
         <p class="hero-sub">4–5 hours a day, round trip. A nanny who couldn't keep up. That was my sign — not just a scheduling problem.</p>
@@ -342,7 +353,7 @@
     </section>
 
     <!-- 4: ERA 2 -->
-    <section class="slide hero-slide">
+    <section class="slide tone-story hero-slide">
       <div class="hero-copy">
         <h1>Applied. Rejected.<br>Tried Again.</h1>
         <p class="hero-sub">Applied a third time — because this was the only agency I wanted to be part of, period. Started as Executive Partner on 6/13/25.</p>
@@ -361,7 +372,7 @@
     </section>
 
     <!-- 5: TIMELINE -->
-    <section class="slide card-slide">
+    <section class="slide tone-story card-slide">
       <div class="eyebrow">13 Months, Mapped Out</div>
       <h2 class="slide-title">The <span class="accent">timeline</span> so far</h2>
       <div class="timeline-wrap">
@@ -407,7 +418,7 @@
     </section>
 
     <!-- 6: MEET THE CLIENT -->
-    <section class="slide card-slide">
+    <section class="slide tone-work card-slide">
       <div class="eyebrow">Who I Create Content For</div>
       <h2 class="slide-title">Meet the client</h2>
       <div class="split-row">
@@ -424,7 +435,7 @@
     </section>
 
     <!-- 7: CORE RESPONSIBILITIES -->
-    <section class="slide card-slide">
+    <section class="slide tone-work card-slide">
       <div class="eyebrow">One Title, Nine Jobs</div>
       <h2 class="slide-title">A day in <span class="accent">my era</span></h2>
       <div class="card-grid cols-3">
@@ -441,7 +452,7 @@
     </section>
 
     <!-- 8: CHALLENGES -->
-    <section class="slide card-slide" style="justify-content:center;">
+    <section class="slide tone-work card-slide" style="justify-content:center;">
       <div class="eyebrow">Not Gonna Pretend It Was Easy</div>
       <h2 class="slide-title" style="align-self:center;">The hard parts of this era</h2>
       <div class="list-rows" style="align-self:center;">
@@ -455,7 +466,7 @@
     </section>
 
     <!-- 9: CLIENT FEEDBACK (monitor slideshow) -->
-    <section class="slide card-slide">
+    <section class="slide tone-proof card-slide">
       <div class="eyebrow">In Their Own Words</div>
       <h2 class="slide-title">Client Feedback <span class="accent">(The Comments Section)</span></h2>
       <div class="monitor-wrap">
@@ -476,7 +487,7 @@
     </section>
 
     <!-- 9b: MORE FROM THE TEAM (text pull-quotes) -->
-    <section class="slide card-slide">
+    <section class="slide tone-proof card-slide">
       <div class="eyebrow">More From the Team</div>
       <h2 class="slide-title">The reviews are <span class="accent">in</span></h2>
       <div class="quote-grid">
@@ -508,7 +519,7 @@
     </section>
 
     <!-- 10: MAJOR WINS -->
-    <section class="slide card-slide">
+    <section class="slide tone-proof card-slide">
       <div class="eyebrow">Highlight Reel</div>
       <h2 class="slide-title">Major <span class="accent">wins</span> this era</h2>
       <div class="card-grid cols-3">
@@ -522,7 +533,7 @@
     </section>
 
     <!-- 11: COST SAVINGS (chart) -->
-    <section class="slide chart-slide">
+    <section class="slide tone-proof chart-slide">
       <div class="chart-side">
         <div class="eyebrow">The Numbers Don't Lie</div>
         <h2 class="slide-title">The receipts</h2>
@@ -566,7 +577,7 @@
     </section>
 
     <!-- 11b: COST SAVINGS — MY WINS (monitor slideshow, real vendor negotiations) -->
-    <section class="slide card-slide">
+    <section class="slide tone-proof card-slide">
       <div class="eyebrow">Highlighting My Contributions</div>
       <h2 class="slide-title">The negotiations, <span class="accent">one by one</span></h2>
       <div class="monitor-wrap">
@@ -603,7 +614,7 @@
     </section>
 
     <!-- 12: STRATEGIC EFFORTS -->
-    <section class="slide card-slide">
+    <section class="slide tone-work card-slide">
       <div class="eyebrow">Beyond the Job Description</div>
       <h2 class="slide-title">Strategic efforts &amp; executive support</h2>
       <div class="split-row">
@@ -625,7 +636,7 @@
     </section>
 
     <!-- 13: ATHENA INVOLVEMENT -->
-    <section class="slide card-slide">
+    <section class="slide tone-work card-slide">
       <div class="eyebrow">My Own Athena Content Series</div>
       <h2 class="slide-title">Athena involvement</h2>
       <div class="split-row">
@@ -641,129 +652,110 @@
       </div>
     </section>
 
-    <!-- 13e: EVENT PLANNING — KENDAL'S WEDDING (monitor slideshow) -->
-    <section class="slide card-slide">
+    <!-- 13e: EVENT PLANNING — KENDAL'S WEDDING (split-row + mini slideshow) -->
+    <section class="slide tone-culture card-slide">
       <div class="eyebrow">Event Planning &amp; Culture Support</div>
       <h2 class="slide-title">Kendal's wedding — <span class="accent">562 guests, start to finish</span></h2>
-      <div class="monitor-wrap">
-        <div class="monitor">
-          <div class="mscreen">
-            <div class="ph-note">screenshots pending</div>
-            <div class="slideshow-imgs">
-              <div class="slideshow-win-slide on" data-cap="Save the Date — locking in the day for all 562 guests">
-                <div class="wv">Save the Date</div>
-                <div class="wtext">Save-the-date cards designed and sent to all 562 guests.</div>
-                <div class="wtag">Stage 1 of 6</div>
+      <div class="split-row">
+        <div class="split-text">
+          <div class="list-rows" style="max-width:100%;">
+            <div class="list-row"><span class="mark ok">✓</span>Save-the-date cards designed and sent to all 562 guests</div>
+            <div class="list-row"><span class="mark ok">✓</span>Couples' shower invitations — the first piece of the celebration</div>
+            <div class="list-row"><span class="mark ok">✓</span>"Bubbles &amp; Brews" pre-wedding mixer, Feb 21, 2026</div>
+            <div class="list-row"><span class="mark ok">✓</span>Formal invitations mailed for the Discovery Lodge ceremony, full RSVP tracking across all 562 guests</div>
+            <div class="list-row"><span class="mark ok">✓</span>Ceremony program designed and printed for the day itself</div>
+            <div class="list-row"><span class="mark ok">✓</span>Post-wedding thank-you cards designed and sent to every guest</div>
+          </div>
+        </div>
+        <div class="monitor-wrap" style="flex:1;">
+          <div class="monitor">
+            <div class="mscreen">
+              <div class="ph-note">screenshots pending</div>
+              <div class="slideshow-imgs">
+                <div class="slideshow-win-slide on" data-cap="The invitation suite — save the date through thank-you cards">
+                  <div class="wv">📸</div>
+                  <div class="wtext">Photo slot — the invitation suite, save the date through thank-you cards.</div>
+                </div>
+                <div class="slideshow-quote-slide" data-cap="Kendal, on seeing the wedding website Julia built for her">
+                  <div class="qtext">"I'm finally looking at the wedding website, and I'M OBSESSED!!!!!! 😍❤️"</div>
+                  <div class="qattr">Kendal Schoettlin · Slack</div>
+                </div>
               </div>
-              <div class="slideshow-win-slide" data-cap="Couples' Shower — kicking off the celebration">
-                <div class="wv">Shower</div>
-                <div class="wtext">Couples' shower invitations — the first piece of the celebration.</div>
-                <div class="wtag">Stage 2 of 6</div>
-              </div>
-              <div class="slideshow-win-slide" data-cap="Bubbles & Brews — the pre-wedding mixer, Feb 21, 2026">
-                <div class="wv">Bubbles &amp; Brews</div>
-                <div class="wtext">An open-house pre-wedding mixer — beer, wine, and finger foods for the guests, before they said I do.</div>
-                <div class="wtag">Stage 3 of 6</div>
-              </div>
-              <div class="slideshow-win-slide" data-cap="Wedding Invitation & RSVP — Discovery Lodge, April 11, 2026">
-                <div class="wv">Invite + RSVP</div>
-                <div class="wtext">Formal invitations mailed for the Discovery Lodge ceremony, with full RSVP tracking across all 562 guests.</div>
-                <div class="wtag">Stage 4 of 6</div>
-              </div>
-              <div class="slideshow-win-slide" data-cap="Ceremony Program — printed and ready for the day">
-                <div class="wv">Ceremony Program</div>
-                <div class="wtext">Ceremony program designed and printed for the day itself.</div>
-                <div class="wtag">Stage 5 of 6</div>
-              </div>
-              <div class="slideshow-win-slide" data-cap="Thank You Cards — closing the loop with every guest">
-                <div class="wv">Thank You Cards</div>
-                <div class="wtext">Post-wedding thank-you cards designed and sent to every guest.</div>
-                <div class="wtag">Stage 6 of 6</div>
-              </div>
-              <div class="slideshow-quote-slide" data-cap="Kendal, on seeing the wedding website Julia built for her">
-                <div class="qtext">"I'm finally looking at the wedding website, and I'M OBSESSED!!!!!! 😍❤️"</div>
-                <div class="qattr">Kendal Schoettlin · Slack</div>
-              </div>
+              <div class="slideshow-dots"></div>
+              <div class="slideshow-caption">The invitation suite — save the date through thank-you cards</div>
             </div>
-            <div class="slideshow-dots"></div>
-            <div class="slideshow-caption">Save the Date — locking in the day for all 562 guests</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 13f: EVENT PLANNING — AMERICORD NJ GET-TOGETHER (monitor slideshow) -->
-    <section class="slide card-slide">
+    <!-- 13f: EVENT PLANNING — AMERICORD NJ GET-TOGETHER (split-row + mini slideshow) -->
+    <section class="slide tone-culture card-slide">
       <div class="eyebrow">Event Planning &amp; Culture Support</div>
       <h2 class="slide-title">Spearheading <span class="accent">Americord's NJ get-together</span></h2>
-      <div class="monitor-wrap">
-        <div class="monitor">
-          <div class="mscreen">
-            <div class="ph-note">screenshot pending</div>
-            <div class="slideshow-imgs">
-              <div class="slideshow-win-slide on" data-cap="Venue & transportation for the whole team">
-                <div class="wv">Venue + Transpo</div>
-                <div class="wtext">Booked the venue and coordinated ground transportation for the full team.</div>
+      <div class="split-row">
+        <div class="split-text">
+          <div class="list-rows" style="max-width:100%;">
+            <div class="list-row"><span class="mark ok">✓</span>Booked the venue and coordinated ground transportation for the full team</div>
+            <div class="list-row"><span class="mark ok">✓</span>Arranged flights and hotel bookings for the entire team, coast to coast</div>
+            <div class="list-row"><span class="mark ok">✓</span>Planned meals and snacks across the full itinerary</div>
+            <div class="list-row"><span class="mark ok">✓</span>Ran the full-day schedule — lab tour, town hall, dinner, and shuttle logistics, all on time</div>
+          </div>
+        </div>
+        <div class="monitor-wrap" style="flex:1;">
+          <div class="monitor">
+            <div class="mscreen">
+              <div class="slideshow-imgs">
+                <img class="on" src="assets/nj-getaway-team.jpg" alt="The whole Americord team celebrating together on the NJ trip" data-cap="The whole team, together — proof it came off without a hitch">
+                <div class="slideshow-quote-slide" data-cap="Kendal, on the same weekend as the get-together — closing the books and pulling off the event at once">
+                  <div class="qtext">"Julia deserves a huge shout-out today for all the help you've been giving me lately!! We jumped right into 2026 fast and heavy — trying to close the books for December &amp; Year-End 2025 in turbo mode and putting all the final touches on this weekend's holiday get-together, plus a million little things in between. Seriously couldn't do it without you. Thank you, Julia!!"</div>
+                  <div class="qattr">Kendal Schoettlin · Slack</div>
+                </div>
               </div>
-              <div class="slideshow-win-slide" data-cap="Flights & hotels booked for every team member">
-                <div class="wv">Flights + Hotels</div>
-                <div class="wtext">Arranged flights and hotel bookings for the entire team, coast to coast.</div>
-              </div>
-              <div class="slideshow-win-slide" data-cap="Food & snacks planned across the full trip">
-                <div class="wv">Food + Snacks</div>
-                <div class="wtext">Planned meals and snacks across the full itinerary.</div>
-              </div>
-              <div class="slideshow-win-slide" data-cap="A full day, run on schedule — lab tour to dinner to shuttles">
-                <div class="wv">Full-Day Schedule</div>
-                <div class="wtext">Lab tour, town hall, dinner, and shuttle logistics — all run on time, for the whole team.</div>
-              </div>
-              <img src="assets/nj-getaway-team.jpg" alt="The whole Americord team celebrating together on the NJ trip" data-cap="The whole team, together — proof it came off without a hitch">
-              <div class="slideshow-quote-slide" data-cap="Kendal, on the same weekend as the get-together — closing the books and pulling off the event at once">
-                <div class="qtext">"Julia deserves a huge shout-out today for all the help you've been giving me lately!! We jumped right into 2026 fast and heavy — trying to close the books for December &amp; Year-End 2025 in turbo mode and putting all the final touches on this weekend's holiday get-together, plus a million little things in between. Seriously couldn't do it without you. Thank you, Julia!!"</div>
-                <div class="qattr">Kendal Schoettlin · Slack</div>
-              </div>
+              <div class="slideshow-dots"></div>
+              <div class="slideshow-caption">The whole team, together — proof it came off without a hitch</div>
             </div>
-            <div class="slideshow-dots"></div>
-            <div class="slideshow-caption">Venue &amp; transportation for the whole team</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 13g: FUN & CULTURE INITIATIVES (monitor slideshow) -->
-    <section class="slide card-slide">
+    <!-- 13g: FUN & CULTURE INITIATIVES (split-row + mini slideshow) -->
+    <section class="slide tone-culture card-slide">
       <div class="eyebrow">Event Planning &amp; Culture Support</div>
       <h2 class="slide-title">Little games, <span class="accent">big culture</span></h2>
-      <div class="monitor-wrap">
-        <div class="monitor">
-          <div class="mscreen">
-            <div class="ph-note">screenshots pending</div>
-            <div class="slideshow-imgs">
-              <div class="slideshow-win-slide on" data-cap="Virtual Halloween Costume Contest — the whole team loved it">
-                <div class="wv">Costume Contest</div>
-                <div class="wtext">A fully virtual Halloween Costume Contest run over Slack — share your best costume (you, kids, or pets), most reactions wins. The team loved it.</div>
-                <div class="wtag">Athena / Americord Culture</div>
+      <div class="split-row">
+        <div class="split-text">
+          <div class="list-rows" style="max-width:100%;">
+            <div class="list-row"><span class="mark ok">✓</span>Ran a fully virtual Halloween Costume Contest over Slack — share your best costume, most reactions wins</div>
+            <div class="list-row"><span class="mark ok">✓</span>Ran the Boo-Haha Joke Off — a Slack-native joke contest, funniest post by reactions wins</div>
+            <div class="list-row"><span class="mark ok">✓</span>Designed &amp; presented the Crowd Favorite Award to the Lab Team + Martin for their Minions takeover</div>
+          </div>
+        </div>
+        <div class="monitor-wrap" style="flex:1;">
+          <div class="monitor">
+            <div class="mscreen">
+              <div class="ph-note">screenshots pending</div>
+              <div class="slideshow-imgs">
+                <div class="slideshow-win-slide on" data-cap="The virtual Halloween Costume Contest — the whole team loved it">
+                  <div class="wv">📸</div>
+                  <div class="wtext">Photo slot — Costume Contest, Joke Off, and Crowd Favorite Award graphics.</div>
+                </div>
+                <div class="slideshow-quote-slide" data-cap="Annia, after winning Scariest Costume">
+                  <div class="qtext">"Thank you so much!! Yay!!! This was super fun! I am glad I participated 🥰🤝"</div>
+                  <div class="qattr">Annia Torres-Rossi · Slack</div>
+                </div>
               </div>
-              <div class="slideshow-win-slide" data-cap="Boo-Haha Joke Off — funniest joke wins, judged by reactions">
-                <div class="wv">Boo-Haha Joke Off</div>
-                <div class="wtext">A Slack-native joke contest — post your funniest Halloween joke in #general, most reactions by 5pm wins.</div>
-                <div class="wtag">Athena / Americord Culture</div>
-              </div>
-              <div class="slideshow-win-slide" data-cap="Crowd Favorite Award — recognizing the Lab Team's Minions takeover">
-                <div class="wv">Crowd Favorite Award</div>
-                <div class="wtext">Designed and presented the Crowd Favorite Appreciation Award to the Lab Team + Martin for their Minions costume takeover.</div>
-                <div class="wtag">Athena / Americord Culture</div>
-              </div>
+              <div class="slideshow-dots"></div>
+              <div class="slideshow-caption">The virtual Halloween Costume Contest — the whole team loved it</div>
             </div>
-            <div class="slideshow-dots"></div>
-            <div class="slideshow-caption">Virtual Halloween Costume Contest — the whole team loved it</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 13b: CERTIFICATIONS (monitor slideshow) -->
-    <section class="slide card-slide">
+    <section class="slide tone-work card-slide">
       <div class="eyebrow">Certifications &amp; Continued Learning</div>
       <h2 class="slide-title">Investing in <span class="accent">my own growth</span></h2>
       <div class="monitor-wrap">
@@ -782,7 +774,7 @@
     </section>
 
     <!-- 13c: CERTIFICATIONS (Coursera batch, pre-Athena — monitor slideshow) -->
-    <section class="slide card-slide">
+    <section class="slide tone-work card-slide">
       <div class="eyebrow">Preparing for This Role, Before I Knew It</div>
       <h2 class="slide-title">Skills I built <span class="accent">before Athena needed them</span></h2>
       <div class="monitor-wrap">
@@ -804,7 +796,7 @@
     </section>
 
     <!-- 13d: SUSTAINABILITY (phone slideshow) -->
-    <section class="slide hero-slide">
+    <section class="slide tone-story hero-slide">
       <div class="hero-copy">
         <h1>Sustainability, in small ways</h1>
         <p class="hero-sub">Reusing plastic bottles and containers as planters at home, and 8 trees planted through GCash's GForest program — real certificates to show for it.</p>
@@ -827,7 +819,7 @@
     </section>
 
     <!-- 14: WHAT THIS ERA GAVE BACK (phone slideshow) -->
-    <section class="slide hero-slide">
+    <section class="slide tone-story hero-slide">
       <div class="hero-copy">
         <h1>Career and family, both.</h1>
         <p class="hero-sub">No trade required. Present for my son's actual days, not just his weekends — with room left over for pickleball, badminton, camping, and Juju Invites.</p>
@@ -855,7 +847,7 @@
     </section>
 
     <!-- 15: THE ASK -->
-    <section class="slide card-slide" style="justify-content:center;">
+    <section class="slide tone-proof card-slide" style="justify-content:center;">
       <div class="eyebrow">Why This Era Deserves the Next One</div>
       <h2 class="slide-title" style="align-self:center;">The ask</h2>
       <div class="list-rows" style="align-self:center;">
@@ -868,7 +860,7 @@
     </section>
 
     <!-- 16: CLOSING -->
-    <section class="slide hero-slide">
+    <section class="slide tone-story hero-slide">
       <div class="hero-copy">
         <h1>Full Circle</h1>
         <p class="hero-sub">A TikTok helped me find Athena. Now one of mine helps other people find it too. Thank you for reading this era.</p>
