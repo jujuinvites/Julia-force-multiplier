@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Julia's Era — Force Multiplier</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,600;0,700;0,800;1,600&family=Petit+Formal+Script&family=Playfair+Display:wght@600;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --pink:#64856B;
@@ -19,7 +19,8 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   html{ scroll-behavior:smooth; }
   html,body{ background:#04100a; color:var(--ink); font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; overflow-x:hidden; }
-  h1,h2,h3{ font-family:"Playfair Display", Georgia, serif; font-weight:700; }
+  h1,h2,h3{ font-family:"Bodoni Moda", "Playfair Display", Georgia, serif; font-weight:700; }
+  .signature{ font-family:"Petit Formal Script", cursive; font-weight:400; line-height:1; }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
   .page{ max-width:1280px; margin:0 auto; position:relative; }
@@ -44,16 +45,18 @@
   }
   .slide:last-of-type{ border-bottom:none; }
 
-  /* ---------- section tones (content-driven, not decorative) ---------- */
-  /* tone-story: the narrative chapters — cover, eras, timeline, closing */
-  .slide.tone-story{ background:radial-gradient(circle at 30% 15%, var(--moss), var(--deepforest) 130%); }
-  /* tone-work: the role/data slides — responsibilities, strategy, certifications */
-  .slide.tone-work{ background:radial-gradient(circle at 70% 85%, #223b2b, #0a1a10 140%); }
-  /* tone-proof: evidence & testimonials — feedback, wins, cost savings */
-  .slide.tone-proof{ background:radial-gradient(circle at 50% 10%, #0f1f14, #030807 150%); }
-  /* tone-culture: celebration & culture — wedding, get-togethers, games */
-  .slide.tone-culture{ background:radial-gradient(circle at 25% 20%, #3a3420, #1a1608 150%); }
-  .slide.tone-culture .accent, .slide.tone-culture .eyebrow{ color:#e8c87a; }
+  /* ---------- era palettes (one per Act, inspired by album-era moods — color only) ---------- */
+  /* the base .slide background/accent rules already reference --moss/--deepforest/--pink2/--accent,
+     so overriding those four variables per era re-themes every component automatically. */
+  .slide.era-lover{ --moss:#3a2430; --deepforest:#170a10; --pink2:#f2b8c8; --accent:#e0aab8; }
+  .slide.era-reputation{ --moss:#232323; --deepforest:#050505; --pink2:#cdd9b8; --accent:#9aa88a; }
+  .slide.era-fearless{ --moss:#3d3320; --deepforest:#14100a; --pink2:#DCBA79; --accent:#d9c9a0; }
+  .slide.era-folklore{ --moss:#2e332e; --deepforest:#0f120f; --pink2:#cfcfbe; --accent:#9a9a8a; }
+  .slide.era-red{ --moss:#3d1a1a; --deepforest:#140707; --pink2:#e0938a; --accent:#c47971; }
+  .slide.era-1989{ --moss:#1a2733; --deepforest:#070d12; --pink2:#a8d4e8; --accent:#8fb8cc; }
+  .slide.era-evermore{ --moss:#3d2a1a; --deepforest:#150d06; --pink2:#d99a5c; --accent:#b87d4a; }
+  .slide.era-speaknow{ --moss:#2d2038; --deepforest:#0f0a15; --pink2:#c9a8e0; --accent:#a888c0; }
+  .slide.era-midnights{ --moss:#1f1f38; --deepforest:#0a0a17; --pink2:#b8b8e8; --accent:#9090c8; }
 
   /* ---------- tour-poster treatment: act markers, ticket-stamp tags, setlist nav ---------- */
   .act-mark{
@@ -331,10 +334,10 @@
 <div class="page">
 
     <!-- 1: COVER -->
-    <section class="slide tone-story hero-slide active" id="act-1">
+    <section class="slide era-lover hero-slide active" id="act-1">
       <div class="hero-copy">
         <div class="act-mark">Act I</div>
-        <h1>Julia's Era</h1>
+        <h1 class="signature" style="font-size:clamp(48px,7.5vw,88px); color:var(--pink2);">Julia's Era</h1>
         <p class="hero-sub">It was an end of a chapter, but a start of a better one.</p>
         <div class="hero-tag">The Force Multiplier Tour · Julia Judico</div>
       </div>
@@ -363,7 +366,7 @@
     </section>
 
     <!-- 2: ABOUT ME -->
-    <section class="slide tone-work card-slide">
+    <section class="slide era-lover card-slide">
       <div class="eyebrow">Before This Era</div>
       <h2 class="slide-title">Who I was <span class="accent">before Athena</span></h2>
       <div class="card-grid cols-2">
@@ -375,7 +378,7 @@
     </section>
 
     <!-- 3: ERA 1 -->
-    <section class="slide tone-story hero-slide" id="act-2">
+    <section class="slide era-reputation hero-slide" id="act-2">
       <div class="hero-copy">
         <div class="act-mark">Act II</div>
         <h1>The Commute<br>That Broke Me</h1>
@@ -407,7 +410,7 @@
     </section>
 
     <!-- 4: ERA 2 -->
-    <section class="slide tone-story hero-slide" id="act-3">
+    <section class="slide era-fearless hero-slide" id="act-3">
       <div class="hero-copy">
         <div class="act-mark">Act III</div>
         <h1>Applied. Rejected.<br>Tried Again.</h1>
@@ -427,7 +430,7 @@
     </section>
 
     <!-- 5: TIMELINE -->
-    <section class="slide tone-story card-slide">
+    <section class="slide era-fearless card-slide">
       <div class="eyebrow">13 Months, Mapped Out</div>
       <h2 class="slide-title">The <span class="accent">timeline</span> so far</h2>
       <div class="timeline-wrap">
@@ -473,7 +476,7 @@
     </section>
 
     <!-- 6: MEET THE CLIENT -->
-    <section class="slide tone-work card-slide" id="act-4">
+    <section class="slide era-folklore card-slide" id="act-4">
       <div class="act-mark">Act IV</div>
       <div class="eyebrow">Who I Create Content For</div>
       <h2 class="slide-title">Meet the client</h2>
@@ -491,7 +494,7 @@
     </section>
 
     <!-- 7: CORE RESPONSIBILITIES -->
-    <section class="slide tone-work card-slide">
+    <section class="slide era-folklore card-slide">
       <div class="eyebrow">One Title, Nine Jobs</div>
       <h2 class="slide-title">A day in <span class="accent">my era</span></h2>
       <div class="card-grid cols-3">
@@ -508,7 +511,7 @@
     </section>
 
     <!-- 8: CHALLENGES -->
-    <section class="slide tone-work card-slide" style="justify-content:center;">
+    <section class="slide era-folklore card-slide" style="justify-content:center;">
       <div class="eyebrow">Not Gonna Pretend It Was Easy</div>
       <h2 class="slide-title" style="align-self:center;">The hard parts of this era</h2>
       <div class="list-rows" style="align-self:center;">
@@ -522,7 +525,7 @@
     </section>
 
     <!-- 9: CLIENT FEEDBACK (monitor slideshow) -->
-    <section class="slide tone-proof card-slide" id="act-5">
+    <section class="slide era-red card-slide" id="act-5">
       <div class="act-mark">Act V</div>
       <div class="eyebrow">In Their Own Words</div>
       <h2 class="slide-title">Client Feedback <span class="accent">(The Comments Section)</span></h2>
@@ -544,7 +547,7 @@
     </section>
 
     <!-- 9b: MORE FROM THE TEAM (text pull-quotes) -->
-    <section class="slide tone-proof card-slide">
+    <section class="slide era-red card-slide">
       <div class="eyebrow">More From the Team</div>
       <h2 class="slide-title">The reviews are <span class="accent">in</span></h2>
       <div class="quote-grid">
@@ -576,7 +579,7 @@
     </section>
 
     <!-- 10: MAJOR WINS -->
-    <section class="slide tone-proof card-slide">
+    <section class="slide era-red card-slide">
       <div class="eyebrow">Highlight Reel</div>
       <h2 class="slide-title">Major <span class="accent">wins</span> this era</h2>
       <div class="card-grid cols-3">
@@ -590,7 +593,7 @@
     </section>
 
     <!-- 11: COST SAVINGS (chart) -->
-    <section class="slide tone-proof chart-slide" id="act-6">
+    <section class="slide era-1989 chart-slide" id="act-6">
       <div class="chart-side">
         <div class="act-mark">Act VI</div>
         <div class="eyebrow">The Numbers Don't Lie</div>
@@ -635,7 +638,7 @@
     </section>
 
     <!-- 11b: COST SAVINGS — MY WINS (monitor slideshow, real vendor negotiations) -->
-    <section class="slide tone-proof card-slide">
+    <section class="slide era-1989 card-slide">
       <div class="eyebrow">Highlighting My Contributions</div>
       <h2 class="slide-title">The negotiations, <span class="accent">one by one</span></h2>
       <div class="monitor-wrap">
@@ -672,7 +675,7 @@
     </section>
 
     <!-- 12: STRATEGIC EFFORTS -->
-    <section class="slide tone-work card-slide" id="act-7">
+    <section class="slide era-evermore card-slide" id="act-7">
       <div class="act-mark">Act VII</div>
       <div class="eyebrow">Beyond the Job Description</div>
       <h2 class="slide-title">Strategic efforts &amp; executive support</h2>
@@ -695,7 +698,7 @@
     </section>
 
     <!-- 13: ATHENA INVOLVEMENT -->
-    <section class="slide tone-work card-slide">
+    <section class="slide era-evermore card-slide">
       <div class="eyebrow">My Own Athena Content Series</div>
       <h2 class="slide-title">Athena involvement</h2>
       <div class="split-row">
@@ -712,7 +715,7 @@
     </section>
 
     <!-- 13e: EVENT PLANNING — KENDAL'S WEDDING (split-row + mini slideshow) -->
-    <section class="slide tone-culture card-slide">
+    <section class="slide era-evermore card-slide">
       <div class="eyebrow">Event Planning &amp; Culture Support</div>
       <h2 class="slide-title">Kendal's wedding — <span class="accent">562 guests, start to finish</span></h2>
       <div class="split-row">
@@ -750,7 +753,7 @@
     </section>
 
     <!-- 13f: EVENT PLANNING — AMERICORD NJ GET-TOGETHER (split-row + mini slideshow) -->
-    <section class="slide tone-culture card-slide">
+    <section class="slide era-evermore card-slide">
       <div class="eyebrow">Event Planning &amp; Culture Support</div>
       <h2 class="slide-title">Spearheading <span class="accent">Americord's NJ get-together</span></h2>
       <div class="split-row">
@@ -782,7 +785,7 @@
     </section>
 
     <!-- 13g: FUN & CULTURE INITIATIVES (split-row + mini slideshow) -->
-    <section class="slide tone-culture card-slide">
+    <section class="slide era-evermore card-slide">
       <div class="eyebrow">Event Planning &amp; Culture Support</div>
       <h2 class="slide-title">Little games, <span class="accent">big culture</span></h2>
       <div class="split-row">
@@ -813,7 +816,7 @@
     </section>
 
     <!-- 13b: CERTIFICATIONS (monitor slideshow) -->
-    <section class="slide tone-work card-slide">
+    <section class="slide era-evermore card-slide">
       <div class="eyebrow">Certifications &amp; Continued Learning</div>
       <h2 class="slide-title">Investing in <span class="accent">my own growth</span></h2>
       <div class="monitor-wrap">
@@ -832,7 +835,7 @@
     </section>
 
     <!-- 13c: CERTIFICATIONS (Coursera batch, pre-Athena — monitor slideshow) -->
-    <section class="slide tone-work card-slide">
+    <section class="slide era-evermore card-slide">
       <div class="eyebrow">Preparing for This Role, Before I Knew It</div>
       <h2 class="slide-title">Skills I built <span class="accent">before Athena needed them</span></h2>
       <div class="monitor-wrap">
@@ -854,7 +857,7 @@
     </section>
 
     <!-- 13d: SUSTAINABILITY (phone slideshow) -->
-    <section class="slide tone-story hero-slide" id="act-8">
+    <section class="slide era-speaknow hero-slide" id="act-8">
       <div class="hero-copy">
         <div class="act-mark">Act VIII</div>
         <h1>Sustainability, in small ways</h1>
@@ -878,7 +881,7 @@
     </section>
 
     <!-- 14: WHAT THIS ERA GAVE BACK (phone slideshow) -->
-    <section class="slide tone-story hero-slide">
+    <section class="slide era-speaknow hero-slide">
       <div class="hero-copy">
         <h1>Career and family, both.</h1>
         <p class="hero-sub">No trade required. Present for my son's actual days, not just his weekends — with room left over for pickleball, badminton, camping, and Juju Invites.</p>
@@ -904,7 +907,7 @@
     </section>
 
     <!-- 15: THE ASK -->
-    <section class="slide tone-proof card-slide" style="justify-content:center;" id="act-9">
+    <section class="slide era-midnights card-slide" style="justify-content:center;" id="act-9">
       <div class="act-mark" style="align-self:center; width:100%; max-width:320px;">Act IX</div>
       <div class="eyebrow">Why This Era Deserves the Next One</div>
       <h2 class="slide-title" style="align-self:center;">The ask</h2>
@@ -918,10 +921,10 @@
     </section>
 
     <!-- 16: CLOSING -->
-    <section class="slide tone-story hero-slide" id="act-10">
+    <section class="slide era-lover hero-slide" id="act-10">
       <div class="hero-copy">
         <div class="act-mark">Act X</div>
-        <h1>Full Circle</h1>
+        <h1 class="signature" style="font-size:clamp(48px,7.5vw,88px); color:var(--pink2);">Full Circle</h1>
         <p class="hero-sub">A TikTok helped me find Athena. Now one of mine helps other people find it too — and I'm grateful to be part of this team.</p>
         <div class="hero-tag">Questions?</div>
       </div>
