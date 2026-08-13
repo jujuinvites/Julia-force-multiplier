@@ -95,6 +95,22 @@
   .pcaption .tag{ font-family:"Roboto Mono",monospace; font-size:clamp(5px,5cqi,7.5px); color:var(--accent); text-transform:uppercase; margin-top:4%; opacity:0.85; }
   .phone .phome{ position:absolute; bottom:2.2%; left:50%; transform:translateX(-50%); width:clamp(34px,24%,60px); height:clamp(3px,1.4%,5px); border-radius:4px; background:rgba(255,255,255,0.35); }
 
+  /* ---------- phone slideshow (real photos, auto-advancing) ---------- */
+  .slideshow-imgs{ position:absolute; inset:0; }
+  .slideshow-imgs img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s ease; }
+  .slideshow-imgs img.on{ opacity:1; }
+  .slideshow-scrim{ position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.75) 100%); }
+  .slideshow-caption{ position:absolute; left:0; right:0; bottom:0; padding:0 9% 10%; font-size:clamp(6.5px,6.4cqi,9.5px); font-weight:700; color:#fff; line-height:1.35; z-index:3; }
+  .slideshow-dots{ position:absolute; top:clamp(16px,13%,30px); left:0; right:0; display:flex; justify-content:center; gap:4px; z-index:6; }
+  .slideshow-dots .sdot{ width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.4); }
+  .slideshow-dots .sdot.on{ background:#fff; width:12px; border-radius:3px; transition:all .3s; }
+
+  /* ---------- split-row (text list/card + single real photo) ---------- */
+  .split-row{ display:flex; align-items:center; gap:5%; flex:1; }
+  .split-row .split-text{ flex:1.2; }
+  .split-row .split-photo{ flex:1; height:clamp(120px,42cqh,320px); border-radius:16px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,0.4); flex-shrink:0; }
+  .split-row .split-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+
   /* ---------- DATA CARD SLIDES ---------- */
   .card-slide{ justify-content:flex-start; }
   .card-grid{ display:grid; gap:clamp(8px,1.4vw,16px); flex:1; align-content:center; }
@@ -307,26 +323,14 @@
         <p class="hero-sub">Applied a third time — because this was the only agency I wanted to be part of, period. Started as Executive Partner on 6/13/25.</p>
         <div class="hero-tag">Era 2 · Getting In</div>
       </div>
-      <div class="phone">
+      <div class="phone slideshow">
         <div class="screen">
-          <div class="ptop"><span>Following</span><span class="on">For You</span></div>
-          <div class="phook">
-            <h3>Offer in hand. Gave notice. Started 6/13/25.</h3>
-            <div class="psub">three tries proving it was worth landing</div>
+          <div class="slideshow-imgs">
+            <img class="on" src="assets/era-training.jpg" alt="Athena pre-onboarding training call">
           </div>
-          <div class="prail">
-            <div class="av"></div>
-            <div class="ic">❤️</div>
-            <div class="ic">💬</div>
-            <div class="ic">🔁</div>
-            <div class="ic">🔖</div>
-          </div>
-          <div class="pcaption">
-            <div class="h">@juliajudico</div>
-            <div class="c">day one of being an Executive Partner, Athena 🧭</div>
-            <div class="tag">#NewBeginnings #ExecutivePartner</div>
-          </div>
-          <div class="phome"></div>
+          <div class="slideshow-scrim"></div>
+          <div class="slideshow-dots"></div>
+          <div class="slideshow-caption">my actual pre-training call — day one, Athena 🧭</div>
         </div>
       </div>
     </section>
@@ -378,14 +382,19 @@
     </section>
 
     <!-- 6: MEET THE CLIENT -->
-    <section class="slide card-slide" style="justify-content:center;">
+    <section class="slide card-slide">
       <div class="eyebrow">Who I Create Content For</div>
-      <h2 class="slide-title" style="align-self:center;">Meet the client</h2>
-      <div class="info-card">
-        <div><b>Client:</b> Kendal Schoettlin, Director of HR, Finance &amp; Operations</div>
-        <div><b>Company:</b> Americord Registry LLC — cord blood &amp; cord tissue banking</div>
-        <div><b>Founder/CEO:</b> Martin Smithmyer</div>
-        <div><b>Why an EP:</b> a true right hand across finance, HR, operations, vendor management, and company-wide initiatives — someone trusted to run things independently.</div>
+      <h2 class="slide-title">Meet the client</h2>
+      <div class="split-row">
+        <div class="split-text">
+          <div class="info-card" style="max-width:100%; align-self:auto;">
+            <div><b>Client:</b> Kendal Schoettlin, Director of HR, Finance &amp; Operations</div>
+            <div><b>Company:</b> Americord Registry LLC — cord blood &amp; cord tissue banking</div>
+            <div><b>Founder/CEO:</b> Martin Smithmyer</div>
+            <div><b>Why an EP:</b> a true right hand across finance, HR, operations, vendor management, and company-wide initiatives — someone trusted to run things independently.</div>
+          </div>
+        </div>
+        <div class="split-photo"><img src="assets/team-americord.jpg" alt="Americord team Zoom meeting"></div>
       </div>
     </section>
 
@@ -426,7 +435,7 @@
       <h2 class="slide-title">Client Feedback <span class="accent">(The Comments Section)</span></h2>
       <div class="gallery-row">
         <figure class="evidence">
-          <div class="ph"><div class="cam">📸</div><div class="lbl">Real screenshot — swap in here</div></div>
+          <div class="ph" style="background:#0d1a12;"><img src="assets/feedback-kendal-wedding.jpg" alt="Kendal's Slack message thanking Julia for covering during her wedding and honeymoon" style="object-fit:contain;"></div>
           <figcaption><b>Quote 1</b> — Kendal expressed deep appreciation for my support.</figcaption>
         </figure>
         <figure class="evidence">
@@ -499,14 +508,19 @@
     </section>
 
     <!-- 13: ATHENA INVOLVEMENT -->
-    <section class="slide card-slide" style="justify-content:center;">
+    <section class="slide card-slide">
       <div class="eyebrow">My Own Athena Content Series</div>
-      <h2 class="slide-title" style="align-self:center;">Athena involvement</h2>
-      <div class="list-rows" style="align-self:center;">
-        <div class="list-row"><span class="mark ok">✓</span>Built &amp; shared "SOP Builder" — a reusable Claude Skill IXP video</div>
-        <div class="list-row"><span class="mark ok">✓</span>Built &amp; shared "Set It &amp; Forget It" — automated payroll reminders with Claude + Slack</div>
-        <div class="list-row"><span class="mark ok">✓</span>6 total IXP/BPA video submissions this review period</div>
-        <div class="list-row"><span class="mark ok">✓</span>Led 1 inter-team tutorial on using Claude</div>
+      <h2 class="slide-title">Athena involvement</h2>
+      <div class="split-row">
+        <div class="split-text">
+          <div class="list-rows" style="max-width:100%;">
+            <div class="list-row"><span class="mark ok">✓</span>Built &amp; shared "SOP Builder" — a reusable Claude Skill IXP video</div>
+            <div class="list-row"><span class="mark ok">✓</span>Built &amp; shared "Set It &amp; Forget It" — automated payroll reminders with Claude + Slack</div>
+            <div class="list-row"><span class="mark ok">✓</span>6 total IXP/BPA video submissions this review period</div>
+            <div class="list-row"><span class="mark ok">✓</span>Led 1 inter-team tutorial on using Claude</div>
+          </div>
+        </div>
+        <div class="split-photo"><img src="assets/athena-team.jpg" alt="Julia with the Athena team at the Athena office"></div>
       </div>
     </section>
 
@@ -522,6 +536,10 @@
         <figure class="evidence">
           <div class="ph"><img src="assets/cert-athena-eacon.jpg" alt="Athena EA Con Certificate of Participation — Vision to Visual"></div>
           <figcaption><b>Athena EA Con</b> — Vision to Visual, Certificate of Participation, May 8, 2026.</figcaption>
+        </figure>
+        <figure class="evidence">
+          <div class="ph" style="background:#0d1a12;"><img src="assets/tesda-study.jpg" alt="Julia working through the TESDA online bookkeeping course" style="object-fit:contain;"></div>
+          <figcaption><b>Actually doing it</b> — working through the TESDA bookkeeping modules.</figcaption>
         </figure>
       </div>
     </section>
@@ -540,14 +558,54 @@
       </div>
     </section>
 
-    <!-- 14: WHAT THIS ERA GAVE BACK (evidence gallery) -->
-    <section class="slide card-slide">
-      <div class="eyebrow">What 13 Months Actually Bought Me</div>
-      <h2 class="slide-title">Career and family, <span class="accent">both</span></h2>
-      <div class="gallery-row">
-        <figure class="evidence"><div class="ph"><div class="cam">👨‍👩‍👦</div><div class="lbl">Photo — swap in here</div></div><figcaption>Present for my son's actual days, not just his weekends.</figcaption></figure>
-        <figure class="evidence"><div class="ph"><div class="cam">🏓</div><div class="lbl">Photo — swap in here</div></div><figcaption>The 4–5 hour commute became pickleball, badminton, and walks.</figcaption></figure>
-        <figure class="evidence"><div class="ph"><div class="cam">💌</div><div class="lbl">Photo — swap in here</div></div><figcaption>Room on the side for Juju Invites.</figcaption></figure>
+    <!-- 13d: SUSTAINABILITY (phone slideshow) -->
+    <section class="slide hero-slide">
+      <div class="hero-copy">
+        <h1>Sustainability, in small ways</h1>
+        <p class="hero-sub">Reusing plastic bottles and containers as planters at home, and 8 trees planted through GCash's GForest program — real certificates to show for it.</p>
+        <div class="hero-tag">Tree Ranger · 8 Trees Planted</div>
+      </div>
+      <div class="phone slideshow">
+        <div class="screen">
+          <div class="slideshow-imgs">
+            <img class="on" src="assets/sustain-bottle-1.jpg" alt="Repurposed plastic bottle used as a planter" data-cap="Old bottles, new planters">
+            <img src="assets/sustain-bottle-2.jpg" alt="Plant growing in a repurposed plastic bottle" data-cap="Growing more from less">
+            <img src="assets/sustain-succulents.jpg" alt="Holding succulents in reused nursery bags" data-cap="Hands-on, always">
+            <img src="assets/sustain-treeplanting.jpg" alt="Planting a tree outdoors with her son" data-cap="Planting with my son">
+            <img src="assets/sustain-watering.jpg" alt="Watering young plants outdoors" data-cap="Tending the garden together">
+          </div>
+          <div class="slideshow-scrim"></div>
+          <div class="slideshow-dots"></div>
+          <div class="slideshow-caption">Old bottles, new planters</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14: WHAT THIS ERA GAVE BACK (phone slideshow) -->
+    <section class="slide hero-slide">
+      <div class="hero-copy">
+        <h1>Career and family, both.</h1>
+        <p class="hero-sub">No trade required. Present for my son's actual days, not just his weekends — with room left over for pickleball, badminton, camping, and Juju Invites.</p>
+        <div class="hero-tag">#NoPressureNoDiamonds</div>
+      </div>
+      <div class="phone slideshow">
+        <div class="screen">
+          <div class="slideshow-imgs">
+            <img class="on" src="assets/personal-camping.jpg" alt="Camping with her son in the mountains" data-cap="Camping trips, not conference calls">
+            <img src="assets/personal-familyday.jpg" alt="Family day at an immersive light exhibit" data-cap="Family days back on the calendar">
+            <img src="assets/personal-morningwalk.jpg" alt="Morning walk carrying her son" data-cap="Morning walks, kid on my back">
+            <img src="assets/personal-badminton1.jpg" alt="Badminton racket and shoes on the court" data-cap="Badminton after work">
+            <img src="assets/personal-badminton2.jpg" alt="Selfie with her son at badminton" data-cap="Same court, my favorite teammate">
+            <img src="assets/personal-pickleball.jpg" alt="Group photo after pickleball" data-cap="Pickleball with the crew">
+            <img src="assets/personal-craftsforbaby.jpg" alt="Her son holding a 1st place certificate" data-cap="Cheering him on, 1st place">
+            <img src="assets/personal-givingclothes.jpg" alt="Her son sorting clothes to donate" data-cap="Teaching him to give back too">
+            <img src="assets/personal-juju.jpg" alt="Juju Invites TikTok profile" data-cap="Building Juju Invites on the side">
+            <img src="assets/personal-anniversaryleave.jpg" alt="Kendal approving Julia's anniversary leave request" data-cap="Trusted to take the day off, no questions asked">
+          </div>
+          <div class="slideshow-scrim"></div>
+          <div class="slideshow-dots"></div>
+          <div class="slideshow-caption">Camping trips, not conference calls</div>
+        </div>
       </div>
     </section>
 
@@ -571,25 +629,14 @@
         <p class="hero-sub">A TikTok helped me find Athena. Now one of mine helps other people find it too. Thank you for reading this era.</p>
         <div class="hero-tag">Questions?</div>
       </div>
-      <div class="phone">
+      <div class="phone slideshow">
         <div class="screen">
-          <div class="ptop"><span>Following</span><span class="on">For You</span></div>
-          <div class="phook">
-            <h3>Full circle.</h3>
-            <div class="psub">a TikTok helped me find Athena — now one of mine helps others find it too 🔁</div>
+          <div class="slideshow-imgs">
+            <img class="on" src="assets/closing-tiktokpost.jpg" alt="Julia's real TikTok post about her Athena journey, 2,241 likes">
           </div>
-          <div class="prail">
-            <div class="av"></div>
-            <div class="ic">▶️</div>
-            <div class="ic">💬</div>
-            <div class="ic">🔁</div>
-            <div class="ic">🔖</div>
-          </div>
-          <div class="pcaption">
-            <div class="h">@juliajudico</div>
-            <div class="c">thank you for reading this era 🙏</div>
-            <div class="tag">#FullCircle #NoPressureNoDiamonds</div>
-          </div>
+          <div class="slideshow-scrim"></div>
+          <div class="slideshow-dots"></div>
+          <div class="slideshow-caption">the actual post — thank you for reading this era 🙏</div>
           <div class="phome"></div>
         </div>
       </div>
@@ -615,8 +662,50 @@
   var prevBtn = document.getElementById('prevbtn');
   var nextBtn = document.getElementById('nextbtn');
 
+  /* phone slideshows: auto-advance real photos while their slide is active */
+  var slideshowTimers = new WeakMap();
+  function initSlideshow(root){
+    var imgs = Array.prototype.slice.call(root.querySelectorAll('.slideshow-imgs img'));
+    var dotsWrap = root.querySelector('.slideshow-dots');
+    var captionEl = root.querySelector('.slideshow-caption');
+    if (!imgs.length) return;
+    dotsWrap.innerHTML = '';
+    imgs.forEach(function(_, i){
+      var d = document.createElement('div');
+      d.className = 'sdot' + (i === 0 ? ' on' : '');
+      dotsWrap.appendChild(d);
+    });
+    var pos = 0;
+    function show(i){
+      imgs.forEach(function(img, j){ img.classList.toggle('on', j === i); });
+      Array.prototype.slice.call(dotsWrap.children).forEach(function(d, j){ d.classList.toggle('on', j === i); });
+      if (captionEl && imgs[i].dataset.cap) { captionEl.textContent = imgs[i].dataset.cap; }
+    }
+    root._slideshowStart = function(){
+      pos = 0; show(0);
+      var old = slideshowTimers.get(root);
+      if (old) clearInterval(old);
+      if (imgs.length > 1) {
+        slideshowTimers.set(root, setInterval(function(){
+          pos = (pos + 1) % imgs.length;
+          show(pos);
+        }, 2600));
+      }
+    };
+    root._slideshowStop = function(){
+      var t = slideshowTimers.get(root);
+      if (t) clearInterval(t);
+    };
+  }
+  document.querySelectorAll('.phone.slideshow').forEach(initSlideshow);
+
   function render(){
-    slides.forEach(function(s,i){ s.classList.toggle('active', i === idx); });
+    slides.forEach(function(s,i){
+      var isActive = i === idx;
+      s.classList.toggle('active', isActive);
+      var phone = s.querySelector('.phone.slideshow');
+      if (phone) { isActive ? phone._slideshowStart && phone._slideshowStart() : phone._slideshowStop && phone._slideshowStop(); }
+    });
     counter.textContent = (idx+1) + ' / ' + slides.length;
     prevBtn.disabled = idx === 0;
     nextBtn.disabled = idx === slides.length - 1;
