@@ -55,6 +55,44 @@
   .slide.tone-culture{ background:radial-gradient(circle at 25% 20%, #3a3420, #1a1608 150%); }
   .slide.tone-culture .accent, .slide.tone-culture .eyebrow{ color:#e8c87a; }
 
+  /* ---------- tour-poster treatment: act markers, ticket-stamp tags, setlist nav ---------- */
+  .act-mark{
+    display:flex; align-items:center; gap:14px;
+    font-family:"Roboto Mono",monospace; text-transform:uppercase; letter-spacing:3px;
+    font-size:clamp(11px,1.2vw,14px); color:var(--pink2); font-weight:700;
+    margin-bottom:clamp(12px,1.8vw,20px); opacity:0.9;
+  }
+  .act-mark::before, .act-mark::after{ content:''; height:1px; background:var(--pink2); opacity:0.45; flex:1; max-width:70px; }
+
+  .hero-copy .hero-tag{
+    display:inline-flex; align-items:center; gap:7px;
+    border:1px solid rgba(220,186,121,0.5); border-radius:3px;
+    padding:7px 14px; margin-top:clamp(16px,2vw,26px);
+  }
+  .hero-copy .hero-tag::before{ content:'★'; font-size:0.85em; opacity:0.8; }
+
+  .setlist-nav{
+    position:fixed; right:22px; top:50%; transform:translateY(-50%); z-index:40;
+    display:flex; flex-direction:column; gap:1px;
+    font-family:"Roboto Mono",monospace; font-size:11px;
+    background:rgba(4,16,10,0.88); backdrop-filter:blur(10px);
+    border:1px solid rgba(220,186,121,0.28); border-radius:12px;
+    padding:14px 8px; max-width:190px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
+  }
+  .setlist-nav .sl-title{ font-size:9px; text-transform:uppercase; letter-spacing:2px; color:var(--pink2); opacity:0.75; margin-bottom:8px; padding:0 8px; }
+  .setlist-nav a{
+    display:flex; gap:9px; align-items:baseline; text-decoration:none; color:var(--ink); opacity:0.5;
+    padding:6px 8px; border-radius:6px; transition:opacity .2s ease, background .2s ease;
+    white-space:nowrap; overflow:hidden;
+  }
+  .setlist-nav a .n{ color:var(--pink2); font-weight:700; opacity:0.75; flex-shrink:0; }
+  .setlist-nav a span.t{ overflow:hidden; text-overflow:ellipsis; }
+  .setlist-nav a:hover{ opacity:0.85; background:rgba(255,255,255,0.06); }
+  .setlist-nav a.active{ opacity:1; background:rgba(220,186,121,0.14); }
+  .setlist-nav a.active .n{ opacity:1; }
+  @media (max-width:1220px){ .setlist-nav{ display:none; } }
+
   .eyebrow{
     font-family:"Roboto Mono", monospace; text-transform:uppercase; letter-spacing:1.5px;
     font-size:clamp(11px,1.3vw,13px); color:var(--pink2); font-weight:700; margin-bottom:clamp(8px,1.2vw,14px);
@@ -276,14 +314,29 @@
 <div class="progress" id="progress"></div>
 <div class="topbar">Julia's Era &middot; Force Multiplier</div>
 
+<nav class="setlist-nav" aria-label="Setlist">
+  <div class="sl-title">Setlist</div>
+  <a href="#act-1"><span class="n">I</span><span class="t">Cold Open</span></a>
+  <a href="#act-2"><span class="n">II</span><span class="t">The Commute</span></a>
+  <a href="#act-3"><span class="n">III</span><span class="t">Chasing the 1%</span></a>
+  <a href="#act-4"><span class="n">IV</span><span class="t">The Job</span></a>
+  <a href="#act-5"><span class="n">V</span><span class="t">The Reviews</span></a>
+  <a href="#act-6"><span class="n">VI</span><span class="t">The Receipts</span></a>
+  <a href="#act-7"><span class="n">VII</span><span class="t">Beyond the Desk</span></a>
+  <a href="#act-8"><span class="n">VIII</span><span class="t">Roots</span></a>
+  <a href="#act-9"><span class="n">IX</span><span class="t">The Ask</span></a>
+  <a href="#act-10"><span class="n">X</span><span class="t">Full Circle</span></a>
+</nav>
+
 <div class="page">
 
     <!-- 1: COVER -->
-    <section class="slide tone-story hero-slide active">
+    <section class="slide tone-story hero-slide active" id="act-1">
       <div class="hero-copy">
+        <div class="act-mark">Act I</div>
         <h1>Julia's Era</h1>
         <p class="hero-sub">It was an end of a chapter, but a start of a better one.</p>
-        <div class="hero-tag">Force Multiplier Case for Review · Julia Judico</div>
+        <div class="hero-tag">The Force Multiplier Tour · Julia Judico</div>
       </div>
       <div class="phone">
         <div class="screen">
@@ -322,8 +375,9 @@
     </section>
 
     <!-- 3: ERA 1 -->
-    <section class="slide tone-story hero-slide">
+    <section class="slide tone-story hero-slide" id="act-2">
       <div class="hero-copy">
+        <div class="act-mark">Act II</div>
         <h1>The Commute<br>That Broke Me</h1>
         <p class="hero-sub">4–5 hours a day, round trip. A nanny who couldn't keep up. That was my sign — not just a scheduling problem.</p>
         <div class="hero-tag">Era 1 · Before Athena</div>
@@ -353,8 +407,9 @@
     </section>
 
     <!-- 4: ERA 2 -->
-    <section class="slide tone-story hero-slide">
+    <section class="slide tone-story hero-slide" id="act-3">
       <div class="hero-copy">
+        <div class="act-mark">Act III</div>
         <h1>Applied. Rejected.<br>Tried Again.</h1>
         <p class="hero-sub">Applied a third time — because this was the only agency I wanted to be part of, period. Started as Executive Partner on 6/13/25.</p>
         <div class="hero-tag">Era 2 · Getting In</div>
@@ -418,7 +473,8 @@
     </section>
 
     <!-- 6: MEET THE CLIENT -->
-    <section class="slide tone-work card-slide">
+    <section class="slide tone-work card-slide" id="act-4">
+      <div class="act-mark">Act IV</div>
       <div class="eyebrow">Who I Create Content For</div>
       <h2 class="slide-title">Meet the client</h2>
       <div class="split-row">
@@ -466,7 +522,8 @@
     </section>
 
     <!-- 9: CLIENT FEEDBACK (monitor slideshow) -->
-    <section class="slide tone-proof card-slide">
+    <section class="slide tone-proof card-slide" id="act-5">
+      <div class="act-mark">Act V</div>
       <div class="eyebrow">In Their Own Words</div>
       <h2 class="slide-title">Client Feedback <span class="accent">(The Comments Section)</span></h2>
       <div class="monitor-wrap">
@@ -533,8 +590,9 @@
     </section>
 
     <!-- 11: COST SAVINGS (chart) -->
-    <section class="slide tone-proof chart-slide">
+    <section class="slide tone-proof chart-slide" id="act-6">
       <div class="chart-side">
+        <div class="act-mark">Act VI</div>
         <div class="eyebrow">The Numbers Don't Lie</div>
         <h2 class="slide-title">The receipts</h2>
         <svg class="bar-chart" viewBox="0 0 560 260" preserveAspectRatio="xMinYMid meet">
@@ -614,7 +672,8 @@
     </section>
 
     <!-- 12: STRATEGIC EFFORTS -->
-    <section class="slide tone-work card-slide">
+    <section class="slide tone-work card-slide" id="act-7">
+      <div class="act-mark">Act VII</div>
       <div class="eyebrow">Beyond the Job Description</div>
       <h2 class="slide-title">Strategic efforts &amp; executive support</h2>
       <div class="split-row">
@@ -795,8 +854,9 @@
     </section>
 
     <!-- 13d: SUSTAINABILITY (phone slideshow) -->
-    <section class="slide tone-story hero-slide">
+    <section class="slide tone-story hero-slide" id="act-8">
       <div class="hero-copy">
+        <div class="act-mark">Act VIII</div>
         <h1>Sustainability, in small ways</h1>
         <p class="hero-sub">Reusing plastic bottles and containers as planters at home, and 8 trees planted through GCash's GForest program — real certificates to show for it.</p>
         <div class="hero-tag">Tree Ranger · 8 Trees Planted</div>
@@ -844,7 +904,8 @@
     </section>
 
     <!-- 15: THE ASK -->
-    <section class="slide tone-proof card-slide" style="justify-content:center;">
+    <section class="slide tone-proof card-slide" style="justify-content:center;" id="act-9">
+      <div class="act-mark" style="align-self:center; width:100%; max-width:320px;">Act IX</div>
       <div class="eyebrow">Why This Era Deserves the Next One</div>
       <h2 class="slide-title" style="align-self:center;">The ask</h2>
       <div class="list-rows" style="align-self:center;">
@@ -857,8 +918,9 @@
     </section>
 
     <!-- 16: CLOSING -->
-    <section class="slide tone-story hero-slide">
+    <section class="slide tone-story hero-slide" id="act-10">
       <div class="hero-copy">
+        <div class="act-mark">Act X</div>
         <h1>Full Circle</h1>
         <p class="hero-sub">A TikTok helped me find Athena. Now one of mine helps other people find it too — and I'm grateful to be part of this team.</p>
         <div class="hero-tag">Questions?</div>
@@ -892,6 +954,21 @@
   window.addEventListener('scroll', updateProgress, {passive:true});
   window.addEventListener('resize', updateProgress);
   updateProgress();
+
+  /* ---- setlist nav: highlight the current act as you scroll ---- */
+  var actLinks = Array.prototype.slice.call(document.querySelectorAll('.setlist-nav a'));
+  var actTargets = actLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  if ('IntersectionObserver' in window && actTargets.length){
+    var actObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          var idx = actTargets.indexOf(entry.target);
+          actLinks.forEach(function(a,i){ a.classList.toggle('active', i === idx); });
+        }
+      });
+    }, {threshold:0, rootMargin:'-45% 0px -45% 0px'});
+    actTargets.forEach(function(t){ actObserver.observe(t); });
+  }
 
   /* ---- reveal each section once as it scrolls into view ---- */
   if ('IntersectionObserver' in window){
