@@ -110,6 +110,20 @@
   .split-row .split-text{ flex:1.2; }
   .split-row .split-photo{ flex:1; height:clamp(120px,42cqh,320px); border-radius:16px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,0.4); flex-shrink:0; }
   .split-row .split-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .split-row .split-photo.browser{ position:relative; }
+  .split-row .split-photo.browser .chrome-bar{ position:absolute; top:0; left:0; right:0; height:26px; background:#e8e8ea; display:flex; align-items:center; gap:6px; padding:0 10px; z-index:2; }
+  .split-row .split-photo.browser .chrome-bar .dot{ width:8px; height:8px; border-radius:50%; }
+  .split-row .split-photo.browser .chrome-bar .url{ flex:1; background:#fff; border-radius:5px; font-family:"Roboto Mono",monospace; font-size:10px; color:#555; padding:3px 8px; margin-left:6px; }
+  .split-row .split-photo.browser img{ padding-top:26px; }
+
+  /* ---------- pull quotes (text-based testimonials) ---------- */
+  .quote-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(10px,1.6vw,20px); flex:1; align-content:center; }
+  .pull-quote{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(220,186,121,0.3); border-radius:16px;
+    padding:clamp(14px,2vw,24px); display:flex; flex-direction:column; gap:10px; justify-content:center;
+  }
+  .pull-quote .qtext{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:clamp(13px,1.5vw,18px); line-height:1.4; }
+  .pull-quote .qattr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,0.95vw,11px); letter-spacing:0.5px; color:var(--pink2); font-weight:700; }
 
   /* ---------- DATA CARD SLIDES ---------- */
   .card-slide{ justify-content:flex-start; }
@@ -445,6 +459,30 @@
       </div>
     </section>
 
+    <!-- 9b: MORE FROM THE TEAM (text pull-quotes) -->
+    <section class="slide card-slide">
+      <div class="eyebrow">More From the Team</div>
+      <h2 class="slide-title">The reviews are <span class="accent">in</span></h2>
+      <div class="quote-grid">
+        <div class="pull-quote">
+          <div class="qtext">"Kendal expressed extreme satisfaction, scoring Julia's performance as '20 out of 10' and stating they couldn't survive without her."</div>
+          <div class="qattr">Kendal Schoettlin · 4-Week Check-In Notes</div>
+        </div>
+        <div class="pull-quote">
+          <div class="qtext">"Julia embodies Athena's vision of a proactive, high-impact XP. Her client said, 'I'm pretty sure my wedding would not be planned if it weren't for Julia.'"</div>
+          <div class="qattr">Athena XP Recommendation Writeup</div>
+        </div>
+        <div class="pull-quote">
+          <div class="qtext">"Julia deserves a huge shout-out today — we jumped right into 2026 fast and heavy, closing the books for year-end and putting final touches on the holiday get-together. Seriously couldn't do it without you."</div>
+          <div class="qattr">Kendal Schoettlin · Slack</div>
+        </div>
+        <div class="pull-quote">
+          <div class="qtext">"This Friday HIGH-FIVE goes out to Julia. She seems to be everywhere all at once." — "I second this — she's truly a superstar in every way!!!!!"</div>
+          <div class="qattr">Jason Seibert &amp; Kendal Schoettlin · Slack</div>
+        </div>
+      </div>
+    </section>
+
     <!-- 10: MAJOR WINS -->
     <section class="slide card-slide">
       <div class="eyebrow">Highlight Reel</div>
@@ -495,15 +533,24 @@
     </section>
 
     <!-- 12: STRATEGIC EFFORTS -->
-    <section class="slide card-slide" style="justify-content:center;">
+    <section class="slide card-slide">
       <div class="eyebrow">Beyond the Job Description</div>
-      <h2 class="slide-title" style="align-self:center;">Strategic efforts &amp; executive support</h2>
-      <div class="list-rows" style="align-self:center;">
-        <div class="list-row"><span class="mark ok">✓</span>Founded &amp; owned succession planning — 9 departments, concept to execution</div>
-        <div class="list-row"><span class="mark ok">✓</span>Drove SOP collection company-wide, hit the Phase 2 deadline</div>
-        <div class="list-row"><span class="mark ok">✓</span>Built Lyos's break-even analysis &amp; full cost breakdown</div>
-        <div class="list-row"><span class="mark ok">✓</span>Supported M&amp;A due diligence (the "Crux Document Checklist")</div>
-        <div class="list-row"><span class="mark ok">✓</span>Delivered legal &amp; regulatory work without escalating to outside counsel</div>
+      <h2 class="slide-title">Strategic efforts &amp; executive support</h2>
+      <div class="split-row">
+        <div class="split-text">
+          <div class="list-rows" style="max-width:100%;">
+            <div class="list-row"><span class="mark ok">✓</span>Founded &amp; owned succession planning — 9 departments, concept to execution</div>
+            <div class="list-row"><span class="mark ok">✓</span>Drove SOP collection company-wide, hit the Phase 2 deadline</div>
+            <div class="list-row"><span class="mark ok">✓</span>Built Lyos's break-even analysis &amp; full cost breakdown</div>
+            <div class="list-row"><span class="mark ok">✓</span>Rebuilt the Lyos sister-company website for stronger team feedback</div>
+            <div class="list-row"><span class="mark ok">✓</span>Supported M&amp;A due diligence (the "Crux Document Checklist")</div>
+            <div class="list-row"><span class="mark ok">✓</span>Delivered legal &amp; regulatory work without escalating to outside counsel</div>
+          </div>
+        </div>
+        <div class="split-photo browser">
+          <div class="chrome-bar"><div class="dot" style="background:#ff5f56;"></div><div class="dot" style="background:#ffbd2e;"></div><div class="dot" style="background:#27c93f;"></div><div class="url">lyosbio.vercel.app</div></div>
+          <img src="assets/lyos-website.jpg" alt="Lyos website Julia rebuilt for the sister company">
+        </div>
       </div>
     </section>
 
