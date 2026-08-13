@@ -103,6 +103,12 @@
   .slideshow-quote-slide{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8% 10%; background:radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%); }
   .slideshow-quote-slide .qtext{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:clamp(13px,2.1cqi,22px); line-height:1.45; }
   .slideshow-quote-slide .qattr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,1.1cqi,12px); color:var(--pink2); font-weight:700; margin-top:12px; letter-spacing:0.5px; }
+  .slideshow-win-slide{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6% 11%; gap:clamp(6px,1.5cqi,14px); background:radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%); }
+  .slideshow-win-slide .wv{ font-family:"Roboto Mono",monospace; font-weight:800; font-size:clamp(22px,5.5cqi,42px); color:var(--pink2); }
+  .slideshow-win-slide .wv small{ font-size:0.45em; opacity:0.8; }
+  .slideshow-win-slide .wtext{ font-size:clamp(10px,2.1cqi,15px); line-height:1.5; max-width:38ch; }
+  .slideshow-win-slide .wtag{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(8px,1cqi,11px); color:var(--accent); opacity:0.85; letter-spacing:0.5px; }
+  .ph-note{ position:absolute; top:8px; right:10px; font-family:"Roboto Mono",monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.5px; color:rgba(255,255,255,0.35); z-index:6; }
 
   /* ---------- monitor / laptop screen mockup (wide slideshow for screenshots & certs) ---------- */
   .monitor-wrap{ flex:1; display:flex; align-items:center; justify-content:center; min-height:0; }
@@ -537,26 +543,31 @@
         <div class="eyebrow">The Numbers Don't Lie</div>
         <h2 class="slide-title">The receipts</h2>
         <svg class="bar-chart" viewBox="0 0 560 260" preserveAspectRatio="xMinYMid meet">
-          <!-- bars: values in $K, max ~102 -->
+          <!-- bars: values in $K, max ~102 (Eurofins) -->
           <g>
-            <rect class="bar-rect" style="--d:.05s" x="40" y="200" width="90" height="40" rx="6" fill="#DCBA79"/>
-            <text class="bar-value bar-fade" style="--d:.55s" x="85" y="192" text-anchor="middle">$102K</text>
-            <text class="bar-label bar-fade" style="--d:.55s" x="85" y="250" text-anchor="middle">Vendor reneg.</text>
+            <rect class="bar-rect" style="--d:.05s" x="20" y="170" width="80" height="70" rx="6" fill="#DCBA79"/>
+            <text class="bar-value bar-fade" style="--d:.55s" x="60" y="162" text-anchor="middle">$102K</text>
+            <text class="bar-label bar-fade" style="--d:.55s" x="60" y="250" text-anchor="middle">Eurofins</text>
           </g>
           <g>
-            <rect class="bar-rect" style="--d:.2s" x="180" y="228" width="90" height="12" rx="6" fill="#B3CBB9"/>
-            <text class="bar-value bar-fade" style="--d:.7s" x="225" y="220" text-anchor="middle">$18.6K</text>
-            <text class="bar-label bar-fade" style="--d:.7s" x="225" y="250" text-anchor="middle">Breach catch</text>
+            <rect class="bar-rect" style="--d:.18s" x="132" y="221" width="80" height="19" rx="6" fill="#DCBA79"/>
+            <text class="bar-value bar-fade" style="--d:.68s" x="172" y="213" text-anchor="middle">$28K</text>
+            <text class="bar-label bar-fade" style="--d:.68s" x="172" y="250" text-anchor="middle">Versiti</text>
           </g>
           <g>
-            <rect class="bar-rect" style="--d:.35s" x="320" y="200" width="90" height="53" rx="6" fill="#64856B"/>
-            <text class="bar-value bar-fade" style="--d:.85s" x="365" y="192" text-anchor="middle">$60K</text>
-            <text class="bar-label bar-fade" style="--d:.85s" x="365" y="250" text-anchor="middle">Bookkeeping</text>
+            <rect class="bar-rect" style="--d:.31s" x="244" y="227" width="80" height="13" rx="6" fill="#B3CBB9"/>
+            <text class="bar-value bar-fade" style="--d:.81s" x="284" y="219" text-anchor="middle">$18.6K</text>
+            <text class="bar-label bar-fade" style="--d:.81s" x="284" y="250" text-anchor="middle">Linde/Praxair</text>
           </g>
           <g>
-            <rect class="bar-rect" style="--d:.5s" x="460" y="207" width="90" height="46" rx="6" fill="#64856B"/>
-            <text class="bar-value bar-fade" style="--d:1s" x="505" y="199" text-anchor="middle">$45K</text>
-            <text class="bar-label bar-fade" style="--d:1s" x="505" y="250" text-anchor="middle">Recruiting</text>
+            <rect class="bar-rect" style="--d:.44s" x="356" y="199" width="80" height="41" rx="6" fill="#64856B"/>
+            <text class="bar-value bar-fade" style="--d:.94s" x="396" y="191" text-anchor="middle">$60K</text>
+            <text class="bar-label bar-fade" style="--d:.94s" x="396" y="250" text-anchor="middle">Bookkeeping</text>
+          </g>
+          <g>
+            <rect class="bar-rect" style="--d:.57s" x="468" y="209" width="80" height="31" rx="6" fill="#64856B"/>
+            <text class="bar-value bar-fade" style="--d:1.07s" x="508" y="201" text-anchor="middle">$45K</text>
+            <text class="bar-label bar-fade" style="--d:1.07s" x="508" y="250" text-anchor="middle">Recruiting</text>
           </g>
         </svg>
       </div>
@@ -566,6 +577,43 @@
         <div class="pull-quote reveal" style="--d:.4s">
           <div class="qtext" style="font-size:clamp(11px,1.2vw,14px);">"Expense tracking — improved by Julia, Justin, and all of you — means better support for Kendal and better expense management. Grateful for all the teamwork."</div>
           <div class="qattr">Martin Smithmyer, CEO · Slack</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11b: COST SAVINGS — MY WINS (monitor slideshow, real vendor negotiations) -->
+    <section class="slide card-slide">
+      <div class="eyebrow">Highlighting My Contributions</div>
+      <h2 class="slide-title">The negotiations, <span class="accent">one by one</span></h2>
+      <div class="monitor-wrap">
+        <div class="monitor">
+          <div class="mscreen">
+            <div class="ph-note">screenshot pending</div>
+            <div class="slideshow-imgs">
+              <div class="slideshow-win-slide on" data-cap="Linde/Praxair — found the breach-of-contract angle, $18,616/yr">
+                <div class="wv">$18,616<small>/yr</small></div>
+                <div class="wtext">Two years of negotiating with Linde/Praxair over a long-term contract priced higher than agreed. I traced it back to a breach of the pricing-adjustment terms and used that to bring it back in line.</div>
+                <div class="wtag">Linde / Praxair</div>
+              </div>
+              <div class="slideshow-win-slide" data-cap="Versiti — primary negotiator, $28,000/yr">
+                <div class="wv">$28,000<small>/yr</small></div>
+                <div class="wtext">Primary negotiator on testing fees with Versiti — talked them down by $5.25 per donor.</div>
+                <div class="wtag">Versiti</div>
+              </div>
+              <div class="slideshow-win-slide" data-cap="Eurofins — LSA signed May 2026, $102,000/yr">
+                <div class="wv">$102,000<small>/yr</small></div>
+                <div class="wtext">Secured a new laboratory services agreement with Eurofins, signed May 2026.</div>
+                <div class="wtag">Eurofins</div>
+              </div>
+              <div class="slideshow-win-slide" data-cap="Ongoing — sourcing cheaper lab vendor alternatives">
+                <div class="wv">Ongoing</div>
+                <div class="wtext">Actively sourcing cheaper alternatives across all of our laboratory vendor supplies — a continuous initiative, not a one-time win.</div>
+                <div class="wtag">Vendor Sourcing</div>
+              </div>
+            </div>
+            <div class="slideshow-dots"></div>
+            <div class="slideshow-caption">Linde/Praxair — found the breach-of-contract angle, $18,616/yr</div>
+          </div>
         </div>
       </div>
     </section>
