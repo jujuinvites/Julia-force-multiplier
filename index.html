@@ -165,6 +165,22 @@
   .pcaption .tag{ font-family:"Roboto Mono",monospace; font-size:clamp(5px,5cqi,7.5px); color:var(--accent); text-transform:uppercase; margin-top:4%; opacity:0.85; }
   .phone .phome{ position:absolute; bottom:2.2%; left:50%; transform:translateX(-50%); width:clamp(34px,24%,60px); height:clamp(3px,1.4%,5px); border-radius:4px; background:rgba(255,255,255,0.35); }
 
+  /* ---------- ID REVEAL (framed real-photo showcase, no device mockup) ---------- */
+  .id-reveal{
+    flex-shrink:0;
+    width:clamp(220px,24vw,300px);
+    aspect-ratio:9/16;
+    border-radius:20px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 30px 70px rgba(0,0,0,0.55), 0 0 0 1.5px rgba(220,186,121,0.45);
+  }
+  .id-reveal img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .id-reveal .id-scrim{ position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0) 34%); }
+  .id-reveal .id-caption{ position:absolute; left:0; right:0; bottom:0; padding:16px 18px 18px; }
+  .id-reveal .id-caption .h{ font-family:"Roboto Mono",monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--pink2); font-weight:700; opacity:0.9; }
+  .id-reveal .id-caption .c{ font-weight:800; font-size:clamp(13px,1.6vw,16px); margin-top:4px; color:#fff; }
+
   /* ---------- phone slideshow (real photos, auto-advancing) ---------- */
   .slideshow-imgs{ position:absolute; inset:0; }
   .slideshow-imgs > *{ position:absolute; inset:0; opacity:0; transition:opacity 1s ease; }
@@ -493,15 +509,12 @@
         <p class="hero-sub">I applied a third time, because Athena was the only agency I actually wanted to be part of - period. On 6/13/25, that persistence finally paid off and I started as Executive Partner.</p>
         <div class="hero-tag">Era 2 · Getting In</div>
       </div>
-      <div class="phone slideshow">
-        <div class="screen">
-          <div class="slideshow-imgs">
-            <img class="on" src="assets/era-training.jpg" alt="Athena pre-onboarding training call" data-cap="My actual pre-training call - day one, Athena 🧭">
-            <img src="assets/athena-team.jpg" alt="Julia with the Athena team in front of the Athena office sign" data-cap="Made it - with the Athena team 🧭">
-          </div>
-          <div class="slideshow-scrim"></div>
-          <div class="slideshow-dots"></div>
-          <div class="slideshow-caption">My actual pre-training call - day one, Athena 🧭</div>
+      <div class="id-reveal">
+        <img src="assets/era2-athena-id.jpg" alt="Julia's real Athena Executive Partner ID card">
+        <div class="id-scrim"></div>
+        <div class="id-caption">
+          <div class="h">ID No. E-2505-10590</div>
+          <div class="c">Executive Partner, Athena</div>
         </div>
       </div>
     </section>
