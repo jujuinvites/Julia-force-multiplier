@@ -418,11 +418,16 @@
     <section class="slide era-lover card-slide">
       <div class="eyebrow">Before This Era</div>
       <h2 class="slide-title">Who I was <span class="accent">before Athena</span></h2>
-      <div class="card-grid cols-2">
-        <div class="info-tile"><span class="tn">BACKGROUND</span>6+ years across hospitality, corporate, and executive support - Investor Relations &amp; Guest Relations, Belmont Hotel Manila.</div>
-        <div class="info-tile"><span class="tn">EDUCATION</span>Tourism Management, Bulacan State University.</div>
-        <div class="info-tile"><span class="tn">THE GAP</span>A deliberate career break for full-time family caregiving - then came back stronger.</div>
-        <div class="info-tile"><span class="tn">OUTSIDE WORK</span>Pickleball, content creation, travel, music - curious and energetic on and off the clock.</div>
+      <div class="split-row">
+        <div class="split-text">
+          <div class="card-grid">
+            <div class="info-tile"><span class="tn">BACKGROUND</span>6+ years across hospitality, corporate, and executive support - Investor Relations &amp; Guest Relations, Belmont Hotel Manila.</div>
+            <div class="info-tile"><span class="tn">EDUCATION</span>Tourism Management, Bulacan State University.</div>
+            <div class="info-tile"><span class="tn">THE GAP</span>A deliberate career break for full-time family caregiving - then came back stronger.</div>
+            <div class="info-tile"><span class="tn">OUTSIDE WORK</span>Pickleball, content creation, travel, music - curious and energetic on and off the clock.</div>
+          </div>
+        </div>
+        <div class="split-photo"><img src="assets/julia-headshot.jpg" alt="Julia Judico headshot" style="object-position:top;"></div>
       </div>
     </section>
 
@@ -729,9 +734,17 @@
             <div class="list-row"><span class="mark ok">✓</span>Delivered legal &amp; regulatory work without escalating to outside counsel</div>
           </div>
         </div>
-        <div class="split-photo browser">
-          <div class="chrome-bar"><div class="dot" style="background:#ff5f56;"></div><div class="dot" style="background:#ffbd2e;"></div><div class="dot" style="background:#27c93f;"></div><div class="url">lyosbio.vercel.app</div></div>
-          <img src="assets/lyos-website.jpg" alt="Lyos website Julia rebuilt for the sister company">
+        <div class="monitor-wrap" style="flex:1;">
+          <div class="monitor">
+            <div class="mscreen">
+              <div class="slideshow-imgs">
+                <img class="on" src="assets/lyos-website.jpg" alt="Lyos website Julia rebuilt for the sister company" data-cap="The Lyos sister-company website, rebuilt (lyosbio.vercel.app)">
+                <img src="assets/wins-audit-policy.jpg" alt="Slack thread showing Julia drafting the missing PY-012 Consultant Services Policy from scratch" data-cap="Built the missing PY-012 Consultant Services Policy from scratch">
+              </div>
+              <div class="slideshow-dots"></div>
+              <div class="slideshow-caption">The Lyos sister-company website, rebuilt (lyosbio.vercel.app)</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -782,6 +795,9 @@
                   <div class="qtext">"I'm finally looking at the wedding website, and I'M OBSESSED!!!!!! 😍❤️"</div>
                   <div class="qattr">Kendal Schoettlin · Slack</div>
                 </div>
+                <video data-cap="Kendal's feedback - in her own words" controls playsinline preload="metadata" style="object-fit:contain; background:#000;">
+                  <source src="assets/wedding-kendal-feedback.mp4" type="video/mp4">
+                </video>
               </div>
               <div class="slideshow-dots"></div>
               <div class="slideshow-caption">The invitation - Kendal &amp; Bradley, Discovery Lodge</div>
@@ -841,10 +857,7 @@
               <div class="slideshow-imgs">
                 <img class="on" src="assets/games-costume-contest.jpg" alt="Americord Halloween Costume Contest flyer" data-cap="The virtual Halloween Costume Contest - the whole team loved it">
                 <img src="assets/games-joke-off.jpg" alt="Boo-Haha Joke Off flyer" data-cap="The Boo-Haha Joke Off">
-                <div class="slideshow-quote-slide" data-cap="Annia, after winning Scariest Costume">
-                  <div class="qtext">"Thank you so much!! Yay!!! This was super fun! I am glad I participated 🥰🤝"</div>
-                  <div class="qattr">Annia Torres-Rossi · Slack</div>
-                </div>
+                <img src="assets/games-annia-winner.jpg" alt="Slack exchange with Annia after winning the Scariest Costume award" data-cap="Annia, after winning Scariest Costume - super fun, glad I participated">
               </div>
               <div class="slideshow-dots"></div>
               <div class="slideshow-caption">The virtual Halloween Costume Contest - the whole team loved it</div>
@@ -1068,7 +1081,10 @@
 
     function show(i){
       pos = i;
-      imgs.forEach(function(img, j){ img.classList.toggle('on', j === i); });
+      imgs.forEach(function(img, j){
+        img.classList.toggle('on', j === i);
+        if (img.tagName === 'VIDEO' && j !== i) img.pause();
+      });
       Array.prototype.slice.call(dotsWrap.children).forEach(function(d, j){ d.classList.toggle('on', j === i); });
       if (captionEl && imgs[i].dataset.cap) { captionEl.textContent = imgs[i].dataset.cap; }
     }
@@ -1086,7 +1102,12 @@
 
     if ('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){ if (!entry.isIntersecting && playing) stop(); });
+        entries.forEach(function(entry){
+          if (!entry.isIntersecting){
+            if (playing) stop();
+            imgs.forEach(function(img){ if (img.tagName === 'VIDEO') img.pause(); });
+          }
+        });
       }, {threshold:0.15});
       io.observe(root);
     }
