@@ -224,6 +224,7 @@
   .split-row{ display:flex; align-items:center; gap:5%; }
   .split-row .split-text{ flex:1.2; }
   .split-row .split-photo{ flex:1; height:clamp(160px,38vh,340px); border-radius:16px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,0.4); flex-shrink:0; }
+  .split-row .split-photo.square{ height:auto; aspect-ratio:1/1; max-width:400px; flex:0 0 min(38vw,400px); }
   .split-row .split-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
   .split-row .split-photo.browser{ position:relative; }
   .split-row .split-photo.portrait{ height:auto; aspect-ratio:3/4; max-width:340px; margin:0 auto; position:relative; flex:1 1 300px; background:radial-gradient(circle at 35% 18%, var(--moss), var(--deepforest) 75%); }
@@ -656,6 +657,7 @@
       <div class="eyebrow">My Partner</div>
       <h2 class="slide-title">Meet the client</h2>
       <div class="split-row">
+        <div class="split-photo square"><img src="assets/kendal-headshot.jpg" alt="Kendal Schoettlin, Director of HR, Finance & Operations" style="object-fit:contain; background:rgba(255,255,255,0.04);"></div>
         <div class="split-text">
           <div class="info-card" style="max-width:100%; align-self:auto;">
             <div><b>Client:</b> Kendal Schoettlin, Director of HR, Finance &amp; Operations</div>
@@ -664,7 +666,6 @@
             <div><b>Why an XP:</b> a true right hand across finance, HR, operations, vendor management, and company-wide initiatives - someone trusted to run things independently.</div>
           </div>
         </div>
-        <div class="split-photo"><img src="assets/kendal-headshot.jpg" alt="Kendal Schoettlin, Director of HR, Finance & Operations"></div>
       </div>
     </section>
 
