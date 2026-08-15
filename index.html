@@ -320,7 +320,7 @@
 
   /* ---------- PHOTO TIMELINE (polaroid-style milestones, alternating up/down) ---------- */
   .photo-timeline{
-    flex:1; display:flex; align-items:flex-start; gap:clamp(28px,4.6vw,62px);
+    flex:1; display:flex; align-items:flex-start; justify-content:space-between; gap:clamp(28px,4.6vw,62px);
     overflow-x:auto; overflow-y:hidden; padding:10px 4px 26px; position:relative;
     --pt-half:clamp(155px,17.4vw,205px);
   }
@@ -607,13 +607,21 @@
             <div class="pt-label">Passed training</div>
           </div>
         </div>
-        <div class="pt-node pt-bottom big" style="--d:.5s">
+        <div class="pt-node pt-bottom" style="--d:.5s">
           <div class="pt-text">
             <div class="pt-date">Jun 12, 2025</div>
             <div class="pt-label">Kickoff call with Kendal</div>
           </div>
           <div class="pt-dot"></div>
           <div class="polaroid"><div class="polaroid-photo"><img src="assets/tl-kickoff-call.jpg" alt="Julia and Kendal on their kickoff call"></div></div>
+        </div>
+        <div class="pt-node pt-top big" style="--d:.65s">
+          <div class="polaroid"><div class="polaroid-photo"><img src="assets/tl-anniversary.jpg" alt="Julia and Kendal laughing together on their 1-year anniversary call"></div></div>
+          <div class="pt-dot"></div>
+          <div class="pt-text">
+            <div class="pt-date">Jun 13, 2026</div>
+            <div class="pt-label">1st Anniversary</div>
+          </div>
         </div>
       </div>
     </section>
