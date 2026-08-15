@@ -234,6 +234,26 @@
   .split-row .split-photo.browser .chrome-bar .url{ flex:1; background:#fff; border-radius:5px; font-family:"Roboto Mono",monospace; font-size:10px; color:#555; padding:3px 8px; margin-left:6px; }
   .split-row .split-photo.browser img{ padding-top:26px; }
 
+  /* ---------- CERT COLLAGE + TRANSITION STORY (upskilling while waiting to reapply) ---------- */
+  .cert-collage{
+    display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,2vw,22px);
+    flex:1; align-content:center; padding:clamp(10px,2vw,20px) 0;
+  }
+  .cert-collage .cc-item{
+    border-radius:10px; overflow:hidden; background:#fff;
+    box-shadow:0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(220,186,121,0.3);
+  }
+  .cert-collage .cc-item img{ width:100%; height:100%; display:block; aspect-ratio:4/3; object-fit:cover; }
+  .cert-collage .cc-item:nth-child(1){ transform:rotate(-2deg); }
+  .cert-collage .cc-item:nth-child(2){ transform:rotate(2deg); }
+  .cert-collage .cc-item:nth-child(3){ transform:rotate(1.5deg); }
+  .cert-collage .cc-item:nth-child(4){ transform:rotate(-1.5deg); }
+  .cert-collage .cc-item:nth-child(5){ transform:rotate(-2deg); }
+  .cert-collage .cc-item:nth-child(6){ transform:rotate(2deg); }
+  .transition-story{ display:flex; flex-direction:column; gap:clamp(10px,1.6vw,18px); flex:1.1; }
+  .transition-story p{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:clamp(14px,1.5vw,19px); line-height:1.5; opacity:0.95; }
+  .transition-story p.emph{ color:var(--pink2); font-weight:700; }
+
   /* ---------- pull quotes (text-based testimonials) ---------- */
   .quote-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(10px,1.6vw,20px); flex:1; align-content:center; }
   .pull-quote{
@@ -515,6 +535,29 @@
         <div class="id-caption">
           <div class="h">Marian Julia Judico</div>
           <div class="c">Executive Partner, Athena</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4b: THE TRANSITION (cert collage + upskilling story, between rejection and reapplying) -->
+    <section class="slide era-fearless card-slide">
+      <div class="eyebrow">While I Waited to Try Again</div>
+      <h2 class="slide-title">The <span class="accent">transition</span></h2>
+      <div class="split-row">
+        <div class="cert-collage">
+          <div class="cc-item"><img src="certs/marketing.jpg" alt="Introduction to Social Media Marketing certificate"></div>
+          <div class="cc-item"><img src="certs/powerbi.jpg" alt="Prepare, Clean, Transform and Load Data using Power BI certificate"></div>
+          <div class="cc-item"><img src="certs/management.jpg" alt="Social Media Management certificate"></div>
+          <div class="cc-item"><img src="certs/hootsuite.jpg" alt="How to Schedule Posts to Multiple Platforms using Hootsuite certificate"></div>
+          <div class="cc-item"><img src="certs/hubspot.jpg" alt="Introduction to CRM with HubSpot certificate"></div>
+          <div class="cc-item"><img src="certs/advertising.jpg" alt="Fundamentals of Social Media Advertising certificate"></div>
+        </div>
+        <div class="transition-story">
+          <p>Failed my first attempt at Athena.</p>
+          <p>Rather than wait around for the next opening, I used that time to invest in myself.</p>
+          <p>Took Coursera courses in social media marketing and management, advertising, CRM with HubSpot, scheduling with Hootsuite, and data analysis with Power BI.</p>
+          <p>Built the skills I didn't have yet, on my own time.</p>
+          <p class="emph">Applied again. Tried a third time. Eventually, it worked.</p>
         </div>
       </div>
     </section>
@@ -919,27 +962,6 @@
       </div>
     </section>
 
-    <!-- 13c: CERTIFICATIONS (Coursera batch, pre-Athena - monitor slideshow) -->
-    <section class="slide era-evermore card-slide">
-      <div class="eyebrow">Preparing for This Role, Before I Knew It</div>
-      <h2 class="slide-title">Skills I built <span class="accent">before Athena needed them</span></h2>
-      <div class="monitor-wrap">
-        <div class="monitor">
-          <div class="mscreen">
-            <div class="slideshow-imgs">
-              <img class="on" src="certs/marketing.jpg" alt="Introduction to Social Media Marketing certificate" data-cap="Meta, 2024 - Intro to Social Media Marketing">
-              <img src="certs/powerbi.jpg" alt="Prepare, Clean, Transform and Load Data using Power BI certificate" data-cap="Coursera, 2024 - Prepare, Clean, Transform & Load Data (Power BI)">
-              <img src="certs/management.jpg" alt="Social Media Management certificate" data-cap="Meta, 2024 - Social Media Management">
-              <img src="certs/hootsuite.jpg" alt="How to Schedule Posts to Multiple Platforms using Hootsuite certificate" data-cap="Coursera, 2024 - Scheduling Posts with Hootsuite">
-              <img src="certs/hubspot.jpg" alt="Introduction to CRM with HubSpot certificate" data-cap="Coursera, 2024 - Intro to CRM with HubSpot">
-              <img src="certs/advertising.jpg" alt="Fundamentals of Social Media Advertising certificate" data-cap="Meta, 2024 - Fundamentals of Social Media Advertising">
-            </div>
-            <div class="slideshow-dots"></div>
-            <div class="slideshow-caption">Meta, 2024 - Intro to Social Media Marketing</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- 13d: SUSTAINABILITY (phone slideshow) -->
     <section class="slide era-speaknow hero-slide" id="act-8">
