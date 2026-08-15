@@ -419,8 +419,44 @@
   .tl-fade{ opacity:0; transition:opacity .45s ease; transition-delay:var(--d,0s); }
   .slide.in-view .tl-fade{ opacity:1; }
 
+  /* ---------- RECEIPT PRINTER (dramatic line-breaker before Cost Savings) ---------- */
+  .receipt-breaker{ min-height:70vh; }
+  .printer-rig{ display:flex; flex-direction:column; align-items:center; }
+  .printer-label{ font-family:"Roboto Mono",monospace; font-size:clamp(10px,1.1vw,12px); letter-spacing:3px; text-transform:uppercase; color:var(--pink2); opacity:0.85; margin-bottom:clamp(18px,2.6vw,30px); }
+  .printer{ position:relative; width:min(88vw,380px); z-index:2; }
+  .printer-body{
+    width:100%; height:clamp(26px,4vw,34px); border-radius:10px 10px 3px 3px;
+    background:linear-gradient(to bottom, #33322f, #171613);
+    box-shadow:0 16px 34px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08);
+    position:relative; z-index:3;
+  }
+  .printer-slot{ position:absolute; left:7%; right:7%; bottom:-3px; height:6px; border-radius:3px; background:#000; box-shadow:inset 0 2px 5px rgba(0,0,0,0.9); }
+  .receipt-mask{
+    width:82%; margin:0 auto; overflow:hidden; max-height:0; position:relative; z-index:1;
+    transition:max-height 2.4s cubic-bezier(0.65,0,0.35,1);
+  }
+  .slide.in-view .receipt-mask{ max-height:640px; }
+  .receipt-paper{
+    background:#f4f1e8; color:#161511; font-family:"Roboto Mono",monospace;
+    font-size:clamp(10px,1.1vw,12.5px); line-height:1.85;
+    padding:clamp(16px,2.2vw,22px) clamp(14px,2vw,20px) clamp(22px,3vw,28px);
+    position:relative; box-shadow:0 24px 60px rgba(0,0,0,0.5);
+  }
+  .receipt-paper::after{
+    content:''; position:absolute; left:0; right:0; bottom:-1px; height:11px; background:#f4f1e8;
+    clip-path:polygon(0 0,4% 100%,8% 0,12% 100%,16% 0,20% 100%,24% 0,28% 100%,32% 0,36% 100%,40% 0,44% 100%,48% 0,52% 100%,56% 0,60% 100%,64% 0,68% 100%,72% 0,76% 100%,80% 0,84% 100%,88% 0,92% 100%,96% 0,100% 100%,100% 0);
+  }
+  .r-line{ white-space:pre; }
+  .r-center{ text-align:center; }
+  .r-title{ font-weight:800; letter-spacing:1px; }
+  .r-sub{ opacity:0.65; font-size:0.85em; margin-bottom:4px; }
+  .r-dash{ border-top:1px dashed rgba(22,21,17,0.4); margin:8px 0; }
+  .r-total{ font-weight:800; margin-top:4px; }
+  .r-thanks{ margin-top:10px; opacity:0.7; font-style:italic; }
+
   @media (prefers-reduced-motion: reduce){
     .reveal, .bar-rect, .bar-fade, .tl-line-draw, .tl-pop, .tl-fade, .pt-node{ transition:none !important; opacity:1 !important; transform:none !important; }
+    .receipt-mask{ transition:none !important; max-height:640px !important; }
   }
 </style>
 </head>
@@ -789,6 +825,31 @@
         <div class="info-tile">Handles legal work for the company - contract reviews and amendments, litigation packages for counsel, an urgent tax documentation discrepancy, and consolidated dispute documentation, saving leadership time and back-and-forth</div>
         <div class="info-tile">Successful major events planning - for the company and for my client's personal life</div>
         <div class="info-tile">Came in clutch on a vendor pricing negotiation stalled for 2+ years - <b>$18,616</b>/year in savings</div>
+      </div>
+    </section>
+
+    <!-- 10b: RECEIPT PRINTER (dramatic line-breaker before Cost Savings) -->
+    <section class="slide era-red card-slide receipt-breaker" style="justify-content:center; align-items:center;">
+      <div class="printer-rig">
+        <div class="printer-label">Printing the receipts</div>
+        <div class="printer">
+          <div class="printer-body"><div class="printer-slot"></div></div>
+        </div>
+        <div class="receipt-mask">
+          <div class="receipt-paper">
+            <div class="r-line r-title r-center">AMERICORD REGISTRY LLC</div>
+            <div class="r-line r-sub r-center">FORCE MULTIPLIER · SAVINGS RECEIPT</div>
+            <div class="r-dash"></div>
+            <div class="r-line">LINDE / PRAXAIR .......... $18,616</div>
+            <div class="r-line">VERSITI .................. $28,000</div>
+            <div class="r-line">EUROFINS ................ $102,000</div>
+            <div class="r-line">BOOKKEEPING ............. $180,000</div>
+            <div class="r-line">RECRUITING FIRM ......... $135,000</div>
+            <div class="r-dash"></div>
+            <div class="r-line r-total">TOTAL ......... $846,050.93</div>
+            <div class="r-line r-thanks r-center">*** thank you for the partnership ***</div>
+          </div>
+        </div>
       </div>
     </section>
 
