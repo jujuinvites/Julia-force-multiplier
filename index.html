@@ -105,7 +105,7 @@
   .slide-title .accent{ color:var(--pink2); }
 
   /* ---------- HERO / NARRATIVE (phone mockup) SLIDES ---------- */
-  .hero-slide{ flex-direction:row; align-items:center; justify-content:flex-start; gap:7%; }
+  .hero-slide{ flex-direction:row; align-items:center; justify-content:center; gap:7%; }
   .hero-copy{ max-width:480px; flex-shrink:0; }
   .hero-copy h1{ font-size:clamp(34px,5.4vw,66px); line-height:1.05; text-wrap:balance; }
   .hero-copy .hero-sub{ font-size:clamp(15px,1.8vw,21px); opacity:0.88; margin-top:clamp(12px,1.7vw,20px); line-height:1.5; max-width:34ch; }
@@ -530,26 +530,17 @@
     </section>
 
     <!-- 4: ERA 2 -->
-    <section class="slide era-fearless hero-slide" id="act-3">
-      <div class="hero-copy">
-        <div class="act-mark">Act III</div>
-        <h1>Applied. Rejected.<br>Tried Again.</h1>
-        <div class="story-icons">
+    <section class="slide era-fearless card-slide" style="justify-content:center;" id="act-3">
+      <div class="hero-copy" style="align-self:center; max-width:600px; text-align:center;">
+        <div class="act-mark" style="justify-content:center;">Act III</div>
+        <h1>Applied.<br>Rejected.</h1>
+        <div class="story-icons" style="justify-content:center; margin-left:auto; margin-right:auto;">
           <span class="si miss">✕</span>
           <span class="si miss">✕</span>
-          <span class="si hit">✓</span>
-          <span class="si-label">2 misses · 1 yes</span>
+          <span class="si-label">2 rejections. Not giving up.</span>
         </div>
-        <p class="hero-sub">I applied a third time, because Athena was the only agency I actually wanted to be part of - period. On 6/13/25, that persistence finally paid off and I started as Executive Partner.</p>
+        <p class="hero-sub" style="margin-left:auto; margin-right:auto;">I applied to Athena. Rejected. Applied again. Rejected again. It stung, but I already knew this was the only agency I wanted to be part of.</p>
         <div class="hero-tag">Era 2 · Getting In</div>
-      </div>
-      <div class="id-reveal">
-        <img src="assets/era2-athena-id.jpg" alt="Julia's real Athena Executive Partner ID card">
-        <div class="id-scrim"></div>
-        <div class="id-caption">
-          <div class="h">Marian Julia Judico</div>
-          <div class="c">Executive Partner, Athena</div>
-        </div>
       </div>
     </section>
 
@@ -572,6 +563,29 @@
           <p>Took Coursera courses in social media marketing and management, advertising, CRM with HubSpot, scheduling with Hootsuite, and data analysis with Power BI.</p>
           <p>Built the skills I didn't have yet, on my own time.</p>
           <p class="emph">Applied again. Tried a third time. Eventually, it worked.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4c: PASSED (ID reveal, the payoff) -->
+    <section class="slide era-fearless hero-slide">
+      <div class="hero-copy">
+        <h1>Passed.<br>Officially In.</h1>
+        <div class="story-icons">
+          <span class="si miss">✕</span>
+          <span class="si miss">✕</span>
+          <span class="si hit">✓</span>
+          <span class="si-label">2 misses, 1 yes</span>
+        </div>
+        <p class="hero-sub">On 6/13/25, that persistence finally paid off and I started as Executive Partner, Athena.</p>
+        <div class="hero-tag">Era 2 · Getting In</div>
+      </div>
+      <div class="id-reveal">
+        <img src="assets/era2-athena-id.jpg" alt="Julia's real Athena Executive Partner ID card">
+        <div class="id-scrim"></div>
+        <div class="id-caption">
+          <div class="h">Marian Julia Judico</div>
+          <div class="c">Executive Partner, Athena</div>
         </div>
       </div>
     </section>
