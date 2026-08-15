@@ -312,6 +312,11 @@
   .chart-slide .chart-side{ flex:1.3; display:flex; flex-direction:column; }
   .chart-slide .stat-side{ flex:1; display:flex; flex-direction:column; gap:clamp(10px,1.6vw,18px); align-self:center; }
   .hero-stat{ background:rgba(255,255,255,0.07); border:1px solid rgba(220,186,121,0.35); border-radius:16px; padding:clamp(14px,2vw,22px); text-align:center; }
+  .team-growth-photos{ flex:1; display:flex; flex-direction:column; align-items:center; gap:clamp(10px,1.6vw,16px); }
+  .team-growth-photos figure{ width:100%; margin:0; border-radius:14px; overflow:hidden; box-shadow:0 16px 40px rgba(0,0,0,0.4); }
+  .team-growth-photos img{ width:100%; height:auto; display:block; }
+  .team-growth-photos figcaption{ text-align:center; font-family:"Roboto Mono",monospace; font-size:clamp(9px,1vw,11px); text-transform:uppercase; letter-spacing:0.5px; color:var(--pink2); font-weight:700; padding:8px 0 2px; }
+  .team-growth-arrow{ font-size:clamp(18px,2.2vw,26px); color:var(--pink2); opacity:0.8; }
   .hero-stat .v{ font-family:"Roboto Mono",monospace; font-size:clamp(22px,3.2vw,36px); font-weight:700; color:var(--pink2); }
   .hero-stat .l{ font-size:clamp(11px,1.2vw,14px); opacity:0.85; margin-top:6px; }
   .bar-chart{ width:100%; height:clamp(180px,32vh,320px); }
@@ -648,7 +653,7 @@
     <!-- 6: MEET THE CLIENT -->
     <section class="slide era-folklore card-slide" id="act-4">
       <div class="act-mark">Act IV</div>
-      <div class="eyebrow">Who I Create Content For</div>
+      <div class="eyebrow">My Partner</div>
       <h2 class="slide-title">Meet the client</h2>
       <div class="split-row">
         <div class="split-text">
@@ -657,9 +662,41 @@
             <div><b>Company:</b> Americord Registry LLC - cord blood &amp; cord tissue banking</div>
             <div><b>Founder/CEO:</b> Martin Smithmyer</div>
             <div><b>Why an XP:</b> a true right hand across finance, HR, operations, vendor management, and company-wide initiatives - someone trusted to run things independently.</div>
+            <div><b>The save:</b> her first Athena partnership didn't work out, and she nearly walked away. I rebuilt that trust through constant communication, and later helped handpick the next EA to join the account so the fit would be right.</div>
           </div>
         </div>
         <div class="split-photo"><img src="assets/kendal-headshot.jpg" alt="Kendal Schoettlin, Director of HR, Finance & Operations"></div>
+      </div>
+    </section>
+
+    <!-- 6b: TEAM GROWTH (before more EAs were hired) -->
+    <section class="slide era-folklore card-slide">
+      <div class="eyebrow">Before They Decided to Hire More</div>
+      <h2 class="slide-title">From <span class="accent">3 EAs to 6</span></h2>
+      <div class="split-row">
+        <div class="split-text">
+          <div class="list-rows" style="max-width:100%;">
+            <div class="list-row"><span class="mark ok">✓</span>Vendor research for the lab</div>
+            <div class="list-row"><span class="mark ok">✓</span>Sales leads assignment</div>
+            <div class="list-row"><span class="mark ok">✓</span>Chased vendors for Sophia's (Lab Director) missing receipts</div>
+            <div class="list-row"><span class="mark ok">✓</span>Built tracking sheets for the Donor Program</div>
+            <div class="list-row"><span class="mark ok">✓</span>Assisted with the Sales training schedule and materials</div>
+            <div class="list-row"><span class="mark ok">✓</span>Supported Marketing on HubSpot and Sakari leads</div>
+            <div class="list-row"><span class="mark ok">✓</span>Owned the tech manager's table-update tasks</div>
+            <div class="list-row emph">They loved the value we brought, so they decided to add more.</div>
+          </div>
+        </div>
+        <div class="team-growth-photos">
+          <figure>
+            <img src="assets/team-3-eas.jpg" alt="Julia with the original team of 3 Americord EAs">
+            <figcaption>3 EAs, when I joined</figcaption>
+          </figure>
+          <div class="team-growth-arrow">↓</div>
+          <figure>
+            <img src="assets/team-6-eas.jpg" alt="The current team of 6 Americord EAs">
+            <figcaption>6 EAs, today</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
