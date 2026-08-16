@@ -220,6 +220,29 @@
   .slideshow-dots .sdot{ width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.4); }
   .slideshow-dots .sdot.on{ background:#fff; width:12px; border-radius:3px; transition:all .3s; }
 
+  /* ---------- laptop mockup (wider base + notch, for screen-recorded demos) ---------- */
+  .laptop{ width:min(82%, 760px); margin:0 auto; display:flex; flex-direction:column; align-items:center; }
+  .laptop-screen{
+    width:100%; background:#1b1b1d; border-radius:14px 14px 4px 4px;
+    padding:clamp(10px,1.6vw,18px) clamp(10px,1.6vw,18px) clamp(8px,1.2vw,12px);
+    box-shadow:0 30px 70px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.06);
+    position:relative; z-index:2;
+  }
+  .laptop-screen .mscreen{
+    position:relative; width:100%; aspect-ratio:16/10; border-radius:5px; overflow:hidden; background:#0d1a12;
+    container-type:inline-size; container-name:phone;
+  }
+  .laptop-base{
+    width:118%; height:clamp(12px,1.6vw,18px); margin-top:-2px; position:relative; z-index:1;
+    background:linear-gradient(to bottom, #3a3a3c, #232325);
+    border-radius:0 0 10px 10px;
+    box-shadow:0 16px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .laptop-base::before{
+    content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:16%; height:clamp(4px,0.7vw,6px); background:#0e0e0f; border-radius:0 0 8px 8px;
+  }
+
   /* ---------- split-row (text list/card + single real photo) ---------- */
   .split-row{ display:flex; align-items:center; gap:5%; }
   .split-row .split-text{ flex:1.2; }
@@ -900,7 +923,6 @@
       </div>
     </section>
 
-    <!-- 12: STRATEGIC EFFORTS -->
     <!-- 13: ATHENA INVOLVEMENT -->
     <section class="slide era-evermore card-slide">
       <div class="eyebrow">My Own Athena Content Series</div>
@@ -916,6 +938,22 @@
           </div>
         </div>
         <div class="split-photo"><img src="assets/athena-team.jpg" alt="Julia with the Athena team at the Athena office"></div>
+      </div>
+    </section>
+
+    <!-- 13b: LYOS WEBSITE DEMO (laptop mockup, screen-recorded video) -->
+    <section class="slide era-evermore card-slide">
+      <div class="eyebrow">Rebuilt for the Sister Company</div>
+      <h2 class="slide-title">The Lyos <span class="accent">website</span></h2>
+      <div class="laptop">
+        <div class="laptop-screen">
+          <div class="mscreen">
+            <video controls playsinline preload="metadata" style="width:100%; height:100%; object-fit:contain; background:#0d1a12; display:block;">
+              <source src="assets/lyos-website-demo.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="laptop-base"></div>
       </div>
     </section>
 
