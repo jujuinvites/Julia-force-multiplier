@@ -21,7 +21,7 @@
   html,body{ background:#04100a; color:var(--ink); font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; overflow-x:hidden; }
   h1,h2,h3{ font-family:"Bodoni Moda", "Playfair Display", Georgia, serif; font-weight:700; }
   .signature{ font-family:"Petit Formal Script", cursive; font-weight:400; line-height:1.05; }
-  .version-tag{ font-family:"Playfair Display", Georgia, serif; font-style:italic; font-size:clamp(15px,2vw,21px); color:var(--ink); opacity:0.8; margin-top:2px; }
+  .version-tag{ font-family:"Playfair Display", Georgia, serif; font-weight:600; font-size:clamp(15px,2vw,21px); color:var(--ink); opacity:0.8; margin-top:2px; }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
   .page{ max-width:1280px; margin:0 auto; position:relative; }
@@ -188,14 +188,14 @@
   .slideshow-imgs img{ width:100%; height:100%; object-fit:cover; display:block; }
   .slideshow-imgs video{ width:100%; height:100%; object-fit:contain; display:block; background:#000; }
   .slideshow-quote-slide{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8% 10%; background:radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%); }
-  .slideshow-quote-slide .qtext{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:clamp(13px,2.1cqi,22px); line-height:1.45; }
+  .slideshow-quote-slide .qtext{ font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(13px,2.1cqi,22px); line-height:1.45; }
   .slideshow-quote-slide .qattr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,1.1cqi,12px); color:var(--pink2); font-weight:700; margin-top:12px; letter-spacing:0.5px; }
   .slideshow-win-slide{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6% 11%; gap:clamp(6px,1.5cqi,14px); background:radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%); }
   .slideshow-win-slide .wv{ font-family:"Roboto Mono",monospace; font-weight:800; font-size:clamp(22px,5.5cqi,42px); color:var(--pink2); }
   .slideshow-win-slide .wv small{ font-size:0.45em; opacity:0.8; }
   .slideshow-win-slide .wtext{ font-size:clamp(10px,2.1cqi,15px); line-height:1.5; max-width:38ch; }
   .slideshow-win-slide .wtag{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(8px,1cqi,11px); color:var(--accent); opacity:0.85; letter-spacing:0.5px; }
-  .slideshow-win-slide .wpraise{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:clamp(9px,1.5cqi,12px); color:var(--pink2); opacity:0.9; margin-top:2px; }
+  .slideshow-win-slide .wpraise{ font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(9px,1.5cqi,12px); color:var(--pink2); opacity:0.9; margin-top:2px; }
   .ph-note{ position:absolute; top:8px; right:10px; font-family:"Roboto Mono",monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.5px; color:rgba(255,255,255,0.35); z-index:6; }
 
   /* ---------- monitor / laptop screen mockup (wide slideshow for screenshots & certs) ---------- */
@@ -292,7 +292,7 @@
     font-size:clamp(9px,1vw,11px); font-weight:700; color:#fff; line-height:1.3;
   }
   .transition-story{ display:flex; flex-direction:column; gap:clamp(10px,1.6vw,18px); flex:1.1; }
-  .transition-story p{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:clamp(14px,1.5vw,19px); line-height:1.5; opacity:0.95; }
+  .transition-story p{ font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(14px,1.5vw,19px); line-height:1.5; opacity:0.95; }
   .transition-story p.emph{ color:var(--pink2); font-weight:700; }
 
   /* ---------- pull quotes (text-based testimonials) ---------- */
@@ -301,7 +301,7 @@
     background:rgba(255,255,255,0.06); border:1px solid rgba(220,186,121,0.3); border-radius:16px;
     padding:clamp(14px,2vw,24px); display:flex; flex-direction:column; gap:10px; justify-content:center;
   }
-  .pull-quote .qtext{ font-family:"Playfair Display",Georgia,serif; font-style:italic; font-size:clamp(13px,1.5vw,18px); line-height:1.4; }
+  .pull-quote .qtext{ font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(13px,1.5vw,18px); line-height:1.4; }
   .pull-quote .qattr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,0.95vw,11px); letter-spacing:0.5px; color:var(--pink2); font-weight:700; }
 
   /* ---------- DATA CARD SLIDES ---------- */
@@ -413,7 +413,7 @@
   .pt-date{ font-family:"Roboto Mono",monospace; font-size:clamp(9px,0.85vw,10.5px); letter-spacing:1px; text-transform:uppercase; color:var(--pink2); font-weight:700; margin-bottom:4px; white-space:nowrap; }
   .pt-label{ font-size:clamp(10.5px,1vw,12.5px); font-weight:700; line-height:1.3; }
   .tl-footer{ margin-top:clamp(18px,3vw,32px); display:flex; flex-direction:column; align-items:center; gap:clamp(12px,2vw,20px); }
-  .tl-subtitle{ font-family:"Bodoni Moda","Playfair Display",Georgia,serif; font-style:italic; font-weight:600; font-size:clamp(15px,2vw,22px); text-align:center; opacity:0.95; }
+  .tl-subtitle{ font-family:"Bodoni Moda","Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(15px,2vw,22px); text-align:center; opacity:0.95; }
   .tl-subtitle .arrow{ color:var(--pink2); font-style:normal; margin:0 8px; opacity:0.8; }
   .tl-footer .pull-quote{ max-width:520px; text-align:center; align-items:center; }
 
@@ -492,7 +492,7 @@
   .r-sub{ opacity:0.65; font-size:0.85em; margin-bottom:4px; }
   .r-dash{ border-top:1px dashed rgba(22,21,17,0.4); margin:8px 0; }
   .r-total{ font-weight:800; margin-top:4px; }
-  .r-thanks{ margin-top:10px; opacity:0.7; font-style:italic; }
+  .r-thanks{ margin-top:10px; opacity:0.7; font-weight:600; }
 
   @media (prefers-reduced-motion: reduce){
     .reveal, .bar-rect, .bar-fade, .tl-line-draw, .tl-pop, .tl-fade, .pt-node{ transition:none !important; opacity:1 !important; transform:none !important; }
@@ -820,7 +820,7 @@
       <div class="eyebrow" style="align-self:center;">Not Gonna Pretend I Did It Alone, Either</div>
       <h2 class="slide-title" style="align-self:center;">How I made it through</h2>
       <div style="max-width:680px; align-self:center; margin:0 auto clamp(22px,3.2vw,36px);">
-        <div style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:600; font-size:clamp(18px,2.5vw,29px); line-height:1.45; color:var(--pink2);">
+        <div style="font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:clamp(18px,2.5vw,29px); line-height:1.45; color:var(--pink2);">
           "I don't think AI replaces us - I think it's a tool to help us do more, faster, and better."
         </div>
       </div>
