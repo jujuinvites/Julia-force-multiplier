@@ -217,6 +217,10 @@
   .slideshow-scrim{ position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.75) 100%); pointer-events:none; }
   .slideshow-caption{ position:absolute; left:0; right:0; bottom:0; padding:0 9% 10%; font-size:clamp(6.5px,6.4cqi,9.5px); font-weight:700; color:#fff; line-height:1.35; z-index:3; pointer-events:none; }
   .slideshow-dots{ position:absolute; top:clamp(16px,13%,30px); left:0; right:0; display:flex; justify-content:center; gap:4px; z-index:6; }
+  /* Client Feedback monitor: bigger, more readable caption text over the Slack screenshots */
+  #act-5 .monitor .slideshow-caption{ font-size:clamp(13px,2.4cqi,19px); font-family:"Helvetica Neue",Arial,sans-serif; font-weight:800; line-height:1.4; text-shadow:0 1px 6px rgba(0,0,0,0.85); padding:0 4% 5%; }
+  #act-5 .slideshow-quote-slide .qtext{ font-size:clamp(16px,2.8cqi,26px); }
+  #act-5 .slideshow-quote-slide .qattr{ font-size:clamp(11px,1.3cqi,14px); }
   .slideshow-dots .sdot{ width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.4); }
   .slideshow-dots .sdot.on{ background:#fff; width:12px; border-radius:3px; transition:all .3s; }
 
@@ -1106,6 +1110,7 @@
     <section class="slide era-evermore card-slide">
       <div class="eyebrow">Certifications &amp; Continued Learning</div>
       <h2 class="slide-title">Investing in <span class="accent">my own growth</span></h2>
+      <p style="font-size:clamp(13px,1.6vw,17px); opacity:0.9; margin:-10px 0 clamp(14px,2vw,22px); max-width:640px;">Currently working through Coursera's 11-course <b style="color:var(--pink2);">Accounting Assistant</b> Professional Certificate - Course 1 of 11, 40% complete.</p>
       <div class="monitor-wrap">
         <div class="monitor">
           <div class="mscreen">
@@ -1141,7 +1146,7 @@
             <img src="assets/sustain-bottle-2.jpg" alt="Plant growing in a repurposed plastic bottle" data-cap="Growing more from less">
             <img src="assets/sustain-succulents.jpg" alt="Holding succulents in reused nursery bags" data-cap="Hands-on, always">
             <img src="assets/sustain-treeplanting.jpg" alt="Planting a tree outdoors with her son" data-cap="Tree planting initiative with my son. Starting them young.">
-            <img src="assets/sustain-watering.jpg" alt="Watering young plants outdoors" data-cap="Tending the garden together">
+            <img src="assets/sustain-watering.jpg" alt="Watering young plants outdoors" data-cap="Watering what we planted - same tree planting initiative">
             <img src="assets/personal-givingclothes.jpg" alt="Her son sorting clothes to donate" data-cap="Giving back to the community - sorting old clothes to donate">
           </div>
           <div class="slideshow-scrim"></div>
