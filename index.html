@@ -224,6 +224,34 @@
   .slideshow-dots .sdot{ width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.4); }
   .slideshow-dots .sdot.on{ background:#fff; width:12px; border-radius:3px; transition:all .3s; }
 
+  /* ---------- formal letter reader (paginated letter + synced highlight panel) ---------- */
+  .letter-reader{ align-items:stretch; gap:6%; }
+  .letter-viewport{ flex:1.15; display:flex; flex-direction:column; align-items:center; gap:clamp(14px,2vw,20px); min-width:0; }
+  .letter-pages{ position:relative; width:100%; max-width:440px; background:#fdfcf9; border-radius:10px; box-shadow:0 30px 70px rgba(0,0,0,0.5); overflow:hidden; }
+  .letter-page{ display:none; padding:clamp(20px,3vw,30px) clamp(20px,3vw,28px) clamp(16px,2.2vw,20px); color:#2b2f36; }
+  .letter-page.on{ display:block; }
+  .letter-head{ display:flex; align-items:baseline; gap:7px; margin-bottom:clamp(14px,2vw,20px); }
+  .letter-head .ll-dot1{ width:9px; height:9px; border-radius:50%; background:#7bafc4; flex-shrink:0; }
+  .letter-head .ll-dot2{ width:6px; height:6px; border-radius:50%; background:#e0604a; flex-shrink:0; margin-left:-4px; }
+  .letter-head .ll-word{ font-family:"Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:clamp(14px,1.7vw,18px); color:#4a5a68; letter-spacing:0.2px; }
+  .letter-body p{ font-family:"Helvetica Neue",Arial,sans-serif; font-size:clamp(8.5px,1.1vw,11px); line-height:1.55; margin-bottom:clamp(7px,1vw,10px); color:#333a42; }
+  .letter-body p b{ color:#1c2733; }
+  .letter-foot{ margin-top:clamp(12px,1.8vw,18px); padding-top:clamp(8px,1.2vw,12px); border-top:1px solid rgba(0,0,0,0.08); font-family:"Helvetica Neue",Arial,sans-serif; font-size:clamp(7px,0.85vw,9px); color:#8a8f96; line-height:1.5; }
+  .letter-foot .lf-web{ color:#e0604a; font-weight:700; }
+  .letter-dots{ display:flex; align-items:center; gap:10px; }
+  .letter-dots button{ width:30px; height:30px; border-radius:50%; border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.08); color:#fff; font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .letter-dots button:hover{ background:rgba(255,255,255,0.18); }
+  .letter-dots .sdots{ display:flex; gap:5px; }
+  .letter-dots .sdot{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.3); }
+  .letter-dots .sdot.on{ background:var(--pink2); width:16px; border-radius:3px; transition:all .3s; }
+  .letter-highlight-wrap{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:clamp(10px,1.5vw,16px); min-width:0; }
+  .letter-highlight-label{ font-family:"Roboto Mono",monospace; text-transform:uppercase; letter-spacing:1.5px; font-size:clamp(10px,1.1vw,12px); color:var(--pink2); font-weight:700; }
+  .letter-highlight-page{ display:none; flex-direction:column; gap:clamp(10px,1.5vw,16px); }
+  .letter-highlight-page.on{ display:flex; }
+  .letter-highlight-page p{ font-size:clamp(13px,1.6vw,19px); font-weight:600; line-height:1.5; padding-left:clamp(12px,1.5vw,18px); border-left:3px solid var(--pink2); }
+  .letter-attr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,0.95vw,11px); letter-spacing:0.5px; color:var(--accent); opacity:0.85; margin-top:6px; }
+  @media (max-width:760px){ .letter-reader{ flex-direction:column; } }
+
   /* ---------- laptop mockup (wider base + notch, for screen-recorded demos) ---------- */
   .laptop{ width:min(82%, 760px); margin:0 auto; display:flex; flex-direction:column; align-items:center; }
   .laptop-screen{
@@ -854,6 +882,10 @@
                 <div class="qtext">"Julia embodies Athena's vision of a proactive, high-impact XP. Her client said, 'I'm pretty sure my wedding would not be planned if it weren't for Julia.'"</div>
                 <div class="qattr">Athena XP Recommendation Writeup</div>
               </div>
+              <div class="slideshow-quote-slide" data-cap="Kendal, emailing Athena leadership ahead of Julia's review">
+                <div class="qtext">"I would honestly be drowning without her! She has become an incredibly valuable resource and support, and I wanted to make sure her contributions were recognized and shared with you for consideration during her upcoming review."</div>
+                <div class="qattr">Kendal - email to Athena leadership</div>
+              </div>
               <img src="assets/feedback-polaris-nominee.jpg" alt="Athena Runway Report slide showing Julia Judico as a May Polaris Award nominee for Above and Beyond" data-cap="Nominated - Polaris Award, Above &amp; Beyond, May 2026">
               <img src="assets/feedback-anniversary-greeting.jpg" alt="Slack exchange between Julia and Kendal celebrating their 1-year work anniversary" data-cap="1-year anniversary - 'I feel incredibly lucky to work with you'">
               <img src="assets/feedback-anniversary-call.jpg" alt="Zoom call between Julia and Kendal marking their 1-year work anniversary" data-cap="The 1-year anniversary call itself">
@@ -862,6 +894,87 @@
             <div class="slideshow-dots"></div>
             <div class="slideshow-caption">Kendal - deep appreciation for covering her wedding &amp; honeymoon</div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9b: FORMAL FEEDBACK (paginated letter + synced highlight panel) -->
+    <section class="slide era-red card-slide" style="justify-content:center;">
+      <div class="eyebrow">Straight From an Athena Client</div>
+      <h2 class="slide-title">The formal <span class="accent">recommendation</span></h2>
+      <div class="split-row letter-reader">
+        <div class="letter-viewport">
+          <div class="letter-pages">
+            <div class="letter-page on">
+              <div class="letter-head"><div class="ll-dot1"></div><div class="ll-dot2"></div><div class="ll-word">americord</div></div>
+              <div class="letter-body">
+                <p>To the Athena Leadership Team,</p>
+                <p>I am writing to share my experience working with Julia and, more importantly, to express just how valuable she has become to me as well as Americord Registry.</p>
+                <p>When I first began working with Julia, I expected that having an Executive Assistant would help alleviate some of the administrative workload that comes with my role. What I did not anticipate was how quickly she would become an integral part of how I operate every day. Her role has expanded far beyond traditional executive assistance. <b>She has become a trusted partner across finance, HR, recruiting, operations, vendor management, and my personal responsibilities—and the amount I am able to accomplish because of her support has increased tremendously.</b></p>
+                <p><b>Julia has genuinely given me leverage, not simply assistance.</b></p>
+                <p>One of the clearest examples is the level of financial responsibility I have been able to delegate to her. Americord processes more than <b>$200,000 in corporate credit card transactions in a typical month</b>, and Julia has taken ownership of tracking and organizing that activity for me. She also assists with bill payments, accounts payable, bookkeeping support, receipts and documentation, expense management, and financial follow-up. These are detail-intensive responsibilities that previously consumed a significant amount of my time. I am now able to hand substantial portions of this work to Julia with confidence, which allows me to focus on higher-level financial analysis, cash management, strategic planning, and other responsibilities that require my direct attention.</p>
+                <p>She has also created meaningful value for Americord through <b>vendor management and negotiations</b>. Julia routinely assists me with researching vendors, obtaining and comparing pricing, communicating with representatives, negotiating costs and terms, identifying alternatives, and following negotiations through to completion. She understands that the objective is not simply to complete a task, but to achieve the best outcome for the company. Her persistence and attention to detail have contributed to real cost savings and better purchasing decisions for Americord.</p>
+                <p>Another area where she has become invaluable is <b>recruiting and HR support</b>. Julia helps organize virtually every stage of our recruitment process—from job postings and candidate sourcing through screening, interview coordination,</p>
+              </div>
+              <div class="letter-foot">
+                <div>68 Veronica Ave, Unit #10, Somerset NJ 08873</div>
+                <div class="lf-web">americordblood.com</div>
+                <div>(866) 503-6005</div>
+              </div>
+            </div>
+            <div class="letter-page">
+              <div class="letter-head"><div class="ll-dot1"></div><div class="ll-dot2"></div><div class="ll-word">americord</div></div>
+              <div class="letter-body">
+                <p>communication, background checks, scheduling, and onboarding. She keeps processes moving, follows up when something is outstanding, and makes sure details do not fall through the cracks.</p>
+                <p>Her HR support extends well beyond recruiting. She helps me manage documentation, employee communications, benefits-related items, onboarding and offboarding logistics, scheduling, and the countless follow-ups that accompany managing employees. Because I oversee Finance, HR, and Operations simultaneously, having someone who can move comfortably between these functions and understand the context behind what I need has been enormously valuable.</p>
+                <p>What makes Julia particularly exceptional, however, is that she does not operate as someone who simply waits for a list of tasks. <b>She knows what we need to do, and she takes the initiative.</b> Over time, she has learned how I work, what Americord needs, what requires my attention, and what she can take ownership of herself. She anticipates next steps. She reminds me of things before they become problems. She researches solutions instead of simply bringing me questions. She follows projects through rather than assuming her responsibility ends after the first step. And when something unfamiliar comes up, she is remarkably resourceful about figuring it out.</p>
+                <p>My position involves constantly moving between financial reporting, accounting, HR matters, contracts, vendor negotiations, operational issues, employee needs, executive requests, and unexpected problems. Before Julia, far too much of my day was spent switching between those responsibilities and the administrative work surrounding them. Julia has absorbed an enormous amount of that operational burden.</p>
+                <p><b>As a result, I get significantly more accomplished now than I did before working with her.</b></p>
+                <p>Her support also extends into my personal life, and that has had a meaningful impact on my professional performance as well. Julia has helped with travel, scheduling, research, purchases, events, personal projects, and even important milestones in my life like my wedding. Guests lists, save-the-dates, invitations, and thank you cards would have never been possible without Julia! She handles personal requests with the same level of thoughtfulness and attention that she gives to business matters. Knowing that I have someone I trust to help manage both sides of an extremely busy life gives me</p>
+              </div>
+              <div class="letter-foot">
+                <div>68 Veronica Ave, Unit #10, Somerset NJ 08873</div>
+                <div class="lf-web">americordblood.com</div>
+                <div>(866) 503-6005</div>
+              </div>
+            </div>
+            <div class="letter-page">
+              <div class="letter-head"><div class="ll-dot1"></div><div class="ll-dot2"></div><div class="ll-word">americord</div></div>
+              <div class="letter-body">
+                <p>back time and mental bandwidth that I can redirect toward my work and my family.</p>
+                <p>There is also a human element to Julia's contribution that is difficult to quantify but incredibly important. She is thoughtful, dependable, kind, proactive, and genuinely invested in helping me succeed. She has learned when I need a reminder, when I need her to take something completely off my plate, and sometimes when I simply need someone to help bring order to what feels like ten competing priorities at once.</p>
+                <p>At this point, I can genuinely say that <b>I do not know how I would manage my role without her.</b></p>
+                <p>Julia has become embedded in the way I work. I trust her with increasingly important responsibilities because she has repeatedly demonstrated that she can handle them. The more context she has gained about me and Americord, the more valuable she has become—and that value continues to grow.</p>
+                <p>From my perspective as an Athena client, Julia represents exactly what I believe a successful executive partnership should look like. She has saved me an extraordinary amount of time, but more importantly, she has increased my capacity. She has enabled me to delegate responsibilities I previously would never have imagined handing off, allowing me to spend more of my time on the work where I can create the greatest value for Americord.</p>
+                <p>If Julia is being considered for increased responsibility, advancement, or compensation, <b>she has my strongest possible recommendation.</b> Her contribution warrants recognition. I would hate to lose her, and I believe retaining and continuing to invest in someone of her caliber is tremendously important.</p>
+                <p>I am incredibly grateful that Athena matched us. Julia has made me better at my job, more productive in my life, and substantially more capable of managing the demands of both.</p>
+                <p>Please feel free to reach out to me if I can provide any additional information or examples of Julia's impact. I would be more than happy to advocate for her.</p>
+                <p>Sincerely,<br><b>Kendal Schoettlin</b><br>Director of Finance, HR &amp; Operations<br>Americord Registry, LLC</p>
+              </div>
+              <div class="letter-foot">
+                <div>68 Veronica Ave, Unit #10, Somerset NJ 08873</div>
+                <div class="lf-web">americordblood.com</div>
+                <div>(866) 503-6005</div>
+              </div>
+            </div>
+          </div>
+          <div class="letter-dots"></div>
+        </div>
+        <div class="letter-highlight-wrap">
+          <div class="letter-highlight-label">The Highlight</div>
+          <div class="letter-highlight-page on">
+            <p>"She has become a trusted partner across finance, HR, recruiting, operations, vendor management, and my personal responsibilities—and the amount I am able to accomplish because of her support has increased tremendously. Julia has genuinely given me leverage, not simply assistance. One of the clearest examples is the level of financial responsibility I have been able to delegate to her. Americord processes more than $200,000 in corporate credit card transactions in a typical month, and Julia has taken ownership of tracking and organizing that activity for me."</p>
+            <p>"She understands that the objective is not simply to complete a task, but to achieve the best outcome for the company. Her persistence and attention to detail have contributed to real cost savings and better purchasing decisions for Americord."</p>
+          </div>
+          <div class="letter-highlight-page">
+            <p>"What makes Julia particularly exceptional, however, is that she does not operate as someone who simply waits for a list of tasks. She knows what we need to do, and she takes the initiative... She anticipates next steps. She reminds me of things before they become problems."</p>
+            <p>"As a result, I get significantly more accomplished now than I did before working with her."</p>
+          </div>
+          <div class="letter-highlight-page">
+            <p>"At this point, I can genuinely say that I do not know how I would manage my role without her."</p>
+            <p>"If Julia is being considered for increased responsibility, advancement, or compensation, she has my strongest possible recommendation. Her contribution warrants recognition."</p>
+          </div>
+          <div class="letter-attr">— Kendal Schoettlin, in a formal letter to Athena leadership</div>
         </div>
       </div>
     </section>
@@ -1334,6 +1447,46 @@
     }
   }
   document.querySelectorAll('.phone.slideshow, .monitor, .split-photo.slideshow').forEach(initSlideshow);
+
+  /* ---- formal letter reader: page flipper synced to a highlight panel on the side ---- */
+  function initLetterReader(root){
+    var pages = Array.prototype.slice.call(root.querySelectorAll('.letter-page'));
+    var highlights = Array.prototype.slice.call(root.querySelectorAll('.letter-highlight-page'));
+    var dotsWrap = root.querySelector('.letter-dots');
+    if (!pages.length || !dotsWrap) return;
+
+    dotsWrap.innerHTML = '';
+    var prevBtn = document.createElement('button');
+    prevBtn.type = 'button'; prevBtn.setAttribute('aria-label', 'Previous page'); prevBtn.textContent = '‹';
+    var dotsInner = document.createElement('div');
+    dotsInner.className = 'sdots';
+    var nextBtn = document.createElement('button');
+    nextBtn.type = 'button'; nextBtn.setAttribute('aria-label', 'Next page'); nextBtn.textContent = '›';
+    dotsWrap.appendChild(prevBtn);
+    dotsWrap.appendChild(dotsInner);
+    dotsWrap.appendChild(nextBtn);
+
+    pages.forEach(function(_, i){
+      var d = document.createElement('div');
+      d.className = 'sdot' + (i === 0 ? ' on' : '');
+      d.addEventListener('click', function(){ goTo(i); });
+      dotsInner.appendChild(d);
+    });
+
+    var pos = 0;
+    function show(i){
+      pos = i;
+      pages.forEach(function(p, j){ p.classList.toggle('on', j === i); });
+      highlights.forEach(function(h, j){ h.classList.toggle('on', j === i); });
+      Array.prototype.slice.call(dotsInner.children).forEach(function(d, j){ d.classList.toggle('on', j === i); });
+    }
+    function goTo(i){ show((i + pages.length) % pages.length); }
+    prevBtn.addEventListener('click', function(){ goTo(pos - 1); });
+    nextBtn.addEventListener('click', function(){ goTo(pos + 1); });
+
+    show(0);
+  }
+  document.querySelectorAll('.letter-reader').forEach(initLetterReader);
 </script>
 </body>
 </html>
