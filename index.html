@@ -183,8 +183,8 @@
 
   /* ---------- phone slideshow (real photos, auto-advancing) ---------- */
   .slideshow-imgs{ position:absolute; inset:0; }
-  .slideshow-imgs > *{ position:absolute; inset:0; opacity:0; transition:opacity 1s ease; }
-  .slideshow-imgs > *.on{ opacity:1; }
+  .slideshow-imgs > *{ position:absolute; inset:0; opacity:0; transition:opacity 1s ease; pointer-events:none; }
+  .slideshow-imgs > *.on{ opacity:1; pointer-events:auto; }
   .slideshow-imgs img{ width:100%; height:100%; object-fit:cover; display:block; }
   .slideshow-imgs video{ width:100%; height:100%; object-fit:contain; display:block; background:#000; }
   .slideshow-quote-slide{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8% 10%; background:radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%); }
