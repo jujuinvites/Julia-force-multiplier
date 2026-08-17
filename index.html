@@ -214,8 +214,8 @@
   .monitor .slideshow-imgs img{ object-fit:contain; background:#0d1a12; }
   .monitor .slideshow-caption{ font-size:clamp(9px,1.6cqi,13px); padding:0 4% 4%; }
   .monitor .slideshow-dots{ top:clamp(10px,2%,16px); }
-  .slideshow-scrim{ position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.75) 100%); }
-  .slideshow-caption{ position:absolute; left:0; right:0; bottom:0; padding:0 9% 10%; font-size:clamp(6.5px,6.4cqi,9.5px); font-weight:700; color:#fff; line-height:1.35; z-index:3; }
+  .slideshow-scrim{ position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.75) 100%); pointer-events:none; }
+  .slideshow-caption{ position:absolute; left:0; right:0; bottom:0; padding:0 9% 10%; font-size:clamp(6.5px,6.4cqi,9.5px); font-weight:700; color:#fff; line-height:1.35; z-index:3; pointer-events:none; }
   .slideshow-dots{ position:absolute; top:clamp(16px,13%,30px); left:0; right:0; display:flex; justify-content:center; gap:4px; z-index:6; }
   .slideshow-dots .sdot{ width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,0.4); }
   .slideshow-dots .sdot.on{ background:#fff; width:12px; border-radius:3px; transition:all .3s; }
@@ -596,7 +596,7 @@
             <img src="assets/commute-terminal-crowd.jpg" alt="Crowded bus terminal during Julia's commute" data-cap="Just another night at the terminal">
             <img src="assets/commute-cctv-1.jpg" alt="CCTV baby monitor screenshots of Julia's son at home" data-cap="Checking in on him from the road">
             <img src="assets/commute-cctv-2.jpg" alt="CCTV app screenshot showing Julia's son at home" data-cap="This was how I watched him grow, from a phone screen">
-            <video data-cap="What the commute actually looked like">
+            <video data-cap="What the commute actually looked like" controls playsinline preload="metadata">
               <source src="assets/era1-commute-video.mp4" type="video/mp4">
             </video>
           </div>
