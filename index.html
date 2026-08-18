@@ -228,9 +228,12 @@
   .letter-reader{ align-items:stretch; gap:6%; }
   .letter-viewport{ flex:1.15; display:flex; flex-direction:column; align-items:center; gap:clamp(14px,2vw,20px); min-width:0; }
   .letter-pages{ position:relative; width:100%; max-width:440px; background:#fdfcf9; border-radius:10px; box-shadow:0 30px 70px rgba(0,0,0,0.5); overflow:hidden; }
-  .letter-page{ display:none; }
+  .letter-page{ display:none; position:relative; }
   .letter-page.on{ display:block; }
   .letter-page img{ width:100%; display:block; }
+  .letter-highlight-box{ position:absolute; left:8%; width:84%; pointer-events:none; overflow:hidden; border-radius:3px; }
+  .letter-highlight-box .lhb-fill{ width:0%; height:100%; background:rgba(255,209,64,0.5); mix-blend-mode:multiply; transition:width 0.9s cubic-bezier(0.4,0,0.2,1); }
+  .letter-highlight-box.on .lhb-fill{ width:100%; }
   .letter-head{ display:flex; align-items:baseline; gap:7px; margin-bottom:clamp(14px,2vw,20px); }
   .letter-head .ll-dot1{ width:9px; height:9px; border-radius:50%; background:#7bafc4; flex-shrink:0; }
   .letter-head .ll-dot2{ width:6px; height:6px; border-radius:50%; background:#e0604a; flex-shrink:0; margin-left:-4px; }
@@ -247,9 +250,9 @@
   .letter-dots .sdot.on{ background:var(--pink2); width:16px; border-radius:3px; transition:all .3s; }
   .letter-highlight-wrap{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:clamp(10px,1.5vw,16px); min-width:0; }
   .letter-highlight-label{ font-family:"Roboto Mono",monospace; text-transform:uppercase; letter-spacing:1.5px; font-size:clamp(10px,1.1vw,12px); color:var(--pink2); font-weight:700; }
-  .letter-highlight-page{ display:none; flex-direction:column; gap:clamp(10px,1.5vw,16px); }
-  .letter-highlight-page.on{ display:flex; }
-  .letter-highlight-page p{ font-size:clamp(13px,1.6vw,19px); font-weight:600; line-height:1.5; padding-left:clamp(12px,1.5vw,18px); border-left:3px solid var(--pink2); }
+  .letter-highlight-moment{ display:none; }
+  .letter-highlight-moment.on{ display:block; }
+  .letter-highlight-moment p{ font-size:clamp(14px,1.8vw,21px); font-weight:600; line-height:1.5; padding-left:clamp(12px,1.5vw,18px); border-left:3px solid var(--pink2); }
   .letter-attr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,0.95vw,11px); letter-spacing:0.5px; color:var(--accent); opacity:0.85; margin-top:6px; }
   @media (max-width:760px){ .letter-reader{ flex-direction:column; } }
 
@@ -908,33 +911,60 @@
           <div class="letter-pages">
             <div class="letter-page on">
               <img src="assets/letter-formal-page1.png" alt="Page 1 of Kendal's formal recommendation letter to the Athena Leadership Team">
+              <div class="letter-highlight-box" style="top:28.5%; height:19.2%;"><div class="lhb-fill"></div></div>
+              <div class="letter-highlight-box" style="top:71.1%; height:8.5%;"><div class="lhb-fill"></div></div>
             </div>
             <div class="letter-page">
               <img src="assets/letter-formal-page2.png" alt="Page 2 of Kendal's formal recommendation letter to the Athena Leadership Team">
+              <div class="letter-highlight-box" style="top:32.6%; height:12.5%;"><div class="lhb-fill"></div></div>
+              <div class="letter-highlight-box" style="top:43%; height:8.5%;"><div class="lhb-fill"></div></div>
+              <div class="letter-highlight-box" style="top:64.3%; height:4.3%;"><div class="lhb-fill"></div></div>
+              <div class="letter-highlight-box" style="top:79.2%; height:6.5%;"><div class="lhb-fill"></div></div>
             </div>
             <div class="letter-page">
               <img src="assets/letter-formal-page3.png" alt="Page 3 of Kendal's formal recommendation letter to the Athena Leadership Team">
+              <div class="letter-highlight-box" style="top:15.2%; height:12.8%;"><div class="lhb-fill"></div></div>
+              <div class="letter-highlight-box" style="top:28%; height:4.3%;"><div class="lhb-fill"></div></div>
+              <div class="letter-highlight-box" style="top:40.8%; height:4.3%;"><div class="lhb-fill"></div></div>
+              <div class="letter-highlight-box" style="top:53.6%; height:6.4%;"><div class="lhb-fill"></div></div>
+              <div class="letter-highlight-box" style="top:64.3%; height:6.4%;"><div class="lhb-fill"></div></div>
             </div>
           </div>
           <div class="letter-dots"></div>
         </div>
         <div class="letter-highlight-wrap">
           <div class="letter-highlight-label">The Highlight</div>
-          <div class="letter-highlight-page on">
+          <div class="letter-highlight-moment on">
             <p>"She has become a trusted partner across finance, HR, recruiting, operations, vendor management, and my personal responsibilities—and the amount I am able to accomplish because of her support has increased tremendously. Julia has genuinely given me leverage, not simply assistance. One of the clearest examples is the level of financial responsibility I have been able to delegate to her. Americord processes more than $200,000 in corporate credit card transactions in a typical month, and Julia has taken ownership of tracking and organizing that activity for me."</p>
+          </div>
+          <div class="letter-highlight-moment">
             <p>"She understands that the objective is not simply to complete a task, but to achieve the best outcome for the company. Her persistence and attention to detail have contributed to real cost savings and better purchasing decisions for Americord."</p>
           </div>
-          <div class="letter-highlight-page">
+          <div class="letter-highlight-moment">
             <p>"What makes Julia particularly exceptional, however, is that she does not operate as someone who simply waits for a list of tasks. She knows what we need to do, and she takes the initiative... She anticipates next steps. She reminds me of things before they become problems."</p>
+          </div>
+          <div class="letter-highlight-moment">
             <p>"She researches solutions instead of simply bringing me questions. She follows projects through rather than assuming her responsibility ends after the first step. And when something unfamiliar comes up, she is remarkably resourceful about figuring it out."</p>
+          </div>
+          <div class="letter-highlight-moment">
             <p>"As a result, I get significantly more accomplished now than I did before working with her."</p>
+          </div>
+          <div class="letter-highlight-moment">
             <p>"She handles personal requests with the same level of thoughtfulness and attention that she gives to business matters. Knowing that I have someone I trust to help manage both sides of an extremely busy life gives me back time and mental bandwidth that I can redirect toward my work and my family."</p>
           </div>
-          <div class="letter-highlight-page">
+          <div class="letter-highlight-moment">
             <p>"There is also a human element to Julia's contribution that is difficult to quantify but incredibly important. She is thoughtful, dependable, kind, proactive, and genuinely invested in helping me succeed. She has learned when I need a reminder, when I need her to take something completely off my plate, and sometimes when I simply need someone to help bring order to what feels like ten competing priorities at once."</p>
+          </div>
+          <div class="letter-highlight-moment">
             <p>"At this point, I can genuinely say that I do not know how I would manage my role without her."</p>
+          </div>
+          <div class="letter-highlight-moment">
             <p>"From my perspective as an Athena client, Julia represents exactly what I believe a successful executive partnership should look like."</p>
+          </div>
+          <div class="letter-highlight-moment">
             <p>"If Julia is being considered for increased responsibility, advancement, or compensation, she has my strongest possible recommendation. Her contribution warrants recognition."</p>
+          </div>
+          <div class="letter-highlight-moment">
             <p>"I am incredibly grateful that Athena matched us. Julia has made me better at my job, more productive in my life, and substantially more capable of managing the demands of both."</p>
           </div>
           <div class="letter-attr">— Kendal Schoettlin, in a formal letter to Athena leadership</div>
@@ -1414,22 +1444,23 @@
   /* ---- formal letter reader: page flipper synced to a highlight panel on the side ---- */
   function initLetterReader(root){
     var pages = Array.prototype.slice.call(root.querySelectorAll('.letter-page'));
-    var highlights = Array.prototype.slice.call(root.querySelectorAll('.letter-highlight-page'));
+    var boxes = Array.prototype.slice.call(root.querySelectorAll('.letter-highlight-box'));
+    var moments = Array.prototype.slice.call(root.querySelectorAll('.letter-highlight-moment'));
     var dotsWrap = root.querySelector('.letter-dots');
-    if (!pages.length || !dotsWrap) return;
+    if (!pages.length || !dotsWrap || !boxes.length) return;
 
     dotsWrap.innerHTML = '';
     var prevBtn = document.createElement('button');
-    prevBtn.type = 'button'; prevBtn.setAttribute('aria-label', 'Previous page'); prevBtn.textContent = '‹';
+    prevBtn.type = 'button'; prevBtn.setAttribute('aria-label', 'Previous highlight'); prevBtn.textContent = '‹';
     var dotsInner = document.createElement('div');
     dotsInner.className = 'sdots';
     var nextBtn = document.createElement('button');
-    nextBtn.type = 'button'; nextBtn.setAttribute('aria-label', 'Next page'); nextBtn.textContent = '›';
+    nextBtn.type = 'button'; nextBtn.setAttribute('aria-label', 'Next highlight'); nextBtn.textContent = '›';
     dotsWrap.appendChild(prevBtn);
     dotsWrap.appendChild(dotsInner);
     dotsWrap.appendChild(nextBtn);
 
-    pages.forEach(function(_, i){
+    boxes.forEach(function(_, i){
       var d = document.createElement('div');
       d.className = 'sdot' + (i === 0 ? ' on' : '');
       d.addEventListener('click', function(){ goTo(i); });
@@ -1439,11 +1470,15 @@
     var pos = 0;
     function show(i){
       pos = i;
-      pages.forEach(function(p, j){ p.classList.toggle('on', j === i); });
-      highlights.forEach(function(h, j){ h.classList.toggle('on', j === i); });
+      var targetPage = boxes[i].closest('.letter-page');
+      pages.forEach(function(p){ p.classList.toggle('on', p === targetPage); });
+      boxes.forEach(function(b){ b.classList.remove('on'); });
+      moments.forEach(function(m, j){ m.classList.toggle('on', j === i); });
       Array.prototype.slice.call(dotsInner.children).forEach(function(d, j){ d.classList.toggle('on', j === i); });
+      // re-trigger the left-to-right sweep on the active box every time, even if it's the same box as before
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ boxes[i].classList.add('on'); }); });
     }
-    function goTo(i){ show((i + pages.length) % pages.length); }
+    function goTo(i){ show((i + boxes.length) % boxes.length); }
     prevBtn.addEventListener('click', function(){ goTo(pos - 1); });
     nextBtn.addEventListener('click', function(){ goTo(pos + 1); });
 
