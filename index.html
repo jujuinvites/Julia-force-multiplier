@@ -1475,8 +1475,12 @@
       boxes.forEach(function(b){ b.classList.remove('on'); });
       moments.forEach(function(m, j){ m.classList.toggle('on', j === i); });
       Array.prototype.slice.call(dotsInner.children).forEach(function(d, j){ d.classList.toggle('on', j === i); });
-      // re-trigger the left-to-right sweep on the active box every time, even if it's the same box as before
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){ boxes[i].classList.add('on'); }); });
+      // re-trigger the left-to-right sweep on the active box every time: force a synchronous reflow
+      // (rather than requestAnimationFrame, which browsers can suspend for backgrounded/inactive tabs)
+      // so the width:0 reset is committed before re-adding .on kicks off the transition.
+      var activeBox = boxes[i];
+      void activeBox.offsetWidth;
+      activeBox.classList.add('on');
     }
     function goTo(i){ show((i + boxes.length) % boxes.length); }
     prevBtn.addEventListener('click', function(){ goTo(pos - 1); });
