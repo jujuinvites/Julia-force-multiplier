@@ -24,7 +24,7 @@
   .version-tag{ font-family:"Playfair Display", Georgia, serif; font-weight:600; font-size:clamp(15px,2vw,21px); color:var(--ink); opacity:0.8; margin-top:2px; }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
-  .page{ max-width:1280px; margin:0 auto; position:relative; }
+  .page{ max-width:1600px; margin:0 auto; position:relative; }
 
   .topbar{
     position:fixed; top:0; left:0; right:0; z-index:50;
@@ -40,7 +40,7 @@
     position:relative;
     min-height:92vh;
     display:flex; flex-direction:column; justify-content:center;
-    padding:10vh clamp(20px,6vw,64px);
+    padding:8vh clamp(20px,6vw,72px);
     border-bottom:1px solid rgba(255,255,255,0.06);
     background:radial-gradient(circle at 30% 15%, var(--moss), var(--deepforest) 130%);
   }
@@ -75,27 +75,49 @@
   }
   .hero-copy .hero-tag::before{ content:'★'; font-size:0.85em; opacity:0.8; }
 
-  .setlist-nav{
-    position:fixed; left:min(calc(50% + 662px), calc(100% - 194px)); top:50%; transform:translateY(-50%); z-index:40;
-    display:flex; flex-direction:column; gap:1px;
-    font-family:"Roboto Mono",monospace; font-size:11px;
-    background:rgba(4,16,10,0.88); backdrop-filter:blur(10px);
-    border:1px solid rgba(220,186,121,0.28); border-radius:12px;
-    padding:14px 8px; max-width:172px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.4);
+  /* ---------- collapsible setlist menu (toggle button + slide-out drawer, no permanent sidebar) ---------- */
+  .menu-toggle{
+    position:fixed; top:56px; left:18px; z-index:70;
+    display:flex; align-items:center; gap:8px;
+    background:rgba(4,16,10,0.78); backdrop-filter:blur(10px);
+    border:1px solid rgba(220,186,121,0.35); border-radius:999px;
+    padding:9px 16px; color:var(--ink);
+    font-family:"Roboto Mono",monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; font-weight:700;
+    cursor:pointer; box-shadow:0 10px 26px rgba(0,0,0,0.4);
   }
-  .setlist-nav .sl-title{ font-size:9px; text-transform:uppercase; letter-spacing:2px; color:var(--pink2); opacity:0.75; margin-bottom:8px; padding:0 8px; }
+  .menu-toggle:hover{ background:rgba(4,16,10,0.92); border-color:rgba(220,186,121,0.55); }
+
+  .menu-overlay{
+    position:fixed; inset:0; z-index:65;
+    background:rgba(0,0,0,0.55); backdrop-filter:blur(2px);
+    opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .menu-overlay.open{ opacity:1; pointer-events:auto; }
+
+  .setlist-drawer{
+    position:fixed; top:0; left:0; bottom:0; z-index:70;
+    width:min(80vw,300px);
+    background:rgba(6,20,13,0.97); backdrop-filter:blur(14px);
+    border-right:1px solid rgba(220,186,121,0.28);
+    box-shadow:26px 0 60px rgba(0,0,0,0.5);
+    display:flex; flex-direction:column; padding:20px 12px;
+    transform:translateX(-100%); transition:transform .35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .setlist-drawer.open{ transform:translateX(0); }
+  .drawer-head{ display:flex; align-items:center; justify-content:space-between; padding:4px 8px 16px; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:10px; }
+  .drawer-title{ font-family:"Roboto Mono",monospace; font-size:11px; text-transform:uppercase; letter-spacing:2px; color:var(--pink2); font-weight:700; opacity:0.85; }
+  .drawer-close{ background:none; border:none; color:var(--ink); font-size:24px; line-height:1; cursor:pointer; opacity:0.65; padding:0 4px; }
+  .drawer-close:hover{ opacity:1; }
+
+  .setlist-nav{ display:flex; flex-direction:column; gap:2px; font-family:"Roboto Mono",monospace; font-size:13px; overflow-y:auto; }
   .setlist-nav a{
-    display:flex; gap:9px; align-items:baseline; text-decoration:none; color:var(--ink); opacity:0.5;
-    padding:6px 8px; border-radius:6px; transition:opacity .2s ease, background .2s ease;
-    white-space:nowrap; overflow:hidden;
+    display:flex; gap:11px; align-items:baseline; text-decoration:none; color:var(--ink); opacity:0.6;
+    padding:11px 10px; border-radius:8px; transition:opacity .2s ease, background .2s ease;
   }
-  .setlist-nav a .n{ color:var(--pink2); font-weight:700; opacity:0.75; flex-shrink:0; }
-  .setlist-nav a span.t{ overflow:hidden; text-overflow:ellipsis; }
-  .setlist-nav a:hover{ opacity:0.85; background:rgba(255,255,255,0.06); }
-  .setlist-nav a.active{ opacity:1; background:rgba(220,186,121,0.14); }
+  .setlist-nav a .n{ color:var(--pink2); font-weight:700; opacity:0.8; flex-shrink:0; width:20px; }
+  .setlist-nav a:hover{ opacity:0.9; background:rgba(255,255,255,0.06); }
+  .setlist-nav a.active{ opacity:1; background:rgba(220,186,121,0.16); }
   .setlist-nav a.active .n{ opacity:1; }
-  @media (max-width:1700px){ .setlist-nav{ display:none; } }
 
   .eyebrow{
     font-family:"Roboto Mono", monospace; text-transform:uppercase; letter-spacing:1.5px;
@@ -131,7 +153,7 @@
 
   .phone{
     flex-shrink:0;
-    width:clamp(190px,24vw,320px);
+    width:clamp(190px,24vw,360px);
     aspect-ratio:9/19.3;
     border-radius:clamp(14px,6%,26px);
     background:#050505;
@@ -168,7 +190,7 @@
   /* ---------- ID REVEAL (framed real-photo showcase, no device mockup) ---------- */
   .id-reveal{
     flex-shrink:0;
-    width:clamp(220px,24vw,300px);
+    width:clamp(220px,24vw,340px);
     aspect-ratio:9/16;
     border-radius:20px;
     overflow:hidden;
@@ -201,7 +223,7 @@
   /* ---------- monitor / laptop screen mockup (wide slideshow for screenshots & certs) ---------- */
   .monitor-wrap{ flex:1; display:flex; align-items:center; justify-content:center; min-height:0; }
   .monitor{
-    width:min(82%, 760px); background:#1b1b1d; border-radius:14px;
+    width:min(80%, 940px); background:#1b1b1d; border-radius:14px;
     padding:clamp(10px,1.6vw,18px) clamp(10px,1.6vw,18px) clamp(28px,3.4vw,40px);
     box-shadow:0 30px 70px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.06);
     position:relative;
@@ -227,7 +249,7 @@
   /* ---------- formal letter reader (paginated letter + synced highlight panel) ---------- */
   .letter-reader{ align-items:stretch; gap:6%; }
   .letter-viewport{ flex:1.15; display:flex; flex-direction:column; align-items:center; gap:clamp(14px,2vw,20px); min-width:0; }
-  .letter-pages{ position:relative; width:100%; max-width:440px; background:#fdfcf9; border-radius:10px; box-shadow:0 30px 70px rgba(0,0,0,0.5); overflow:hidden; }
+  .letter-pages{ position:relative; width:100%; max-width:520px; background:#fdfcf9; border-radius:10px; box-shadow:0 30px 70px rgba(0,0,0,0.5); overflow:hidden; }
   .letter-page{ display:none; position:relative; }
   .letter-page.on{ display:block; }
   .letter-page img{ width:100%; display:block; }
@@ -257,7 +279,7 @@
   @media (max-width:760px){ .letter-reader{ flex-direction:column; } }
 
   /* ---------- laptop mockup (wider base + notch, for screen-recorded demos) ---------- */
-  .laptop{ width:min(82%, 760px); margin:0 auto; display:flex; flex-direction:column; align-items:center; }
+  .laptop{ width:min(80%, 940px); margin:0 auto; display:flex; flex-direction:column; align-items:center; }
   .laptop-screen{
     width:100%; background:#1b1b1d; border-radius:14px 14px 4px 4px;
     padding:clamp(10px,1.6vw,18px) clamp(10px,1.6vw,18px) clamp(8px,1.2vw,12px);
@@ -337,7 +359,7 @@
   .pull-quote .qattr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,0.95vw,11px); letter-spacing:0.5px; color:var(--pink2); font-weight:700; }
 
   /* ---------- quote spotlight (big-type callouts, faint letter scan as texture behind) ---------- */
-  .quote-spotlight{ position:relative; z-index:1; display:flex; flex-direction:column; gap:clamp(14px,2vw,22px); max-width:820px; align-self:center; }
+  .quote-spotlight{ position:relative; z-index:1; display:flex; flex-direction:column; gap:clamp(14px,2vw,22px); max-width:940px; align-self:center; }
   .quote-spotlight .qs-line{ font-family:"Playfair Display",Georgia,serif; font-weight:700; font-size:clamp(19px,3vw,34px); line-height:1.3; padding-left:clamp(14px,1.8vw,20px); border-left:3px solid var(--pink2); }
   .quote-spotlight .qs-line.lead{ color:var(--pink2); font-size:clamp(24px,3.8vw,44px); }
   .bg-letter{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.05; filter:blur(6px) grayscale(1); z-index:0; pointer-events:none; }
@@ -397,7 +419,7 @@
   .team-growth-photos figcaption{ text-align:center; font-family:"Roboto Mono",monospace; font-size:clamp(9px,1vw,11px); text-transform:uppercase; letter-spacing:0.5px; color:var(--pink2); font-weight:700; padding:8px 0 2px; }
   .team-growth-photos .tg-year{ display:block; font-family:"Helvetica Neue",Arial,sans-serif; text-transform:none; letter-spacing:0; font-weight:600; font-size:clamp(9px,1vw,11px); color:var(--ink); opacity:0.6; margin-top:3px; }
   .team-growth-arrow{ font-size:clamp(18px,2.2vw,26px); color:var(--pink2); opacity:0.8; }
-  .hero-stat .v{ font-family:"Roboto Mono",monospace; font-size:clamp(22px,3.2vw,36px); font-weight:700; color:var(--pink2); }
+  .hero-stat .v{ font-family:"Roboto Mono",monospace; font-size:clamp(22px,3.2vw,42px); font-weight:700; color:var(--pink2); }
   .hero-stat .l{ font-size:clamp(11px,1.2vw,14px); opacity:0.85; margin-top:6px; }
   .bar-chart{ width:100%; height:clamp(180px,32vh,320px); }
   .bar-label{ font-family:"Roboto Mono",monospace; font-size:11px; fill:var(--ink); opacity:0.85; }
@@ -544,18 +566,25 @@
 <div class="progress" id="progress"></div>
 <div class="topbar">The Force Multiplier Tour &middot; (Julia's Version)</div>
 
-<nav class="setlist-nav" aria-label="Setlist">
-  <div class="sl-title">Setlist</div>
-  <a href="#act-1"><span class="n">I</span><span class="t">Cold Open</span></a>
-  <a href="#act-2"><span class="n">II</span><span class="t">The Commute</span></a>
-  <a href="#act-3"><span class="n">III</span><span class="t">Chasing the 1%</span></a>
-  <a href="#act-4"><span class="n">IV</span><span class="t">The Partnership</span></a>
-  <a href="#act-5"><span class="n">V</span><span class="t">The Business Impact</span></a>
-  <a href="#act-6"><span class="n">VI</span><span class="t">The Leverage</span></a>
-  <a href="#act-7"><span class="n">VII</span><span class="t">The Proof</span></a>
-  <a href="#act-8"><span class="n">VIII</span><span class="t">Roots</span></a>
-  <a href="#act-9"><span class="n">IX</span><span class="t">The Case</span></a>
-  <a href="#act-10"><span class="n">X</span><span class="t">Full Circle</span></a>
+<button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="setlistDrawer">☰ Setlist</button>
+<div class="menu-overlay" id="menuOverlay"></div>
+<nav class="setlist-drawer" id="setlistDrawer" aria-label="Setlist" aria-hidden="true">
+  <div class="drawer-head">
+    <div class="drawer-title">Setlist</div>
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="Close menu">×</button>
+  </div>
+  <div class="setlist-nav">
+    <a href="#act-1"><span class="n">I</span><span class="t">Cold Open</span></a>
+    <a href="#act-2"><span class="n">II</span><span class="t">The Commute</span></a>
+    <a href="#act-3"><span class="n">III</span><span class="t">Chasing the 1%</span></a>
+    <a href="#act-4"><span class="n">IV</span><span class="t">The Partnership</span></a>
+    <a href="#act-5"><span class="n">V</span><span class="t">The Business Impact</span></a>
+    <a href="#act-6"><span class="n">VI</span><span class="t">The Leverage</span></a>
+    <a href="#act-7"><span class="n">VII</span><span class="t">The Proof</span></a>
+    <a href="#act-8"><span class="n">VIII</span><span class="t">Roots</span></a>
+    <a href="#act-9"><span class="n">IX</span><span class="t">The Case</span></a>
+    <a href="#act-10"><span class="n">X</span><span class="t">Full Circle</span></a>
+  </div>
 </nav>
 
 <div class="page">
@@ -802,15 +831,9 @@
       <div class="split-row" style="align-items:flex-start;">
         <div class="split-text">
           <div class="list-rows" style="max-width:100%;">
-            <div class="list-row"><span class="mark ok">✓</span>Vendor research for the lab</div>
-            <div class="list-row"><span class="mark ok">✓</span>Sales leads assignment</div>
-            <div class="list-row"><span class="mark ok">✓</span>Chased vendors for Sophia's (Lab Director) missing receipts</div>
-            <div class="list-row"><span class="mark ok">✓</span>Built tracking sheets for the Donor Program</div>
-            <div class="list-row"><span class="mark ok">✓</span>Assisted with the Sales training schedule and materials</div>
-            <div class="list-row"><span class="mark ok">✓</span>Supported Marketing on HubSpot and Sakari leads</div>
-            <div class="list-row"><span class="mark ok">✓</span>Owned the tech manager's table-update tasks</div>
-            <div class="list-row"><span class="mark ok">✓</span>Prevented Sophia (Lab Director) from canceling after a failed first partnership - she now loves her new one</div>
-            <div class="list-row emph">They loved the value we brought, so they decided to add more.</div>
+            <div class="list-row"><span class="mark ok">✓</span>Picked up vendor research, sales support, and cross-team coverage wherever gaps appeared</div>
+            <div class="list-row"><span class="mark ok">✓</span>Turned a Lab Director who'd sworn off EAs after a bad first experience into one of our biggest advocates</div>
+            <div class="list-row emph">Athena's value expanded inside Americord - I helped prove what strong EA support could unlock.</div>
           </div>
           <div class="pull-quote" style="margin-top:clamp(14px,2vw,22px);">
             <div class="qtext">"I'm really nervous... I just don't know if I'm good enough to work with an EA, I'm kinda traumatized."</div>
@@ -873,13 +896,11 @@
           "I don't think AI replaces us - I think it's a tool to help us do more, faster, and better."
         </div>
       </div>
-      <div class="card-grid cols-2" style="max-width:760px; align-self:center; text-align:left;">
-        <div class="info-tile">Leaned on AI tools like Claude to their fullest potential - for research, drafting, problem-solving, and building process on the fly</div>
-        <div class="info-tile">Built SOPs and documentation as I learned, so the knowledge didn't just live in my head</div>
-        <div class="info-tile">Asked questions early and often instead of guessing my way through</div>
-        <div class="info-tile">Took ownership of the gaps instead of waiting to be told</div>
-        <div class="info-tile">Took the initiative instead of waiting for a list of tasks - anticipated what was needed before being asked</div>
-        <div class="info-tile">Treated personal requests with the same care as business ones, building real trust along the way</div>
+      <div class="card-grid cols-2" style="max-width:820px; align-self:center; text-align:left;">
+        <div class="info-tile">Leaned on AI tools like Claude for research, drafting, and building process on the fly</div>
+        <div class="info-tile">Documented as I learned, so the knowledge didn't just live in my head</div>
+        <div class="info-tile">Took ownership of gaps and next steps instead of waiting to be told</div>
+        <div class="info-tile">Treated personal requests with the same care as business ones - building real trust along the way</div>
       </div>
     </section>
     <!-- 10: MAJOR WINS -->
@@ -892,7 +913,7 @@
         <div class="info-tile">Ran the company's payroll independently for the first time during a leadership leave, including an unexpected, last-minute termination</div>
         <div class="info-tile">Founded &amp; co-led a company-wide succession-planning initiative - 9 departments</div>
         <div class="info-tile">Delivered the All-Hands finance/HR/succession update in my client's place</div>
-        <div class="info-tile">Serves as the company's bookkeeper - saving <b>$180,000</b>/year</div>
+        <div class="info-tile">Took ownership of bookkeeping - roughly <b>$180K</b>/year in avoided external cost</div>
         <div class="info-tile">Replaced the recruiting firm the company used - saving <b>$135,000</b>/year</div>
         <div class="info-tile">Handles legal work for the company - contract reviews and amendments, litigation packages for counsel, an urgent tax documentation discrepancy, and consolidated dispute documentation, saving leadership time and back-and-forth</div>
         <div class="info-tile">Successful major events planning - for the company and for my client's personal life</div>
@@ -916,7 +937,7 @@
     <!-- 10b: THE HEADLINE NUMBER (read in 3 seconds, before the full breakdown) -->
     <section class="slide era-1989 card-slide" style="justify-content:center; text-align:center;">
       <div class="eyebrow" style="align-self:center;">Documented 2026 Financial Contribution</div>
-      <div style="font-family:'Roboto Mono',monospace; font-weight:800; font-size:clamp(52px,9.5vw,128px); color:var(--pink2); line-height:1; align-self:center; text-shadow:0 0 60px rgba(220,186,121,0.35);">$463,616</div>
+      <div style="font-family:'Roboto Mono',monospace; font-weight:800; font-size:clamp(52px,10vw,152px); color:var(--pink2); line-height:1; align-self:center; text-shadow:0 0 60px rgba(220,186,121,0.35);">$463,616</div>
       <div class="hero-stat reveal" style="align-self:center; max-width:480px; margin-top:clamp(22px,3.4vw,36px);">
         <div class="v" style="font-size:clamp(22px,2.8vw,32px);">57%</div>
         <div class="l">of Americord's total 2026 company-wide savings - $810,350.93</div>
@@ -949,10 +970,9 @@
         </div>
       </div>
       <div class="stat-side">
-        <div class="hero-stat reveal" style="--d:.1s"><div class="v">$463,616</div><div class="l">in 2026 savings I helped negotiate and drive</div></div>
-        <div class="hero-stat reveal" style="--d:.2s"><div class="v">$810,350.93</div><div class="l">Americord's total 2026 savings, company-wide - my part alone is 57%</div></div>
-        <div class="pull-quote reveal" style="--d:.4s">
-          <div class="qtext" style="font-size:clamp(11px,1.2vw,14px);">"Expense tracking - improved by Julia, Justin, and all of you - means better support for Kendal and better expense management. Grateful for all the teamwork."</div>
+        <div class="eyebrow" style="margin-bottom:0;">Where It Came From</div>
+        <div class="pull-quote reveal" style="--d:.2s;">
+          <div class="qtext">"Expense tracking - improved by Julia, Justin, and all of you - means better support for Kendal and better expense management. Grateful for all the teamwork."</div>
           <div class="qattr">Martin Smithmyer, CEO · Slack</div>
         </div>
       </div>
@@ -1180,61 +1200,29 @@
           <div class="letter-pages">
             <div class="letter-page on">
               <img src="assets/letter-formal-page1.png" alt="Page 1 of Kendal's formal recommendation letter to the Athena Leadership Team">
-              <div class="letter-highlight-box" style="top:27.5%; height:21%;"><div class="lhb-fill"></div></div>
               <div class="letter-highlight-box" style="top:73%; height:9%;"><div class="lhb-fill"></div></div>
             </div>
             <div class="letter-page">
               <img src="assets/letter-formal-page2.png" alt="Page 2 of Kendal's formal recommendation letter to the Athena Leadership Team">
-              <div class="letter-highlight-box" style="top:33%; height:13%;"><div class="lhb-fill"></div></div>
-              <div class="letter-highlight-box" style="top:43%; height:9%;"><div class="lhb-fill"></div></div>
-              <div class="letter-highlight-box" style="top:67%; height:5%;"><div class="lhb-fill"></div></div>
               <div class="letter-highlight-box" style="top:83%; height:7%;"><div class="lhb-fill"></div></div>
             </div>
             <div class="letter-page">
               <img src="assets/letter-formal-page3.png" alt="Page 3 of Kendal's formal recommendation letter to the Athena Leadership Team">
-              <div class="letter-highlight-box" style="top:13%; height:13%;"><div class="lhb-fill"></div></div>
               <div class="letter-highlight-box" style="top:27%; height:5%;"><div class="lhb-fill"></div></div>
-              <div class="letter-highlight-box" style="top:41%; height:5.5%;"><div class="lhb-fill"></div></div>
-              <div class="letter-highlight-box" style="top:55%; height:7%;"><div class="lhb-fill"></div></div>
-              <div class="letter-highlight-box" style="top:67%; height:7%;"><div class="lhb-fill"></div></div>
             </div>
           </div>
           <div class="letter-dots"></div>
         </div>
         <div class="letter-highlight-wrap">
-          <div class="letter-highlight-label">The Highlight</div>
+          <div class="letter-highlight-label">A Few More Lines From It</div>
           <div class="letter-highlight-moment on">
-            <p>"She has become a trusted partner across finance, HR, recruiting, operations, vendor management, and my personal responsibilities—and the amount I am able to accomplish because of her support has increased tremendously. Julia has genuinely given me leverage, not simply assistance. One of the clearest examples is the level of financial responsibility I have been able to delegate to her. Americord processes more than $200,000 in corporate credit card transactions in a typical month, and Julia has taken ownership of tracking and organizing that activity for me."</p>
+            <p>"Her persistence and attention to detail have contributed to real cost savings and better purchasing decisions for Americord."</p>
           </div>
           <div class="letter-highlight-moment">
-            <p>"She understands that the objective is not simply to complete a task, but to achieve the best outcome for the company. Her persistence and attention to detail have contributed to real cost savings and better purchasing decisions for Americord."</p>
-          </div>
-          <div class="letter-highlight-moment">
-            <p>"What makes Julia particularly exceptional, however, is that she does not operate as someone who simply waits for a list of tasks. She knows what we need to do, and she takes the initiative... She anticipates next steps. She reminds me of things before they become problems."</p>
-          </div>
-          <div class="letter-highlight-moment">
-            <p>"She researches solutions instead of simply bringing me questions. She follows projects through rather than assuming her responsibility ends after the first step. And when something unfamiliar comes up, she is remarkably resourceful about figuring it out."</p>
-          </div>
-          <div class="letter-highlight-moment">
-            <p>"As a result, I get significantly more accomplished now than I did before working with her."</p>
-          </div>
-          <div class="letter-highlight-moment">
-            <p>"She handles personal requests with the same level of thoughtfulness and attention that she gives to business matters. Knowing that I have someone I trust to help manage both sides of an extremely busy life gives me back time and mental bandwidth that I can redirect toward my work and my family."</p>
-          </div>
-          <div class="letter-highlight-moment">
-            <p>"There is also a human element to Julia's contribution that is difficult to quantify but incredibly important. She is thoughtful, dependable, kind, proactive, and genuinely invested in helping me succeed. She has learned when I need a reminder, when I need her to take something completely off my plate, and sometimes when I simply need someone to help bring order to what feels like ten competing priorities at once."</p>
+            <p>"Knowing I have someone I trust to help manage both sides of an extremely busy life gives me back time and mental bandwidth I can redirect toward my work and my family."</p>
           </div>
           <div class="letter-highlight-moment">
             <p>"At this point, I can genuinely say that I do not know how I would manage my role without her."</p>
-          </div>
-          <div class="letter-highlight-moment">
-            <p>"From my perspective as an Athena client, Julia represents exactly what I believe a successful executive partnership should look like."</p>
-          </div>
-          <div class="letter-highlight-moment">
-            <p>"If Julia is being considered for increased responsibility, advancement, or compensation, she has my strongest possible recommendation. Her contribution warrants recognition."</p>
-          </div>
-          <div class="letter-highlight-moment">
-            <p>"I am incredibly grateful that Athena matched us. Julia has made me better at my job, more productive in my life, and substantially more capable of managing the demands of both."</p>
           </div>
           <div class="letter-attr">— Kendal Schoettlin, in a formal letter to Athena leadership</div>
         </div>
@@ -1366,7 +1354,7 @@
         <div class="icon-badge">🔁</div>
         <h1 class="signature" style="font-size:clamp(48px,7.5vw,88px); color:var(--pink2);">Full Circle</h1>
         <p class="hero-sub">A TikTok video is what helped me find Athena in the first place. Now, one of my own videos - at 76.5K views and counting - is helping someone else find it too.</p>
-        <p class="hero-sub" style="color:var(--pink2); font-weight:700;">Athena multiplied my potential. This past year, I've spent it multiplying that impact for the people around me - Kendal, Americord, Athena, my community, and my family.</p>
+        <p class="hero-sub" style="color:var(--pink2); font-weight:700;">Athena multiplied my potential. And over the past year, I've worked to multiply that impact outward - to my client, her company, Athena, my community, and my family.</p>
         <div class="hero-tag">Questions?</div>
       </div>
       <div class="phone slideshow">
@@ -1547,6 +1535,29 @@
     show(0);
   }
   document.querySelectorAll('.letter-reader').forEach(initLetterReader);
+
+  /* ---- collapsible setlist menu: toggle button opens a slide-out drawer over an overlay ---- */
+  (function(){
+    var toggle = document.getElementById('menuToggle');
+    var overlay = document.getElementById('menuOverlay');
+    var drawer = document.getElementById('setlistDrawer');
+    var closeBtn = document.getElementById('drawerClose');
+    if (!toggle || !overlay || !drawer || !closeBtn) return;
+
+    function openMenu(){
+      drawer.classList.add('open'); overlay.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true'); drawer.setAttribute('aria-hidden', 'false');
+    }
+    function closeMenu(){
+      drawer.classList.remove('open'); overlay.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false'); drawer.setAttribute('aria-hidden', 'true');
+    }
+    toggle.addEventListener('click', function(){ drawer.classList.contains('open') ? closeMenu() : openMenu(); });
+    overlay.addEventListener('click', closeMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+    drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  })();
 </script>
 </body>
 </html>
