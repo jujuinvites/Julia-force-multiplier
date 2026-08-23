@@ -76,7 +76,7 @@
   .hero-copy .hero-tag::before{ content:'★'; font-size:0.85em; opacity:0.8; }
 
   .setlist-nav{
-    position:fixed; right:22px; top:50%; transform:translateY(-50%); z-index:40;
+    position:fixed; left:min(calc(50% + 662px), calc(100% - 194px)); top:50%; transform:translateY(-50%); z-index:40;
     display:flex; flex-direction:column; gap:1px;
     font-family:"Roboto Mono",monospace; font-size:11px;
     background:rgba(4,16,10,0.88); backdrop-filter:blur(10px);
@@ -1004,7 +1004,7 @@
         <div class="info-tile">Company-wide succession planning</div>
         <div class="info-tile">Legal &amp; contract work</div>
         <div class="info-tile">Lyos financial ownership</div>
-        <div class="info-tile wide">Executive-level ownership - handed off, not micromanaged</div>
+        <div class="info-tile wide" style="text-align:center;">Executive-level ownership - handed off, not micromanaged</div>
       </div>
     </section>
     <!-- 13b: LYOS WEBSITE DEMO (laptop mockup, screen-recorded video) -->
