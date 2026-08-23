@@ -336,6 +336,12 @@
   .pull-quote .qtext{ font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(13px,1.5vw,18px); line-height:1.4; }
   .pull-quote .qattr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,0.95vw,11px); letter-spacing:0.5px; color:var(--pink2); font-weight:700; }
 
+  /* ---------- quote spotlight (big-type callouts, faint letter scan as texture behind) ---------- */
+  .quote-spotlight{ position:relative; z-index:1; display:flex; flex-direction:column; gap:clamp(14px,2vw,22px); max-width:820px; align-self:center; }
+  .quote-spotlight .qs-line{ font-family:"Playfair Display",Georgia,serif; font-weight:700; font-size:clamp(19px,3vw,34px); line-height:1.3; padding-left:clamp(14px,1.8vw,20px); border-left:3px solid var(--pink2); }
+  .quote-spotlight .qs-line.lead{ color:var(--pink2); font-size:clamp(24px,3.8vw,44px); }
+  .bg-letter{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.06; z-index:0; pointer-events:none; }
+
   /* ---------- DATA CARD SLIDES ---------- */
   .card-grid{ display:grid; gap:clamp(8px,1.4vw,16px); }
   .card-grid.cols-3{ grid-template-columns:repeat(3,1fr); }
@@ -543,10 +549,10 @@
   <a href="#act-1"><span class="n">I</span><span class="t">Cold Open</span></a>
   <a href="#act-2"><span class="n">II</span><span class="t">The Commute</span></a>
   <a href="#act-3"><span class="n">III</span><span class="t">Chasing the 1%</span></a>
-  <a href="#act-4"><span class="n">IV</span><span class="t">The Job</span></a>
-  <a href="#act-5"><span class="n">V</span><span class="t">The Receipts</span></a>
-  <a href="#act-6"><span class="n">VI</span><span class="t">Encore</span></a>
-  <a href="#act-7"><span class="n">VII</span><span class="t">The Reviews</span></a>
+  <a href="#act-4"><span class="n">IV</span><span class="t">The Partnership</span></a>
+  <a href="#act-5"><span class="n">V</span><span class="t">The Business Impact</span></a>
+  <a href="#act-6"><span class="n">VI</span><span class="t">The Leverage</span></a>
+  <a href="#act-7"><span class="n">VII</span><span class="t">The Proof</span></a>
   <a href="#act-8"><span class="n">VIII</span><span class="t">Roots</span></a>
   <a href="#act-9"><span class="n">IX</span><span class="t">The Case</span></a>
   <a href="#act-10"><span class="n">X</span><span class="t">Full Circle</span></a>
@@ -585,6 +591,18 @@
           </div>
           <div class="phome"></div>
         </div>
+      </div>
+    </section>
+
+    <!-- 1b: THE FORCE MULTIPLIER FRAMEWORK (maps the whole tour to the 4 areas being assessed) -->
+    <section class="slide era-fearless card-slide" style="justify-content:center;">
+      <div class="eyebrow" style="align-self:center;">How This Tour Gets Reviewed</div>
+      <h2 class="slide-title" style="align-self:center;">One partnership, <span class="accent">four arenas</span></h2>
+      <div class="card-grid cols-2" style="max-width:900px; align-self:center;">
+        <div class="info-tile"><span class="tn">CLIENT</span><b>Leverage, not just assistance</b> - more trust, more time, more mental bandwidth for Kendal.</div>
+        <div class="info-tile"><span class="tn">COMPANY</span><b>$463,616</b> documented financial contribution, plus stronger operations and real risk protection.</div>
+        <div class="info-tile"><span class="tn">ATHENA</span>Knowledge-sharing, advocacy, visibility, AI best-practice training, and representation.</div>
+        <div class="info-tile"><span class="tn">COMMUNITY / SELF</span>Personal growth, family presence, sustainability, and giving back.</div>
       </div>
     </section>
 
@@ -817,8 +835,8 @@
 
     <!-- 7: CORE RESPONSIBILITIES -->
     <section class="slide era-folklore card-slide" style="--moss:#1a3550; --deepforest:#081826; --pink2:#8fc4e8; --accent:#4f96c4;">
-      <div class="eyebrow">One Title, Nine Jobs</div>
-      <h2 class="slide-title">A day in <span class="accent">my era</span></h2>
+      <div class="eyebrow">One Partnership. Nine Areas of Ownership.</div>
+      <h2 class="slide-title">From executive support to <span class="accent">enterprise-level ownership</span></h2>
       <div class="card-grid cols-3">
         <div class="info-tile"><span class="tn">01</span>Executive &amp; Operational Support</div>
         <div class="info-tile"><span class="tn">02</span>Finance &amp; Bookkeeping</div>
@@ -830,12 +848,13 @@
         <div class="info-tile"><span class="tn">08</span>Lyos Financial Support &amp; M&amp;A</div>
         <div class="info-tile"><span class="tn">09</span>Event Planning &amp; Culture Support</div>
       </div>
+      <p style="margin-top:clamp(16px,2.4vw,26px); font-size:clamp(12px,1.3vw,15px); opacity:0.75; max-width:60ch;">The scope grew because the trust did - not because the task list did.</p>
     </section>
 
     <!-- 8: CHALLENGES -->
     <section class="slide era-folklore card-slide" style="justify-content:center;">
       <div class="eyebrow">Not Gonna Pretend It Was Easy</div>
-      <h2 class="slide-title" style="align-self:center;">The hard parts of this era</h2>
+      <h2 class="slide-title" style="align-self:center;">What stretched me</h2>
       <div class="list-rows" style="align-self:center;">
         <div class="list-row"><span class="mark no">✕</span>Nine role categories, one Executive Partner seat</div>
         <div class="list-row"><span class="mark no">✕</span>A hard external regulatory compliance deadline</div>
@@ -867,7 +886,7 @@
     <section class="slide era-red card-slide" id="act-5">
       <div class="act-mark">Act V</div>
       <div class="eyebrow">Highlight Reel</div>
-      <h2 class="slide-title">Major <span class="accent">wins</span> this era</h2>
+      <h2 class="slide-title">Major <span class="accent">wins</span></h2>
       <div class="card-grid cols-3">
         <div class="info-tile">Flagged <b>$24K</b> in unusual transactions from a former employee - later confirmed as theft, helping stop further damage to the company</div>
         <div class="info-tile">Ran the company's payroll independently for the first time during a leadership leave, including an unexpected, last-minute termination</div>
@@ -880,7 +899,30 @@
         <div class="info-tile">Came in clutch on a vendor pricing negotiation stalled for 2+ years - <b>$18,616</b>/year in savings</div>
       </div>
     </section>
-    <!-- 11: COST SAVINGS (receipt printer) -->
+    <!-- 9c: NOT JUST PRODUCTIVITY - PROTECTION ($24K theft catch, given its own moment) -->
+    <section class="slide era-red card-slide" style="justify-content:center; align-items:center; text-align:center;">
+      <div class="eyebrow">Beyond Getting More Done</div>
+      <h2 class="slide-title">Protecting the business</h2>
+      <div class="hero-stat" style="max-width:420px;">
+        <div class="v">$24,000</div>
+        <div class="l">in unusual transactions flagged from a former employee - later confirmed as theft</div>
+      </div>
+      <div class="list-rows" style="margin-top:clamp(18px,2.6vw,28px); max-width:60ch; text-align:left;">
+        <div class="list-row"><span class="mark ok">✓</span>Attention to detail - the kind that notices what doesn't add up</div>
+        <div class="list-row"><span class="mark ok">✓</span>Ownership - treating the books like they were mine to protect</div>
+        <div class="list-row emph" style="text-align:center;">Being a Force Multiplier isn't only about doing more. It's about protecting the business, too.</div>
+      </div>
+    </section>
+    <!-- 10b: THE HEADLINE NUMBER (read in 3 seconds, before the full breakdown) -->
+    <section class="slide era-1989 card-slide" style="justify-content:center; text-align:center;">
+      <div class="eyebrow" style="align-self:center;">Documented 2026 Financial Contribution</div>
+      <div style="font-family:'Roboto Mono',monospace; font-weight:800; font-size:clamp(52px,9.5vw,128px); color:var(--pink2); line-height:1; align-self:center; text-shadow:0 0 60px rgba(220,186,121,0.35);">$463,616</div>
+      <div class="hero-stat reveal" style="align-self:center; max-width:480px; margin-top:clamp(22px,3.4vw,36px);">
+        <div class="v" style="font-size:clamp(22px,2.8vw,32px);">57%</div>
+        <div class="l">of Americord's total 2026 company-wide savings - $810,350.93</div>
+      </div>
+    </section>
+    <!-- 11: COST SAVINGS (receipt printer, the breakdown) -->
     <section class="slide era-1989 chart-slide">
       <div class="chart-side">
                 <div class="eyebrow">The Numbers Don't Lie</div>
@@ -908,7 +950,7 @@
       </div>
       <div class="stat-side">
         <div class="hero-stat reveal" style="--d:.1s"><div class="v">$463,616</div><div class="l">in 2026 savings I helped negotiate and drive</div></div>
-        <div class="hero-stat reveal" style="--d:.2s"><div class="v">$810,350.93</div><div class="l">Americord's total 2026 savings, company-wide - my part alone is over half</div></div>
+        <div class="hero-stat reveal" style="--d:.2s"><div class="v">$810,350.93</div><div class="l">Americord's total 2026 savings, company-wide - my part alone is 57%</div></div>
         <div class="pull-quote reveal" style="--d:.4s">
           <div class="qtext" style="font-size:clamp(11px,1.2vw,14px);">"Expense tracking - improved by Julia, Justin, and all of you - means better support for Kendal and better expense management. Grateful for all the teamwork."</div>
           <div class="qattr">Martin Smithmyer, CEO · Slack</div>
@@ -950,9 +992,23 @@
         </div>
       </div>
     </section>
+    <!-- 13a: THE LEVERAGE (recap slide opening Act VI - where trust turned into leverage) -->
+    <section class="slide era-evermore card-slide" id="act-6" style="justify-content:center;">
+      <div class="act-mark" style="align-self:center; width:100%; max-width:320px;">Act VI</div>
+      <div class="eyebrow" style="align-self:center;">Beyond the Job Description</div>
+      <h2 class="slide-title" style="align-self:center;">Where trust became <span class="accent">leverage</span></h2>
+      <div class="card-grid cols-3" style="max-width:900px; align-self:center;">
+        <div class="info-tile">Kendal's wedding, start to finish</div>
+        <div class="info-tile">A worry-free 2-week honeymoon</div>
+        <div class="info-tile">Independent payroll ownership</div>
+        <div class="info-tile">Company-wide succession planning</div>
+        <div class="info-tile">Legal &amp; contract work</div>
+        <div class="info-tile">Lyos financial ownership</div>
+        <div class="info-tile wide">Executive-level ownership - handed off, not micromanaged</div>
+      </div>
+    </section>
     <!-- 13b: LYOS WEBSITE DEMO (laptop mockup, screen-recorded video) -->
-    <section class="slide era-evermore card-slide" id="act-6">
-      <div class="act-mark">Act VI</div>
+    <section class="slide era-evermore card-slide">
       <div class="eyebrow">Rebuilt for the Sister Company</div>
       <h2 class="slide-title">The Lyos <span class="accent">website</span></h2>
       <p style="opacity:0.8; font-size:clamp(13px,1.4vw,16px); margin-bottom:clamp(16px,2.4vw,26px);">Also built the full break-even analysis and cost breakdown for Lyos overall.</p>
@@ -1103,6 +1159,18 @@
         </div>
       </div>
     </section>
+    <!-- 9a2: THE LINE THAT SAYS IT ALL (3-quote spotlight, big type, faint letter scan behind) -->
+    <section class="slide era-red card-slide" style="justify-content:center; text-align:center;">
+      <img class="bg-letter" src="assets/letter-formal-page1.png" alt="">
+      <div class="eyebrow" style="align-self:center; position:relative; z-index:1;">The Line That Says It All</div>
+      <h2 class="slide-title" style="align-self:center; position:relative; z-index:1;">"Leverage, <span class="accent">not simply assistance.</span>"</h2>
+      <div class="quote-spotlight">
+        <div class="qs-line lead">"Julia has genuinely given me leverage, not simply assistance."</div>
+        <div class="qs-line">"She anticipates next steps."</div>
+        <div class="qs-line">"I get significantly more accomplished now than I did before working with her."</div>
+      </div>
+      <div class="letter-attr" style="align-self:center; position:relative; z-index:1; margin-top:clamp(16px,2.4vw,24px);">— Kendal Schoettlin, in a formal letter to Athena leadership</div>
+    </section>
     <!-- 9b: FORMAL FEEDBACK (paginated letter + synced highlight panel) -->
     <section class="slide era-red card-slide" style="justify-content:center;">
       <div class="eyebrow">Straight From an Athena Client</div>
@@ -1224,6 +1292,7 @@
     <!-- 13d: SUSTAINABILITY (phone slideshow) -->
     <section class="slide era-speaknow hero-slide">
       <div class="hero-copy">
+                <div class="eyebrow">Impact Beyond Work</div>
                 <div class="icon-badge">🌱</div>
         <h1>Sustainability &amp; <span class="accent">giving back</span>, in small ways</h1>
         <p class="hero-sub">At home, I reuse plastic bottles and containers as planters instead of throwing them out. Through GCash's GForest program, I've planted 8 trees so far - and I have the real certificates to prove it. I also give my old clothes and things I no longer need to charity, and teach my son to do the same.</p>
@@ -1278,8 +1347,9 @@
     <!-- 15: THE ASK -->
     <section class="slide era-midnights card-slide" style="justify-content:center;" id="act-9">
       <div class="act-mark" style="align-self:center; width:100%; max-width:320px;">Act IX</div>
-      <div class="eyebrow">The Case for Force Multiplier</div>
-      <h2 class="slide-title" style="align-self:center;">What this era earned</h2>
+      <div class="eyebrow" style="align-self:center;">The Case for Force Multiplier</div>
+      <div class="tl-subtitle" style="align-self:center; margin-bottom:clamp(14px,2vw,22px);">Trust <span class="arrow">→</span> Ownership <span class="arrow">→</span> Results <span class="arrow">→</span> Validation</div>
+      <h2 class="slide-title" style="align-self:center;">What this partnership earned</h2>
       <div class="list-rows" style="align-self:center;">
         <div class="list-row"><span class="mark ok">✓</span>$463,616 in measurable, documented contribution</div>
         <div class="list-row"><span class="mark ok">✓</span>Entrusted with more scope every quarter, without ever having to ask for it</div>
@@ -1295,7 +1365,8 @@
         <div class="act-mark">Act X</div>
         <div class="icon-badge">🔁</div>
         <h1 class="signature" style="font-size:clamp(48px,7.5vw,88px); color:var(--pink2);">Full Circle</h1>
-        <p class="hero-sub">A TikTok video is what helped me find Athena in the first place. Now, one of my own videos is helping other people find it too - and I'm just grateful to be part of this team.</p>
+        <p class="hero-sub">A TikTok video is what helped me find Athena in the first place. Now, one of my own videos - at 76.5K views and counting - is helping someone else find it too.</p>
+        <p class="hero-sub" style="color:var(--pink2); font-weight:700;">Athena multiplied my potential. This past year, I've spent it multiplying that impact for the people around me - Kendal, Americord, Athena, my community, and my family.</p>
         <div class="hero-tag">Questions?</div>
       </div>
       <div class="phone slideshow">
