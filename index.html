@@ -323,6 +323,12 @@
   .letter-dots .sdot{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.3); }
   .letter-dots .sdot.on{ background:var(--pink2); width:16px; border-radius:3px; transition:all .3s; }
   .letter-highlight-wrap{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:clamp(10px,1.5vw,16px); min-width:0; }
+  /* the label + attribution frame the one synced quote, so they share its on/off state -
+     without this, pages that carry no quote would show an empty, orphaned label + attribution. */
+  .letter-highlight-wrap .letter-highlight-label,
+  .letter-highlight-wrap .letter-attr{ opacity:0; transition:opacity 0.4s ease; }
+  .letter-highlight-wrap .letter-highlight-label.on,
+  .letter-highlight-wrap .letter-attr.on{ opacity:1; }
   .letter-highlight-label{ font-family:"Roboto Mono",monospace; text-transform:uppercase; letter-spacing:1.5px; font-size:clamp(10px,1.1vw,12px); color:var(--pink2); font-weight:700; }
   .letter-highlight-moment{ display:none; }
   .letter-highlight-moment.on{ display:block; }
@@ -1701,6 +1707,8 @@
   function initLetterReader(root){
     var pages = Array.prototype.slice.call(root.querySelectorAll('.letter-page'));
     var moments = Array.prototype.slice.call(root.querySelectorAll('.letter-highlight-moment'));
+    var highlightLabel = root.querySelector('.letter-highlight-label');
+    var highlightAttr = root.querySelector('.letter-highlight-wrap .letter-attr');
     var dotsWrap = root.querySelector('.letter-dots');
     if (!pages.length || !dotsWrap) return;
 
@@ -1729,9 +1737,17 @@
       pos = i;
       pages.forEach(function(p, j){ p.classList.toggle('on', j === i); });
       Array.prototype.slice.call(dotsInner.children).forEach(function(d, j){ d.classList.toggle('on', j === i); });
+      var hasMoment = false;
       moments.forEach(function(m){
-        m.classList.toggle('on', parseInt(m.getAttribute('data-page'), 10) === i);
+        var match = parseInt(m.getAttribute('data-page'), 10) === i;
+        m.classList.toggle('on', match);
+        if (match) hasMoment = true;
       });
+      // the label + attribution only make sense alongside an actual quote, so they
+      // share its on/off state - otherwise pages without a synced quote show an
+      // orphaned label and attribution with nothing between them.
+      if (highlightLabel) highlightLabel.classList.toggle('on', hasMoment);
+      if (highlightAttr) highlightAttr.classList.toggle('on', hasMoment);
       // the highlight-box sweep (if the active page has one) lives inside that page only
       pages.forEach(function(p){
         var b = p.querySelector('.letter-highlight-box');
