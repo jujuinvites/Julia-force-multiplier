@@ -107,6 +107,14 @@
     padding:8px 20px; font-family:"Roboto Mono",monospace; font-size:clamp(11px,1.3vw,14px);
     letter-spacing:0.5px; text-transform:uppercase; font-weight:700; color:var(--pink2);
   }
+  .destination-item{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .dest-photo{
+    width:clamp(56px,7vw,88px); height:clamp(56px,7vw,88px); border-radius:16px; overflow:hidden;
+    border:1px solid rgba(220,186,121,0.35); box-shadow:0 10px 24px rgba(0,0,0,0.35);
+    display:flex; align-items:center; justify-content:center; background:#fdfcf9;
+  }
+  .dest-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .dest-photo.dest-logo img{ width:80%; height:80%; object-fit:contain; }
 
   /* ---------- collapsible setlist menu (toggle button + slide-out drawer, no permanent sidebar) ---------- */
   .menu-toggle{
@@ -1489,11 +1497,26 @@
     <!-- 16b: CLOSING - THE FINAL MESSAGE (quiet, sequential destination reveal) -->
     <section class="slide era-lover card-slide" style="justify-content:center; text-align:center;">
       <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; align-self:center; margin-bottom:clamp(20px,3vw,32px);">
-        <span class="destination-chip reveal-hero" style="--d:.1s;">My Client</span>
-        <span class="destination-chip reveal-hero" style="--d:.4s;">Americord</span>
-        <span class="destination-chip reveal-hero" style="--d:.7s;">Athena</span>
-        <span class="destination-chip reveal-hero" style="--d:1s;">My Community</span>
-        <span class="destination-chip reveal-hero" style="--d:1.3s;">My Family</span>
+        <div class="destination-item reveal-hero" style="--d:.1s;">
+          <div class="dest-photo"><img src="assets/kendal-headshot.jpg" alt="Kendal Schoettlin"></div>
+          <span class="destination-chip">My Client</span>
+        </div>
+        <div class="destination-item reveal-hero" style="--d:.4s;">
+          <div class="dest-photo dest-logo"><img src="assets/logo-americord.png" alt="Americord logo"></div>
+          <span class="destination-chip">Americord</span>
+        </div>
+        <div class="destination-item reveal-hero" style="--d:.7s;">
+          <div class="dest-photo dest-logo"><img src="assets/logo-athena-wordmark.png" alt="Athena logo"></div>
+          <span class="destination-chip">Athena</span>
+        </div>
+        <div class="destination-item reveal-hero" style="--d:1s;">
+          <div class="dest-photo"><img src="assets/sustain-bottle-1.jpg" alt="Julia reusing a plastic bottle as a planter"></div>
+          <span class="destination-chip">My Community</span>
+        </div>
+        <div class="destination-item reveal-hero" style="--d:1.3s;">
+          <div class="dest-photo"><img src="assets/aboutme-3.jpg" alt="Julia holding her son at a viewpoint"></div>
+          <span class="destination-chip">My Family</span>
+        </div>
       </div>
       <p class="hero-sub reveal-hero" style="--d:1.8s; align-self:center; max-width:44ch;">Athena multiplied my potential.</p>
       <p class="hero-sub reveal-hero" style="--d:2.15s; align-self:center; max-width:44ch; color:var(--pink2); font-weight:700;">And over the past year, I've worked to multiply that impact outward - to my client, her company, Athena, my community, and my family.</p>
