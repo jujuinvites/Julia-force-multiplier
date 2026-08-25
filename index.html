@@ -473,6 +473,19 @@
   .team-growth-arrow{ font-size:clamp(18px,2.2vw,26px); color:var(--pink2); opacity:0.8; }
   .hero-stat .v{ font-family:"Roboto Mono",monospace; font-size:clamp(22px,3.2vw,42px); font-weight:700; color:var(--pink2); }
   .hero-stat .l{ font-size:clamp(11px,1.2vw,14px); opacity:0.85; margin-top:6px; }
+
+  /* "Protecting the business" - a graver, more executive treatment for the $24K theft-catch moment */
+  .protect-stat{
+    background:rgba(0,0,0,0.32); border:1.5px solid rgba(220,186,121,0.55); padding:clamp(18px,2.6vw,28px);
+    box-shadow:0 0 0 1px rgba(220,186,121,0.12) inset, 0 18px 50px rgba(0,0,0,0.45), 0 0 70px rgba(220,186,121,0.16);
+  }
+  .protect-stat .v{ font-size:clamp(26px,4vw,48px); text-shadow:0 0 36px rgba(220,186,121,0.4); }
+  .protect-points .list-row{ line-height:1.35; }
+  .protect-takeaway{
+    font-family:"Playfair Display",Georgia,serif; font-weight:700; font-size:clamp(17px,2.4vw,26px);
+    line-height:1.4; color:var(--pink2); max-width:52ch; margin:clamp(16px,2.2vw,22px) auto 0;
+    padding-top:clamp(12px,1.8vw,18px); border-top:1px solid rgba(220,186,121,0.25);
+  }
   .bar-chart{ width:100%; height:clamp(180px,32vh,320px); }
   .bar-label{ font-family:"Roboto Mono",monospace; font-size:11px; fill:var(--ink); opacity:0.85; }
   .bar-value{ font-family:"Roboto Mono",monospace; font-size:13px; font-weight:700; fill:var(--pink2); }
@@ -1078,17 +1091,17 @@
     </section>
     <!-- 9c: NOT JUST PRODUCTIVITY - PROTECTION ($24K theft catch, given its own moment) -->
     <section class="slide era-red card-slide spotlight-dark" style="justify-content:center; align-items:center; text-align:center;">
-      <div class="eyebrow reveal-hero">Beyond Getting More Done</div>
-      <h2 class="slide-title reveal-hero" style="--d:.15s;">Protecting the business</h2>
-      <div class="hero-stat reveal-hero" style="--d:.4s; max-width:420px;">
-        <div class="v">$24,000</div>
-        <div class="l">in unusual transactions flagged from a former employee - later confirmed as theft</div>
+      <div class="eyebrow reveal-hero">Ownership in Action</div>
+      <h2 class="slide-title reveal-hero" style="--d:.12s; margin-bottom:clamp(10px,1.6vw,16px);">Protecting the business</h2>
+      <div class="hero-stat protect-stat" style="max-width:420px;">
+        <div class="v hero-number">$24,000</div>
+        <div class="l reveal-hero" style="--d:.42s;">in unusual transactions I flagged, later confirmed as theft</div>
       </div>
-      <div class="list-rows" style="margin-top:clamp(18px,2.6vw,28px); max-width:60ch; text-align:left;">
-        <div class="list-row"><span class="mark ok">✓</span>Attention to detail - the kind that notices what doesn't add up</div>
-        <div class="list-row"><span class="mark ok">✓</span>Ownership - treating the books like they were mine to protect</div>
-        <div class="list-row emph" style="text-align:center;">Being a Force Multiplier isn't only about doing more. It's about protecting the business, too.</div>
+      <div class="list-rows protect-points" style="margin-top:clamp(14px,2vw,20px); max-width:62ch; text-align:left;">
+        <div class="list-row reveal-hero" style="--d:.55s;"><span class="mark ok">✓</span>Attention to detail — noticing what didn't add up</div>
+        <div class="list-row reveal-hero" style="--d:.67s;"><span class="mark ok">✓</span>Ownership — treating financial accuracy and risk as my responsibility</div>
       </div>
+      <div class="protect-takeaway reveal-hero" style="--d:.85s;">A Force Multiplier doesn't just create value. They protect it.</div>
     </section>
     <!-- 10b: THE HEADLINE NUMBER (read in 3 seconds, before the full breakdown) -->
     <section class="slide era-1989 card-slide" style="justify-content:center; text-align:center;">
