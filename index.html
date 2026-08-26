@@ -323,15 +323,7 @@
   .letter-dots .sdot{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.3); }
   .letter-dots .sdot.on{ background:var(--pink2); width:16px; border-radius:3px; transition:all .3s; }
   .letter-highlight-wrap{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:clamp(10px,1.5vw,16px); min-width:0; }
-  /* the label + attribution frame the one synced quote, so they share its on/off state -
-     without this, pages that carry no quote would show an empty, orphaned label + attribution. */
-  .letter-highlight-wrap .letter-highlight-label,
-  .letter-highlight-wrap .letter-attr{ opacity:0; transition:opacity 0.4s ease; }
-  .letter-highlight-wrap .letter-highlight-label.on,
-  .letter-highlight-wrap .letter-attr.on{ opacity:1; }
   .letter-highlight-label{ font-family:"Roboto Mono",monospace; text-transform:uppercase; letter-spacing:1.5px; font-size:clamp(10px,1.1vw,12px); color:var(--pink2); font-weight:700; }
-  .letter-highlight-moment{ display:none; }
-  .letter-highlight-moment.on{ display:block; }
   .letter-highlight-moment p{ font-size:clamp(14px,1.8vw,21px); font-weight:600; line-height:1.5; padding-left:clamp(12px,1.5vw,18px); border-left:3px solid var(--pink2); }
   .letter-attr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,0.95vw,11px); letter-spacing:0.5px; color:var(--accent); opacity:0.85; margin-top:6px; }
   @media (max-width:760px){ .letter-reader{ flex-direction:column; } }
@@ -1393,7 +1385,7 @@
         </div>
         <div class="letter-highlight-wrap">
           <div class="letter-highlight-label">The Line That Stays With You</div>
-          <div class="letter-highlight-moment" data-page="2">
+          <div class="letter-highlight-moment">
             <p>"At this point, I can genuinely say that I do not know how I would manage my role without her."</p>
           </div>
           <div class="letter-attr">— Kendal Schoettlin, in a formal letter to Athena leadership</div>
@@ -1706,9 +1698,6 @@
   /* ---- formal letter reader: page flipper synced to a highlight panel on the side ---- */
   function initLetterReader(root){
     var pages = Array.prototype.slice.call(root.querySelectorAll('.letter-page'));
-    var moments = Array.prototype.slice.call(root.querySelectorAll('.letter-highlight-moment'));
-    var highlightLabel = root.querySelector('.letter-highlight-label');
-    var highlightAttr = root.querySelector('.letter-highlight-wrap .letter-attr');
     var dotsWrap = root.querySelector('.letter-dots');
     if (!pages.length || !dotsWrap) return;
 
@@ -1723,8 +1712,8 @@
     dotsWrap.appendChild(dotsInner);
     dotsWrap.appendChild(nextBtn);
 
-    // navigation is keyed off pages, not highlight-boxes, so every page stays reachable
-    // even when a given page carries no synced highlight moment at all.
+    // navigation is keyed off pages, not the highlight-box, so every page stays reachable
+    // regardless of which page (if any) carries the sweep animation.
     pages.forEach(function(_, i){
       var d = document.createElement('div');
       d.className = 'sdot' + (i === 0 ? ' on' : '');
@@ -1737,17 +1726,6 @@
       pos = i;
       pages.forEach(function(p, j){ p.classList.toggle('on', j === i); });
       Array.prototype.slice.call(dotsInner.children).forEach(function(d, j){ d.classList.toggle('on', j === i); });
-      var hasMoment = false;
-      moments.forEach(function(m){
-        var match = parseInt(m.getAttribute('data-page'), 10) === i;
-        m.classList.toggle('on', match);
-        if (match) hasMoment = true;
-      });
-      // the label + attribution only make sense alongside an actual quote, so they
-      // share its on/off state - otherwise pages without a synced quote show an
-      // orphaned label and attribution with nothing between them.
-      if (highlightLabel) highlightLabel.classList.toggle('on', hasMoment);
-      if (highlightAttr) highlightAttr.classList.toggle('on', hasMoment);
       // the highlight-box sweep (if the active page has one) lives inside that page only
       pages.forEach(function(p){
         var b = p.querySelector('.letter-highlight-box');
