@@ -1370,13 +1370,13 @@
       <div class="split-row letter-reader">
         <div class="letter-viewport">
           <div class="letter-pages">
-            <div class="letter-page on">
+            <div class="letter-page">
               <img src="assets/letter-formal-page1.png" alt="Page 1 of Kendal's formal recommendation letter to the Athena Leadership Team">
             </div>
             <div class="letter-page">
               <img src="assets/letter-formal-page2.png" alt="Page 2 of Kendal's formal recommendation letter to the Athena Leadership Team">
             </div>
-            <div class="letter-page">
+            <div class="letter-page on">
               <img src="assets/letter-formal-page3.png" alt="Page 3 of Kendal's formal recommendation letter to the Athena Leadership Team">
               <div class="letter-highlight-box" style="top:28.8%; height:4.7%;"><div class="lhb-fill"></div></div>
             </div>
@@ -1712,11 +1712,17 @@
     dotsWrap.appendChild(dotsInner);
     dotsWrap.appendChild(nextBtn);
 
+    // open on the page that carries the highlight box, so the highlighted sentence
+    // and its matching quote in the side panel are visible together immediately,
+    // instead of requiring a click through to find them.
+    var startIndex = 0;
+    pages.forEach(function(p, i){ if (p.querySelector('.letter-highlight-box')) startIndex = i; });
+
     // navigation is keyed off pages, not the highlight-box, so every page stays reachable
     // regardless of which page (if any) carries the sweep animation.
     pages.forEach(function(_, i){
       var d = document.createElement('div');
-      d.className = 'sdot' + (i === 0 ? ' on' : '');
+      d.className = 'sdot' + (i === startIndex ? ' on' : '');
       d.addEventListener('click', function(){ goTo(i); });
       dotsInner.appendChild(d);
     });
@@ -1744,7 +1750,7 @@
     prevBtn.addEventListener('click', function(){ goTo(pos - 1); });
     nextBtn.addEventListener('click', function(){ goTo(pos + 1); });
 
-    show(0);
+    show(startIndex);
   }
   document.querySelectorAll('.letter-reader').forEach(initLetterReader);
 
