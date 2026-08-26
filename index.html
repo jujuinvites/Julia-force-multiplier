@@ -264,11 +264,17 @@
   .slideshow-quote-slide{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:8% 10%; background:radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%); }
   .slideshow-quote-slide .qtext{ font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(13px,2.1cqi,22px); line-height:1.45; }
   .slideshow-quote-slide .qattr{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(9px,1.1cqi,12px); color:var(--pink2); font-weight:700; margin-top:12px; letter-spacing:0.5px; }
-  .slideshow-win-slide{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6% 11%; gap:clamp(6px,1.5cqi,14px); background:radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%); }
-  .slideshow-win-slide .wv{ font-family:"Roboto Mono",monospace; font-weight:800; font-size:clamp(22px,5.5cqi,42px); color:var(--pink2); }
+  .slideshow-win-slide{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6% 11%; gap:clamp(8px,1.8cqi,16px);
+    background:
+      radial-gradient(circle at 50% 22%, rgba(255,255,255,0.13), transparent 46%),
+      radial-gradient(circle at 18% 88%, rgba(255,255,255,0.06), transparent 40%),
+      radial-gradient(circle at 50% 30%, var(--moss), var(--deepforest) 85%);
+  }
+  .slideshow-win-slide .wv{ font-family:"Roboto Mono",monospace; font-weight:800; font-size:clamp(30px,7.5cqi,56px); color:var(--pink2); text-shadow:0 2px 24px rgba(0,0,0,0.35); }
   .slideshow-win-slide .wv small{ font-size:0.45em; opacity:0.8; }
-  .slideshow-win-slide .wtext{ font-size:clamp(10px,2.1cqi,15px); line-height:1.5; max-width:38ch; }
-  .slideshow-win-slide .wtag{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(8px,1cqi,11px); color:var(--accent); opacity:0.85; letter-spacing:0.5px; }
+  .slideshow-win-slide .wtext{ font-size:clamp(14px,2.9cqi,20px); line-height:1.55; max-width:38ch; }
+  .slideshow-win-slide .wtag{ font-family:"Roboto Mono",monospace; text-transform:uppercase; font-size:clamp(11px,1.4cqi,14px); color:var(--accent); opacity:0.9; letter-spacing:0.6px; }
   .slideshow-win-slide .wpraise{ font-family:"Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(9px,1.5cqi,12px); color:var(--pink2); opacity:0.9; margin-top:2px; }
   .ph-note{ position:absolute; top:8px; right:10px; font-family:"Roboto Mono",monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.5px; color:rgba(255,255,255,0.35); z-index:6; }
 
