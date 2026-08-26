@@ -749,11 +749,14 @@
     position:relative; z-index:3;
   }
   .printer-slot{ position:absolute; left:7%; right:7%; bottom:-3px; height:6px; border-radius:3px; background:#000; box-shadow:inset 0 2px 5px rgba(0,0,0,0.9); }
+  /* clip-path (not max-height) drives the print-out reveal, so the box keeps its final layout
+     height throughout the animation - the title above it never shifts as the receipt "prints". */
   .receipt-mask{
-    width:82%; margin:0 auto; overflow:hidden; max-height:0; position:relative; z-index:1;
-    transition:max-height 4s cubic-bezier(0.65,0,0.35,1);
+    width:82%; margin:0 auto; position:relative; z-index:1;
+    clip-path:inset(0 0 100% 0);
+    transition:clip-path 4s cubic-bezier(0.65,0,0.35,1);
   }
-  .slide.in-view .receipt-mask{ max-height:640px; }
+  .slide.in-view .receipt-mask{ clip-path:inset(0 0 0% 0); }
   .receipt-paper{
     background:#f4f1e8; color:#161511; font-family:"Roboto Mono",monospace;
     font-size:clamp(11px,1.15vw,13px); line-height:1.85;
@@ -779,7 +782,7 @@
     .mixed-collage > .mc-item, .cert-collage > .cc-item, .team-growth-photos > figure{
       transition:none !important; opacity:1 !important; transform:none !important;
     }
-    .receipt-mask{ transition:none !important; max-height:640px !important; }
+    .receipt-mask{ transition:none !important; clip-path:inset(0 0 0% 0) !important; }
     .hero-number{ animation:none !important; opacity:1 !important; transform:none !important; filter:none !important; }
     .phone.slideshow .slideshow-imgs img.on, .id-reveal img{ animation:none !important; transform:none !important; }
     body.presentation-mode.idle .topbar, body.presentation-mode.idle .menu-toggle{ opacity:1 !important; pointer-events:auto !important; }
