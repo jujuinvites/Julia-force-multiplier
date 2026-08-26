@@ -224,6 +224,16 @@
     background:radial-gradient(circle at 35% 18%, var(--moss), var(--deepforest) 75%);
     display:flex; flex-direction:column;
   }
+  /* cover slide only: a warmer, more video-like backdrop for the TikTok mockup - a soft pink
+     bloom (top-left, like screen glow) plus a faint gold ember (bottom-right, echoing the
+     tour-poster gold used in the act mark / hero-tag) over a diagonal sweep instead of a flat radial. */
+  #act-1 .phone{ box-shadow:0 24px 60px rgba(0,0,0,0.55), inset 0 0 0 1.5px rgba(255,255,255,0.08), 0 0 90px rgba(242,184,200,0.16); }
+  #act-1 .phone .screen{
+    background:
+      radial-gradient(circle at 26% 12%, rgba(242,184,200,0.34), transparent 46%),
+      radial-gradient(circle at 80% 90%, rgba(220,186,121,0.22), transparent 50%),
+      linear-gradient(155deg, var(--moss) 0%, var(--deepforest) 78%);
+  }
   .phone .ptop{ display:flex; justify-content:center; gap:8%; padding:9% 0 3%; font-size:clamp(6px,7.5cqi,8px); font-weight:700; }
   .phone .ptop span{ opacity:0.5; }
   .phone .ptop span.on{ opacity:1; border-bottom:1.5px solid #fff; padding-bottom:3px; }
