@@ -549,6 +549,27 @@
   .tl-subtitle .arrow{ color:var(--pink2); font-style:normal; margin:0 8px; opacity:0.8; }
   .tl-footer .pull-quote{ max-width:520px; text-align:center; align-items:center; }
 
+  /* ---------- Act IX: "The Case for Force Multiplier" - dramatic finale treatment ---------- */
+  #act-9 .tl-subtitle{ font-size:clamp(19px,2.7vw,30px); font-weight:700; opacity:1; letter-spacing:0.3px; }
+  #act-9 .tl-subtitle .arrow{ opacity:1; }
+  #act-9 .slide-title{ font-size:clamp(36px,5.6vw,64px); margin-bottom:clamp(26px,3.4vw,44px); }
+  #act-9 .info-tile{
+    background:rgba(255,255,255,0.045);
+    border:1px solid rgba(184,184,232,0.35);
+    box-shadow:0 0 0 1px rgba(184,184,232,0.08) inset, 0 24px 48px rgba(0,0,0,0.4);
+    padding:clamp(18px,2.6vw,30px);
+    font-size:clamp(14.5px,1.7vw,18px);
+  }
+  #act-9 .info-tile .tn{ font-size:clamp(11px,1.2vw,13px); letter-spacing:1.6px; color:var(--pink2); opacity:0.9; margin-bottom:10px; }
+  #act-9 .info-tile b{ font-size:1.3em; }
+  #act-9 .list-rows{ align-items:center; max-width:680px; }
+  #act-9 .list-row{ justify-content:center; text-align:center; }
+  #act-9 .list-row.emph{
+    font-size:clamp(19px,2.5vw,29px); margin-top:clamp(20px,2.8vw,30px);
+    padding-top:clamp(18px,2.4vw,26px); border-top:1px solid rgba(184,184,232,0.25);
+  }
+  @media (max-width:760px){ #act-9 .card-grid.cols-3{ grid-template-columns:1fr; } }
+
   /* ---------- slideshow control bar (prev / dots / play-pause / next) ---------- */
   .slideshow-bar{ position:absolute; top:clamp(10px,3%,16px); left:0; right:0; display:flex; align-items:center; justify-content:center; gap:8px; z-index:7; }
   .slideshow-bar button{
