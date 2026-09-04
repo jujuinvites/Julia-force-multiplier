@@ -554,9 +554,9 @@
 
   /* ---------- PHOTO TIMELINE (polaroid-style milestones, alternating up/down) ---------- */
   .photo-timeline{
-    flex:1; display:flex; align-items:flex-start; justify-content:space-between; gap:clamp(28px,4.6vw,62px);
+    flex:1; display:flex; align-items:flex-start; justify-content:space-between; gap:clamp(14px,3vw,40px);
     overflow-x:auto; overflow-y:hidden; padding:10px 4px 26px; position:relative;
-    --pt-half:clamp(155px,17.4vw,205px);
+    --pt-half:clamp(112px,13vw,150px);
   }
   .photo-timeline::-webkit-scrollbar{ height:6px; }
   .photo-timeline::-webkit-scrollbar-thumb{ background:rgba(220,186,121,0.3); border-radius:4px; }
@@ -567,7 +567,7 @@
     z-index:0;
   }
   .pt-node{
-    flex-shrink:0; width:clamp(140px,14.8vw,180px);
+    flex-shrink:0; width:clamp(102px,11.5vw,138px);
     display:grid; grid-template-rows:var(--pt-half) auto var(--pt-half);
     justify-items:center; text-align:center; position:relative; z-index:1;
     opacity:0; transition:opacity .6s ease, transform .7s cubic-bezier(0.34,1.56,0.64,1);
@@ -598,12 +598,10 @@
   .pt-text{ display:flex; flex-direction:column; align-items:center; }
   .pt-node.pt-top .pt-text{ align-self:start; margin-top:10px; }
   .pt-node.pt-bottom .pt-text{ align-self:end; margin-bottom:10px; }
-  .pt-date{ font-family:"Roboto Mono",monospace; font-size:clamp(11px,1vw,12.5px); letter-spacing:1px; text-transform:uppercase; color:var(--pink2); font-weight:700; margin-bottom:4px; white-space:nowrap; }
-  .pt-label{ font-size:clamp(12.5px,1.2vw,14.5px); font-weight:700; line-height:1.3; }
-  .tl-footer{ margin-top:clamp(18px,3vw,32px); display:flex; flex-direction:column; align-items:center; gap:clamp(12px,2vw,20px); }
+  .pt-date{ font-family:"Roboto Mono",monospace; font-size:clamp(9.5px,0.85vw,11.5px); letter-spacing:0.7px; text-transform:uppercase; color:var(--pink2); font-weight:700; margin-bottom:3px; white-space:nowrap; }
+  .pt-label{ font-size:clamp(10.5px,1vw,13px); font-weight:700; line-height:1.25; }
   .tl-subtitle{ font-family:"Bodoni Moda","Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(17px,2.2vw,24px); text-align:center; opacity:0.95; }
   .tl-subtitle .arrow{ color:var(--pink2); font-style:normal; margin:0 8px; opacity:0.8; }
-  .tl-footer .pull-quote{ max-width:520px; text-align:center; align-items:center; }
 
   /* ---------- Act IX: "The Case for Force Multiplier" - dramatic finale treatment ---------- */
   #act-9 .tl-subtitle{ font-size:clamp(19px,2.7vw,30px); font-weight:700; opacity:1; letter-spacing:0.3px; }
@@ -1100,12 +1098,14 @@
           </div>
         </div>
       </div>
-      <div class="tl-footer">
-        <div class="tl-subtitle">From client <span class="arrow">→</span> partner <span class="arrow">→</span> confidante</div>
-        <div class="pull-quote">
-          <div class="qtext">"I feel like we've been besties for a long time!!! I was literally talking to Bradley's family about you again last night at dinner!!"</div>
-          <div class="qattr">Kendal Schoettlin · Slack, 1-Year Anniversary</div>
-        </div>
+    </section>
+
+    <!-- 5b: FROM CLIENT TO CONFIDANTE (the timeline's payoff, its own beat) -->
+    <section class="slide era-fearless card-slide" style="justify-content:center; text-align:center;">
+      <div class="tl-subtitle reveal-hero" style="align-self:center;">From client <span class="arrow">→</span> partner <span class="arrow">→</span> confidante</div>
+      <div class="pull-quote reveal-hero" style="--d:.35s; align-self:center; max-width:560px; margin-top:clamp(20px,3vw,32px);">
+        <div class="qtext">"I feel like we've been besties for a long time!!! I was literally talking to Bradley's family about you again last night at dinner!!"</div>
+        <div class="qattr">Kendal Schoettlin · Slack, 1-Year Anniversary</div>
       </div>
     </section>
 
