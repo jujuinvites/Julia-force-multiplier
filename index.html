@@ -104,6 +104,10 @@
   .slide.era-speaknow{ --moss:#2d2038; --deepforest:#0f0a15; --pink2:#c9a8e0; --accent:#a888c0; --bloom-x:40%; --bloom-y:64%; }
   .slide.era-midnights{ --moss:#1f1f38; --deepforest:#0a0a17; --pink2:#b8b8e8; --accent:#9090c8; --bloom-x:50%; --bloom-y:48%; }
 
+  /* Athena section-break interlude: solid brand green, white logo, no card chrome */
+  .slide.athena-interlude{ background:#0d2818; }
+  .slide.athena-interlude::before{ display:none; }
+
   /* ---------- tour-poster treatment: act markers, ticket-stamp tags, setlist nav ---------- */
   .act-mark{
     display:flex; align-items:center; gap:14px;
@@ -478,8 +482,6 @@
   .info-tile.wide{ grid-column:1/-1; }
   #act-5 .info-tile{ font-size:clamp(15px,1.8vw,19px); padding:clamp(16px,2.2vw,24px); }
   #act-6 .info-tile{ font-size:clamp(15px,1.8vw,19px); padding:clamp(16px,2.2vw,24px); }
-  #framework .info-tile{ font-size:clamp(15px,1.8vw,19px); padding:clamp(16px,2.2vw,24px); }
-  #framework .info-tile .tn{ font-size:clamp(11px,1.2vw,13px); }
   .info-tile b{ color:var(--pink2); }
 
   .list-rows{ display:flex; flex-direction:column; gap:clamp(9px,1.5vw,16px); flex:1; justify-content:center; max-width:78%; }
@@ -933,6 +935,11 @@
       </div>
     </section>
 
+    <!-- 3b: ATHENA SECTION BREAK (interstitial before Act III) -->
+    <section class="slide athena-interlude" style="justify-content:center; align-items:center; min-height:60vh;">
+      <img src="assets/logo-athena-wordmark.png" alt="Athena" style="width:min(46vw,420px); filter:brightness(0) invert(1);">
+    </section>
+
     <!-- 4: ERA 2 -->
     <section class="slide era-fearless card-slide" style="justify-content:center;" id="act-3">
       <div class="hero-copy" style="align-self:center; max-width:600px; text-align:center;">
@@ -1066,19 +1073,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- 6a: THE FORCE MULTIPLIER FRAMEWORK (maps the whole tour to the 4 areas being assessed) -->
-    <section class="slide era-fearless card-slide" id="framework" style="justify-content:center;">
-      <div class="eyebrow" style="align-self:center;">One partnership, four arenas</div>
-      <h2 class="slide-title" style="align-self:center;">Four ways the impact <span class="accent">multiplied</span></h2>
-      <div class="card-grid cols-2" style="max-width:900px; align-self:center;">
-        <div class="info-tile"><span class="tn">CLIENT</span><b>Leverage, not just assistance</b> - more trust, more time, more mental bandwidth for Kendal.</div>
-        <div class="info-tile"><span class="tn">COMPANY</span><b>$463,616</b> documented financial contribution, plus stronger operations and real risk protection.</div>
-        <div class="info-tile"><span class="tn">ATHENA</span>Knowledge-sharing, advocacy, visibility, AI best-practice training, and representation.</div>
-        <div class="info-tile"><span class="tn">COMMUNITY / SELF</span>Personal growth, family presence, sustainability, and giving back.</div>
-      </div>
-      <div style="align-self:center; margin-top:clamp(14px,2vw,20px); font-family:'Roboto Mono',monospace; font-size:clamp(10px,1.1vw,12px); letter-spacing:0.5px; text-transform:uppercase; opacity:0.7;">Mapped to Performance · Wellness &amp; Development · Advocacy &amp; Impact</div>
     </section>
 
     <!-- 6b: TEAM GROWTH (before more EAs were hired) -->
