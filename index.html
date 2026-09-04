@@ -555,14 +555,14 @@
   /* ---------- PHOTO TIMELINE (polaroid-style milestones, alternating up/down) ---------- */
   .photo-timeline{
     flex:1; display:flex; align-items:flex-start; justify-content:space-between; gap:clamp(12px,2.2vw,38px);
-    overflow-x:auto; overflow-y:hidden; padding:10px 4px 26px; position:relative;
+    overflow-x:auto; overflow-y:visible; padding:38px 4px 38px; position:relative;
     --pt-half:clamp(128px,13.5vw,158px);
   }
   .photo-timeline::-webkit-scrollbar{ height:6px; }
   .photo-timeline::-webkit-scrollbar-thumb{ background:rgba(220,186,121,0.3); border-radius:4px; }
   .photo-timeline::after{
     content:''; position:absolute; left:4px; right:4px; height:2px;
-    top:calc(10px + var(--pt-half) + 6px);
+    top:calc(38px + var(--pt-half) + 6px);
     background:linear-gradient(to right, rgba(220,186,121,0.12), rgba(220,186,121,0.55) 8%, rgba(220,186,121,0.55) 92%, rgba(220,186,121,0.12));
     z-index:0;
   }
