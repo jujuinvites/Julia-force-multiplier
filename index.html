@@ -1813,8 +1813,10 @@
     prevBtn.type = 'button'; prevBtn.setAttribute('aria-label', 'Previous photo'); prevBtn.textContent = '‹';
     var dotsWrap = document.createElement('div');
     dotsWrap.className = 'sdots';
+    var ICON_PLAY = '<svg viewBox="0 0 16 16" width="10" height="10" fill="currentColor" aria-hidden="true"><path d="M4 2.3v11.4c0 .6.66 1 1.2.66l9-5.7a.77.77 0 0 0 0-1.32l-9-5.7A.77.77 0 0 0 4 2.3z"/></svg>';
+    var ICON_PAUSE = '<svg viewBox="0 0 16 16" width="10" height="10" fill="currentColor" aria-hidden="true"><rect x="3.2" y="2.5" width="3.4" height="11" rx="1"/><rect x="9.4" y="2.5" width="3.4" height="11" rx="1"/></svg>';
     var playBtn = document.createElement('button');
-    playBtn.type = 'button'; playBtn.setAttribute('aria-label', 'Play slideshow'); playBtn.textContent = '▶';
+    playBtn.type = 'button'; playBtn.setAttribute('aria-label', 'Play slideshow'); playBtn.innerHTML = ICON_PLAY;
     var nextBtn = document.createElement('button');
     nextBtn.type = 'button'; nextBtn.setAttribute('aria-label', 'Next photo'); nextBtn.textContent = '›';
 
@@ -1844,8 +1846,8 @@
     function goTo(i){ show((i + imgs.length) % imgs.length); }
     function next(){ goTo(pos + 1); }
     function prev(){ goTo(pos - 1); }
-    function stop(){ if (timer){ clearInterval(timer); timer = null; } playing = false; playBtn.textContent = '▶'; playBtn.setAttribute('aria-label','Play slideshow'); }
-    function start(){ if (imgs.length < 2) return; playing = true; playBtn.textContent = '⏸'; playBtn.setAttribute('aria-label','Pause slideshow'); timer = setInterval(next, 2500); }
+    function stop(){ if (timer){ clearInterval(timer); timer = null; } playing = false; playBtn.innerHTML = ICON_PLAY; playBtn.setAttribute('aria-label','Play slideshow'); }
+    function start(){ if (imgs.length < 2) return; playing = true; playBtn.innerHTML = ICON_PAUSE; playBtn.setAttribute('aria-label','Pause slideshow'); timer = setInterval(next, 2500); }
 
     prevBtn.addEventListener('click', function(e){ e.stopPropagation(); stop(); prev(); });
     nextBtn.addEventListener('click', function(e){ e.stopPropagation(); stop(); next(); });
