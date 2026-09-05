@@ -607,6 +607,11 @@
   .pt-label{ font-size:clamp(10.5px,1vw,13px); font-weight:700; line-height:1.25; }
   .tl-subtitle{ font-family:"Bodoni Moda","Playfair Display",Georgia,serif; font-weight:600; font-size:clamp(17px,2.2vw,24px); text-align:center; opacity:0.95; }
   .tl-subtitle .arrow{ color:var(--pink2); font-style:normal; margin:0 8px; opacity:0.8; }
+  /* when an arrow inside .tl-subtitle is also staggering in via reveal-hero (one-word-at-a-time reveal),
+     let it animate from 0 like its siblings and land back at the intended dimmer 0.8, instead of the
+     static rule above pinning it visible the whole time */
+  .tl-subtitle .arrow.reveal-hero{ opacity:0; }
+  .slide.in-view .tl-subtitle .arrow.reveal-hero{ opacity:0.8; }
 
   /* ---------- Act IX: "The Case for Force Multiplier" - dramatic finale treatment ---------- */
   #act-9 .tl-subtitle{ font-size:clamp(19px,2.7vw,30px); font-weight:700; opacity:1; letter-spacing:0.3px; }
